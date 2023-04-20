@@ -82,4 +82,14 @@
   .div-mypage > p {
     color: #747474;
   }
+
+  .items-management-orders {
+    border: none;
+    width: 120px;
+    height: 46px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ffecbc;;
+  }
   
