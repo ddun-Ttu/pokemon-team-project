@@ -1,34 +1,3 @@
-// // 사용자 입력 확인 기능
-
-// function validateInput(name, username, email, password, confirmPassword) {
-//     // 이름이 빈 공간인지 확인
-//     if (name.trim() === '') {
-//       return warningMessage;
-//     }
-
-//     // 아이디가 2글자 이상인지 확인
-//     if (username.length < 2) {
-//     return false;
-//     }
-//     // 유효한 이메일인지 확인
-//     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//     if (!emailRegex.test(email)) {
-//       return false;
-//     }
-
-//     // 8자리 이상인지 확인
-//     if (password.length < 8) {
-//       return false;
-//     }
-
-//     // 비밀번호가 일치한지 확인
-//     if (password !== confirmPassword) {
-//       return false;
-//     }
-
-//     return true;
-//   }
-
 const passwordInput = document.querySelector(".password");
 const emailInput = document.querySelector(".email");
 const confirmPasswordInput = document.querySelector(".confirmPassword");
