@@ -13,7 +13,7 @@ div {
 div.gridContainer-whole {
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  grid-template-rows: 80px 100px auto auto;
+  grid-template-rows: 80px auto auto auto;
 }
 
 /* 네비게이션 바 */
@@ -48,10 +48,12 @@ div.categoryBar-categoryList {
 
 ul.cartegoryBar-categoryList-ul {  
   display: flex;
+  flex-wrap: wrap;
 }
 
 ul.cartegoryBar-categoryList-ul > li {
   width: 25%;
+
   display: flex;
 }
   
@@ -199,6 +201,8 @@ button.productListByCategory-list-like-button {
   border-radius: 100px;
 
   padding: 2% 0;
+
+  cursor: pointer;
 }
 
 /* 푸터 */
