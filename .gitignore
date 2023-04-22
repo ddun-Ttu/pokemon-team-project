@@ -1,3 +1,6 @@
-index.css
-nav-bar.html
-reset.css
+.DS_Store
+
+src
+!src/img
+!src/views/common
+!src/views/cart
