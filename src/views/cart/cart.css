@@ -183,7 +183,7 @@ div.container-productList-multiplication {
   align-items: center;
 }
 
-div.container-productList-productNumber {
+div.container-productList-productCount {
   width: 23%;
   
   display: flex;
@@ -202,6 +202,12 @@ div.container-productList-equal {
 div.container-productList-productTotalPrice {
   width: 23%;
   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.container-productList-deleteButton {
   display: flex;
   justify-content: center;
   align-items: center;
