@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../common/index.css" />
     <link rel="stylesheet" href="../common/reset.css">
     <link rel="stylesheet" href="./user-account.css">
+    <!-- Daum 주소 API 사용하기 위한 파일 --> 
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
   </head>
   <body>
     <!-- 네비게이션 바 -->
@@ -40,11 +43,45 @@
                 <p>비밀번호 확인</p>
                 <input class="form-input-user-acc" type="email">
               </div>
-    
-              <button class="but-user-acc">저장히기</button>
-            </form>
-          </div>
-        </div>
-    </div>
+
+              <div>
+                <p>연락처</p>
+                <input
+                class="form-input-user-acc"
+                type="number"
+                placeholder="- 없이 입력해 주세요."
+                autocomplete="on">
+              </div>
+
+              <div>
+                <p>주소</p>
+                <div class="flex">
+                  <input
+                  class="form-input-address address-style"
+                  id="postalCode"
+                  type="text"
+                  placeholder="주소찾기를 클릭해 주세요."
+                  readonly>
+                  <div>
+                    <button class="but-address">주소찾기</button>
+                  </div>
+                </div>
+                  <input
+                    class="form-input-user-acc address-style"
+                    id="address1"
+                    type="text"
+                    placeholder=""
+                    autocomplete="on"
+                    readonly>
+
+                  <input
+                    class="form-input-user-acc address-style"
+                    id="address2"
+                    type="text"
+                    placeholder=""
+                    autocomplete="on">
+              </div>
+
+            <button class="but-user-acc">저장히기</button>
 
 </html>
