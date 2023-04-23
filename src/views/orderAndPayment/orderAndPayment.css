@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-div {
-  /* border: 1px solid; */
-}
-
 /* 레이아웃 */
 
 div.gridContainer-whole {
@@ -47,9 +43,7 @@ div.container-pageName-name-sub {
   align-items: center;
 }
 
-span.container-pageName-name-sub {
 
-}
 
 /* 배송지 정보 & 결제 정보 */
 
@@ -93,9 +87,6 @@ div.container-deliveryInformation-subject {
   margin-bottom: 3%;
 }
 
-div.container-deliveryInformation-form {
-
-}
 
 div.container-form-name {
   display: flex;  
