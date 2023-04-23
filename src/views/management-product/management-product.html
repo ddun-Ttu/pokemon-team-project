@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../common/index.css">
+    <link rel="stylesheet" href="../common/reset.css">
+    <link rel="stylesheet" href="./management-product.css">
+  </head>
+  <body>
+
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container">
+        <a href="#"><img class="logo" src="../../img/logo.png" alt=""></a>
+        <ul class="nav-bar-ul">
+          <li class="nav-bar-li"><a href="#">회원가입</a></li>
+          <li class="nav-bar-li"><a href="#">로그인</a></li>
+          <li class="nav-bar-li"><a href="#">장바구니</a></li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <!-- 주문조회  -->
+    <div class="container">
+      <div class="contents-mypage">
+        <h3> 관리자 - 상품 관리</h3>
+        <div>
+            <!-- 상단 숫자 -->
+            <div class="flex-mypage">
+        
+                <div class="item-mypage">
+                  <div class="div-mypage">
+                    <p>총인원수</p>
+                    <h3>139</h3>
+                  </div>
+                </div>
+                <div class="item-mypage">
+                    <div class="div-mypage">
+                      <p>관리자수</p>
+                      <h3>139</h3>
+                    </div>
+                  </div>    
+                   <div class="item-mypage">
+                    <div class="div-mypage">
+                      <p>가입자수</p>
+                      <h3>139</h3>
+                    </div>
+                  </div>     
+            </div>
+        </div>
+    
+
+        <!-- 테이블 표 -->
+        <div class="table-my-orders">
+            <button class="add-product-but">상품 추가</button>
+          <table>
+            <thead>
+              <tr>
+                <th>등록날짜</th>
+                <th>카테고리</th>
+                <th>번호(2주차)</th>
+                <th>상품명</th>
+                <th>수정</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>2023-04-20</td>
+                <td>피카츄/ 1마리</td>
+                <td>상품 준비중</td>
+                <td>상품 준비중</td>
+                <td><button class="btn-my-orders">수정</button></td>
+                <td><button class="btn-my-orders">삭제</button></td>
+              </tr>
+              <tr>
+                <td>2023-04-20</td>
+                <td>피카츄/ 1마리</td>
+                <td>배송중</td>
+                <td>상품 준비중</td>
+                <td><button class="btn-my-orders">수정</button></td>
+                <td><button class="btn-my-orders">삭제</button></td>
+              </tr>
+
+              <tr>
+                <td>2023-04-20</td>
+                <td>피카츄/ 1마리</td>
+                <td>취소</td>
+                <td>상품 준비중</td>
+                <td><button class="btn-my-orders">수정</button></td>
+                <td><button class="btn-my-orders">삭제</button></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</html>

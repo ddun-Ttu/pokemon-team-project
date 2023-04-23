@@ -1,0 +1,290 @@
+/* ready to css */
+
+* {
+  box-sizing: border-box;
+}
+
+div {
+  /* border: 1px solid; */
+}
+
+/* 레이아웃 */
+
+div.gridContainer-whole {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: 80px auto auto auto;
+}
+
+/* 주문/결제 페이지 이름 */
+div.gridItem-whole-PageName {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+div.container-pageName {
+  margin: 2% auto 4% auto;
+}
+
+div.pageName {
+  display: flex;
+}
+
+.container-pageName-name {
+  display: flex;
+
+  align-items: center;
+}
+
+span.pageName-name {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+div.container-pageName-name-sub {
+  display: flex;
+
+  align-items: center;
+}
+
+span.container-pageName-name-sub {
+
+}
+
+/* 배송지 정보 & 결제 정보 */
+
+div.gridItem-whole-deliveryInformationAndpaymentInformation {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+
+div.deliveryInformationAndpaymentInformation {
+  display: flex;
+  justify-content: center;
+}
+
+/* 배송지 정보 */
+
+div.container-deliveryInformation {
+  width: 60%;
+
+  padding: 20px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto auto ;
+
+  /* display: flex;
+  flex-direction: column;
+  - 나중에 세로를 늘려줄 수도 있으니까,, 그리드가 낫지 않을까!?!?
+  - 이런 상황마다 리스트 테이블 플렉스 그리드 뭘 써야 할지 판단이 안 선다!!!  */
+}
+
+div.deliveryInformation {
+  background-color: whitesmoke;
+  padding: 10px;
+}
+
+div.container-deliveryInformation-subject {
+  display: flex;
+  align-content: center;
+
+  margin-bottom: 3%;
+}
+
+div.container-deliveryInformation-form {
+
+}
+
+div.container-form-name {
+  display: flex;  
+}
+
+div.container-form-name-label {
+  width: 20%;
+}
+
+div.container-form-name-input > input {
+  width: 100%;  
+}
+
+div.container-form-name-input {
+  width: 80%;
+}
+
+div.container-form-phoneNumber {
+  display: flex;
+}
+
+div.container-form-phoneNumber-label {
+  width: 20%;
+}
+
+div.container-form-phoneNumber-input {
+  width: 80%;
+}
+
+div.container-form-phoneNumber-input > input {
+  width: 100%;
+}
+
+div.container-form-address {
+  display: flex; 
+}
+
+div.container-form-address-label {
+  width: 20%;
+}
+
+div.container-form-address-input {
+  width: 80%;
+}
+
+div.container-form-address-input1 {
+  display: flex;
+  
+  align-items: center;
+}
+
+div.container-form-address-input1 > input {
+  width: 70%; 
+}
+
+div.container-form-address-input1 > button {
+  width: 30%; 
+}
+
+div.container-form-address-input2 {
+  display: flex;
+
+  align-items: center;
+}
+
+div.container-form-address-input2 > input {
+  width: 100%;
+}
+
+div.container-form-address-input3 {
+  display: flex;
+
+  align-items: center;
+}
+
+div.container-form-address-input3 > input {
+  width: 100%;
+}
+
+div.container-form-customerRequest {
+  display: flex; 
+
+  align-items: center;
+}
+
+div.container-form-customerRequest-label {
+  width: 20%;
+}
+
+div.container-form-customerRequest-input {
+  width: 80%;
+}
+
+div.container-form-customerRequest-input > input {
+  width: 100%;
+}
+
+/* 결제 정보 */
+
+div.container-paymentInformation {
+  width: 40%;
+
+  padding: 20px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto auto auto;
+
+}
+
+div.paymentInformation {
+  background-color: whitesmoke;
+
+  padding: 10px;
+}
+
+div.container-paymentInformation-subject {
+  display: flex;
+  
+  margin-bottom: 3%;
+}
+
+div.container-paymentInformation-NameAndCountList {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.container-paymentInformation-totalPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+div.container-paymentInformation-deliveryFee {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+div.container-paymentInformation-totalPrice {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+div.container-paymentInformation-deliveryFee-subject {
+  display: flex;
+  align-items: center;
+}
+
+div.container-paymentInformation-deliveryFee-deliveryFee {
+  display: flex;
+  align-items: center;
+}
+
+div.container-paymentInformation-totalPrice {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.container-paymentInformation-paymentButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.paymentInformation-paymentButton {
+  width: 100%;
+  height: 100%;
+}
+
+/* 푸터 */
+
+div.gridItem-whole-footer {
+  grid-column: 1/4;
+  grid-row: 4/5;
+}
+
+div.container-footer {
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+
+}
+
+
+
