@@ -31,11 +31,21 @@
   /* background-color: bisque; */
 }
 
-.but-login > button {
+/* button 태그를 쓸지 input 태그를 쓸 지 고민중 */
+/* .but-login > a > button {
   border: none;
   width: 100px;
   height: 60px;
   border-radius: 5px;
+  cursor: pointer;
+} */
+
+.but-login > a > input {
+  border: none;
+  width: 100px;
+  height: 60px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .p-login {

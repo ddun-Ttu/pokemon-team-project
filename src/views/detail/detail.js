@@ -69,9 +69,13 @@ detail.innerHTML =
     </div>
     <div class="container-description-cartAndOrder">
       <div class="container-description-cart">
-        <button class="description-cart">장바구니</button>
+        <a href="../cart/cart.html">
+          <button class="description-cart">장바구니</button> 
+        </a> 
       </div>
     <div class="container-description-order">
-      <button class="description-order">바로 구매</button>
+      <a href="../orderAndPayment/orderAndPayment.html">
+        <button class="description-order">바로 구매</button>
+      </a>
     </div>
 `

@@ -1,5 +1,6 @@
 const passwordInput = document.querySelector(".password");
 const emailInput = document.querySelector(".email");
+const loginBut = document.querySelector("#login-but");
 
 //에러 메세지
 const errorMessage = document.createElement("p");
@@ -22,3 +23,8 @@ emailInput.addEventListener("input", function () {
         errorMessage.style.display = "none";
     }
   });
+
+  loginBut.addEventListener('click', function(e) {
+    e.preventDefault;
+    
+    })
