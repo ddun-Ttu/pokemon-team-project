@@ -67,82 +67,46 @@ div.gridItem-whole-inCartAndpaymentInformation {
 }
 
 div.container-inCartAndpaymentInformation {
-  margin: 0 auto;
-}
-
-div.inCartAndpaymentInformation {
   display: flex;
 
   justify-content: center;
 }
 
 div.container-inCartAndpaymentInformation-inCart {
-  width: 70%;
+  width: 90%;
 
   padding: 20px;
   margin: 0 auto;
 
   display: flex;
   flex-direction: column;
-
 }
 
 div.inCartAndpaymentInformation-inCart {
   background-color: whitesmoke;
-
-  border: 1px solid;
 }
 
-div.container-inCart-head {
-  margin: 0 auto;
-
-  padding: 1% 0;
-}
-
-div.inCart-head {
+div.container-inCart-selectAllButtonAndDeleteAllButton {
   display: flex;
-  align-items: center;
 
-  font-weight: bold;
+  align-items: center;
 }
 
-div.container-head-selectAllAndcancleAllCheckbox {
-  width: 5%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-right: 1px solid;
+div.container-selectAllButtonAndDeleteAllButton-selectAllButton {
+  margin-right: 1%;
 }
 
-div.container-head-productInformation {
-  width: 40%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-right: 1px solid;
-}
-
-div.container-head-productPrice {
-  width: 40%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-right: 1px solid;
-}
-
-div.container-head-deleteAllButton {
-  flex-grow: 1;
+button.selectAllButtonAndDeleteAllButton-selectAllButton-button {
   
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+div.container-selectAllButtonAndDeleteAllButton-deleteAllButton {
+
+}
+
+button.selectAllButtonAndDeleteAllButton-deleteAllButton-button {
+
 }
 
 div.container-inCart-productList {
@@ -158,8 +122,6 @@ li.inCart-productList-li {
   width: 100%;
 
   display: flex;
-
-  border-top: 1px solid;
 }
 
 div.container-productList-checkbox {
@@ -168,18 +130,14 @@ div.container-productList-checkbox {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border-right: 1px solid;
 }
 
 div.container-productList-productIamge {
-  width: 20%;
+  width: 24%;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border-right: 1px solid;
 }
 
 img.productList-productIamge {
@@ -187,12 +145,10 @@ img.productList-productIamge {
 }
 
 div.container-productList-productNameAndCountHandle {
-  width: 20%;
+  width: 23%;
 
   display: flex;
   flex-direction: column;
-
-  border-right: 1px solid;
 }
 
 div.container-productList-productName {
@@ -201,21 +157,18 @@ div.container-productList-productName {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border-bottom: 1px solid;
-
 }
 
 div.container-productList-countHandle {
   flex-grow: 1;
   
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
 div.container-productList-productPrice {
-  width: 10%;
+  width: 23%;
 
   display: flex;
   justify-content: center;
@@ -223,15 +176,15 @@ div.container-productList-productPrice {
 }
 
 div.container-productList-multiplication {
-  width: 5%;
+  width: 2%;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-div.container-productList-productCount {
-  width: 10%;
+div.container-productList-productNumber {
+  width: 23%;
   
   display: flex;
   justify-content: center;
@@ -239,7 +192,7 @@ div.container-productList-productCount {
 }
 
 div.container-productList-equal {
-  width: 5%;
+  width: 2%;
 
   display: flex;
   justify-content: center;
@@ -247,17 +200,8 @@ div.container-productList-equal {
 }
 
 div.container-productList-productTotalPrice {
-  width: 10%;
+  width: 23%;
   
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-right: 1px solid;
-}
-
-div.container-productList-deleteButton {
-  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -266,7 +210,7 @@ div.container-productList-deleteButton {
 /* 선택에 따른 결제 정보 */
 
 div.container-paymentInformation {
-  width: 30%;
+  width: 90%;
 
   padding: 20px;
   margin: 0 auto;
@@ -277,34 +221,21 @@ div.container-paymentInformation {
 
 div.paymentInformation {
   background-color: whitesmoke;
-
-  padding: 10px;
-
-  border: 1px solid;
 }
 
 div.container-paymentInformation-subject {
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  padding: 0 0 3% 0;
-  
-  border-bottom: 2px solid;
 }
 
-div.paymentInformation-subject {
-  font-weight: bold;
+div.container-paymentInformation-subject {
+
 }
 
 div.container-paymentInformation-productCount {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 5px 0;
-  
-  border-bottom: 1px solid;
 }
 
 div.paymentInformation-productCount1 {
@@ -319,10 +250,6 @@ div.container-paymentInformation-productPrice {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 5px 0;
-  
-  border-bottom: 1px solid;
 }
 
 div.paymentInformation-productPrice1 {
@@ -337,10 +264,6 @@ div.container-paymentInformation-deliveryFee {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 5px 0;
-
-  border-bottom: 1px solid;
 }
 
 div.paymentInformation-deliveryFee1 {
@@ -355,8 +278,6 @@ div.container-paymentInformation-totalPrice {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 5px 0;
 }
 
 div.paymentInformation-totalPrice1 {
