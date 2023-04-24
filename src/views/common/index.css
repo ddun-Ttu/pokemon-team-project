@@ -2,8 +2,6 @@
 /* 네비게이션 바 css */
 .main-container {
   position: relative;
-  z-index: 10;
- 
 }
 .main-nav-container {
   width: 100%;
@@ -13,6 +11,7 @@
   color: rgba(174, 174, 174, 0.2);
   position: fixed;
   top: 0;
+  z-index: 10;
 }
 
 .logo {
