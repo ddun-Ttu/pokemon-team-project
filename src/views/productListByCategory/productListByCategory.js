@@ -73,7 +73,7 @@ for(i = 0; i < data.length; i++) {
   let { name, price, type } = data[i];
 
   price = Number(price).toLocaleString();
-  image = `../../img/${name}.png`;
+  const image = `../../img/${name}.png`;
 
   let typeColor;
   
