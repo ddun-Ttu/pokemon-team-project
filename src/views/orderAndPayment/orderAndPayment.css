@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-div {
-  /* border: 1px solid; */
-}
-
 /* 레이아웃 */
 
 div.gridContainer-whole {
@@ -17,43 +13,23 @@ div.gridContainer-whole {
 }
 
 /* 주문/결제 페이지 이름 */
-div.gridItem-whole-PageName {
-  grid-column: 2/3;
-  grid-row: 2/3;
-}
-
-div.container-pageName {
-  margin: 2% auto 4% auto;
-}
-
-div.pageName {
-  display: flex;
-}
-
-.container-pageName-name {
-  display: flex;
-
-  align-items: center;
-}
-
-span.pageName-name {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-div.container-pageName-name-sub {
-  display: flex;
-
-  align-items: center;
-}
-
-span.container-pageName-name-sub {
-
+.container-pageName > h3 {
+  position: relative;
+  font-size: 26px;
+  margin-bottom: 30px;
+  top: 100px;
+  padding: 50px;
+  text-align: center;
+  font-weight: 700;
+  color: #ffc737;
 }
 
 /* 배송지 정보 & 결제 정보 */
 
 div.gridItem-whole-deliveryInformationAndpaymentInformation {
+  margin: 20px auto;
+  padding: 50px;
+
   grid-column: 2/3;
   grid-row: 3/4;
 }
@@ -73,7 +49,7 @@ div.container-deliveryInformation {
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto auto auto ;
+  grid-template-rows: auto auto auto auto auto;
 
   /* display: flex;
   flex-direction: column;
@@ -82,23 +58,30 @@ div.container-deliveryInformation {
 }
 
 div.deliveryInformation {
-  background-color: whitesmoke;
-  padding: 10px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 5px 5px 3px 0.5 #595959;
+  padding:40px;
 }
 
 div.container-deliveryInformation-subject {
   display: flex;
   align-content: center;
-
   margin-bottom: 3%;
 }
-
-div.container-deliveryInformation-form {
-
+.deliveryInformation-subject {
+  text-align: center;
+  width: 100%;
+}
+.deliveryInformation-subject > h4 {
+  font-size: 20px;
+  top: 100px;
+  padding: 20px 0 20px 0;
+  text-align: center;
+  font-weight: 500;
 }
 
 div.container-form-name {
-  display: flex;  
+  display: flex;
 }
 
 div.container-form-name-label {
@@ -106,7 +89,7 @@ div.container-form-name-label {
 }
 
 div.container-form-name-input > input {
-  width: 100%;  
+  width: 100%;
 }
 
 div.container-form-name-input {
@@ -130,7 +113,7 @@ div.container-form-phoneNumber-input > input {
 }
 
 div.container-form-address {
-  display: flex; 
+  display: flex;
 }
 
 div.container-form-address-label {
@@ -143,16 +126,16 @@ div.container-form-address-input {
 
 div.container-form-address-input1 {
   display: flex;
-  
+
   align-items: center;
 }
 
 div.container-form-address-input1 > input {
-  width: 70%; 
+  width: 70%;
 }
 
 div.container-form-address-input1 > button {
-  width: 30%; 
+  width: 30%;
 }
 
 div.container-form-address-input2 {
@@ -176,7 +159,7 @@ div.container-form-address-input3 > input {
 }
 
 div.container-form-customerRequest {
-  display: flex; 
+  display: flex;
 
   align-items: center;
 }
@@ -204,18 +187,24 @@ div.container-paymentInformation {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto auto auto auto;
-
 }
 
 div.paymentInformation {
-  background-color: whitesmoke;
+  background-color: #fff7e3;
+  padding: 40px;
+}
+.paymentInformation-subject > h4 {
+  font-size: 20px;
+  top: 100px;
+  padding: 20px 0 20px 0;
+  text-align: center;
+  font-weight: 500;
 
-  padding: 10px;
 }
 
 div.container-paymentInformation-subject {
   display: flex;
-  
+
   margin-bottom: 3%;
 }
 
@@ -228,20 +217,17 @@ div.container-paymentInformation-totalPrice {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 div.container-paymentInformation-deliveryFee {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 div.container-paymentInformation-totalPrice {
   display: flex;
   justify-content: space-between;
-  
 }
 
 div.container-paymentInformation-deliveryFee-subject {
@@ -266,8 +252,17 @@ div.container-paymentInformation-paymentButton {
 }
 
 button.paymentInformation-paymentButton {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  padding: 16px;
+  display: block;
+  margin:  40px 0 0 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #FFC737;
+  color: white;
+  cursor: pointer;
 }
 
 /* 푸터 */
@@ -282,9 +277,25 @@ div.container-footer {
   justify-content: center;
 }
 
-footer {
+/* input */
 
+.input-payment {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dedede;
+  border-radius: 5px;
 }
 
+/* 버튼 */
 
-
+.addressFindButton {
+  width: 80px;
+  padding: 10px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #595959;
+  color: white;
+  cursor: pointer;
+}
