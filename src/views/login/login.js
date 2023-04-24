@@ -7,10 +7,10 @@ errorMessage.style.color ="red";
 errorMessage.style.fontSize = "12px";
 
 //이메일 형식이 맞는지 확인
-emailInput.addEventListener("input", function () {
+emailInput.addEventListener("input", function (event) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailRegex.test(this.value)) {
+    if (!emailRegex.test(event.target.value)) {
       errorMessage.textContent = "이메일 형식에 맞게 작성해주세요";
       errorMessage.style.display = "block";
       emailInput.parentNode.insertBefore(errorMessage, emailInput.nextSibling);
