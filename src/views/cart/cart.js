@@ -308,6 +308,16 @@ function printInCartAndPaymentInformation() {
 
     printInCartAndPaymentInformation()
   });
+
+  const goOrderButton = document.querySelector('.paymentInformation-paymentButton');
+
+  goOrderButton.addEventListener('click', goOrderButtonHandler);
+
+  async function goOrderButtonHandler() {
+  // 주문 페이지로 보내기 전에 먼저 작업해줄 게 있을까?
+  
+    window.location.href="../order-payment/order-payment.html";
+  }
 };
 
 // minusButton[localStorageData.findIndex(item2 => item2.id == item.id)].addEventListener('click', () => {
