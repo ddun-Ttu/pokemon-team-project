@@ -19,7 +19,6 @@ passwordInput.addEventListener("input", function () {
   } else {
     errorMessage.style.display = "none";
   }
-  
 });
 
 // 패스워드가 동일한지 확인
@@ -73,34 +72,46 @@ signUpBut.addEventListener("click", function (event) {
 // 가입양식을 제출하는 함수
 function handleSignUpSubmit(event) {
   event.preventDefault(); // submitting 막기
+  console.log(event);
+  console.log("handleSignUpSubmit 함수 입니다");
 
   // 사용자가 입력한 값 변수로 지정
-  const signUpName = document.querySelector('input[name="name"]').value;
-  const signUpUsername = document.querySelector('input[name="username"]').value;
-  const signUpEmail = document.querySelector('input[name="email"]').value;
-  const signUpPassword = document.querySelector('input[name="password"]').value;
-  const siginUpConfirmPassword = document.querySelector(
-    'input[name="confirmPassword"]'
-  ).value;
+  const signUpName = document.querySelector(".name").value;
+  const signUpUsername = document.querySelector(".username").value;
+  const signUpEmail = document.querySelector(".email").value;
+  const signUpPassword = document.querySelector(".password").value;
+  const siginUpConfirmPassword =
+    document.querySelector(".confirmPassword").value;
 
-  // 사용자 입력 확인
-  if (
-    validateInput(
-      signUpName,
-      signUpUsername,
-      signUpEmail,
-      signUpPassword,
-      siginUpConfirmPassword
-    )
-  ) {
-    // 사용자등록 및 사용자를 로그인 페이지로 리디렉션
-    window.location.href = "login.html";
-  } else {
-    // 오류 메세지 표시
-    alert("잘못된 입력입니다.");
-    //   const error = document.getElementById("error");
-    //   error.innerHTML = "Invalid input.";
-  }
+  console.log("입력확인");
+  console.log({
+    signUpName,
+    signUpUsername,
+    signUpEmail,
+    signUpPassword,
+    siginUpConfirmPassword,
+  });
+}
+
+signUpForm.addEventListener("submit", handleSignUpSubmit);
+
+// 사용자 입력 확인
+if (
+  validateInput(
+    signUpName,
+    signUpUsername,
+    signUpEmail,
+    signUpPassword,
+    siginUpConfirmPassword
+  )
+) {
+  // 사용자등록 및 사용자를 로그인 페이지로 리디렉션
+  window.location.href = "login.html";
+} else {
+  // 오류 메세지 표시
+  alert("잘못된 입력입니다.");
+  //   const error = document.getElementById("error");
+  //   error.innerHTML = "Invalid input.";
 }
 
 //가입 양식에 이벤트 리스너 추가

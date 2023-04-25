@@ -10,7 +10,8 @@ searchAddressButton.addEventListener('click', searchAddress);
 saveButton.addEventListener('click', doCheckout);
 
 // 이벤트에 사용할 함수
-function searchAddress() {
+function searchAddress(e) {
+  e.preventDefault()
     new daum.Postcode({
       oncomplete: function (data) {
         console.log(data);
