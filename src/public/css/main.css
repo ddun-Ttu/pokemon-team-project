@@ -1,0 +1,43 @@
+/* ready to css */
+
+* {
+  box-sizing: border-box;
+}
+
+div {
+  /* border: 1px solid; */
+}
+
+div.container-fullScreen {
+  width: 100vw;
+  height: 100vh;
+
+  background-image: url('../../img/main.png');
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* monsterBall & click */
+
+a.container-monsterBall-a {
+  position: absolute;
+}
+
+img.monsterBall-img {
+  transform: scale(0.8);
+}
+
+.click {
+  position: relative;
+  left: 190px;
+  bottom: 190px;
+
+  font-size: 3rem;
+  color: white;
+
+  transform: rotate(10deg);
+}
