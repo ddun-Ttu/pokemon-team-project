@@ -47,12 +47,19 @@ function searchAddress(e) {
     }).open();
   }
 
-async function doCheckout() {
+async function doCheckout(e) {
+  e.preventDefault();
   // 각 입력값 가져옴
   const receiverPhoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
   const address1 = address1Input.value;
   const address2 = address2Input.value;
+
+// input 값 확인
+  console.log(receiverPhoneNumber)
+  console.log(postalCode)
+  console.log(address1)
+  console.log(address2)
 
   // 입력이 안 되어 있을 시
   if (!receiverPhoneNumber || !postalCode || !address2) {
@@ -70,21 +77,41 @@ async function doCheckout() {
 
   // json 만듦
 
-  const dataJson = JSON.stringify(data);
-  const apiUrl = `https://${window.location.hostname}:8190/api/order`;
+//   const dataJson = JSON.stringify(data);
+//   const apiUrl = `https://${window.location.hostname}:8190/api/order`;
 
-  // post 요청
-  const res = await fetch(apiUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: dataJson,
-  });
+//   // post 요청
+//   const res = await fetch(apiUrl, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: dataJson,
+//   });
 
-  if (res.status === 201) {
-    alert("저장되었습니다");
-  } else {
-    alert("저장 실패");
-  }
+//   if (res.status === 201) {
+//     alert("저장되었습니다");
+//   } else {
+//     alert("저장 실패");
+//   }
+//
 }
+
+
+// 패스워드가 8글자인지 확인 
+
+
+// 패스워드가 동일한지
+const passwordInput = document.querySelector("#account-password");
+const confirmPasswordInput = document.querySelector("#account-confirmPassword");
+const confirmPassword = document.querySelector(".error-M")
+
+confirmPasswordInput.addEventListener("input", function() {
+  console.log(confirmPasswordInput.value);
+  console.log(passwordInput.value);
+  if(confirmPasswordInput.value !== passwordInput.value) {
+    confirmPassword.classList.remove("block");
+  } else {
+    confirmPassword.classList.add("block");
+  }
+})

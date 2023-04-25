@@ -11,7 +11,7 @@
 .form-div form div p {
     padding: 8px;
     font-weight: 500;
-    color: #262626;
+    /* color: #262626; */
 }
 .form-div > form > div {
     margin: 24px;
@@ -64,4 +64,15 @@
 
 .address-style {
   margin-bottom: 14px;
+}
+
+/* 경고 메세지 */
+
+.error-M {
+  color: red;
+  font-size: 14px;
+}
+
+.block {
+  display: none;
 }
