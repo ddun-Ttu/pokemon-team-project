@@ -16,7 +16,6 @@ photoUpload.addEventListener('change', function() {
 
     console.log(file);
   });
-햐
 
 
 // 인풋값 확인
