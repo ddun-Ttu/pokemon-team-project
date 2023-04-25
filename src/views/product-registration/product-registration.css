@@ -85,3 +85,8 @@
     color: white;
     cursor: pointer;
   }
+
+  /* 이미지 */
+  #preview {
+    width: 100%;
+  }
