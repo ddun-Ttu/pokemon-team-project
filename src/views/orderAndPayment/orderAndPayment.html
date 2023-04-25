@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- Daum 주소 API 사용하기 위한 파일 --> 
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <title>주문 및 결제 페이지</title>
+  <link rel="stylesheet" href="../common/index.css">
+  <link rel="stylesheet" href="../common/reset.css">
+  <link rel="stylesheet" href="./orderAndPayment.css">
+</head>
+<body>
+
+  <div class="gridContainer-whole">
+
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container">
+        <a href="#"><img class="logo" src="../../img/logo.png" alt=""></a>
+        <ul class="nav-bar-ul">
+          <li class="nav-bar-li"><a href="#">회원가입</a></li>
+          <li class="nav-bar-li"><a href="#">로그인</a></li>
+          <li class="nav-bar-li"><a href="#">장바구니</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- 페이지 -->
+    <div class="gridItem-whole-PageName">
+      <div class="container-pageName">
+        <h3>주문 결제</h3>
+      </div>
+      
+      <div class="gridItem-whole-deliveryInformationAndpaymentInformation">
+        <div class="container-deliveryInformationAndpaymentInformation">
+          <div class="deliveryInformationAndpaymentInformation">
+            <div class="container-deliveryInformation">
+              <div class="deliveryInformation">
+              <div class="container-deliveryInformation-subject">
+                <div class="deliveryInformation-subject"><h4>배송지 정보</h3></div>          
+              </div>
+              <div class="container-deliveryInformation-form">
+                <div class="container-form-name">
+                  <div class="container-form-name-label">
+                    <label for="receiverName">이름</label>
+                  </div>
+                  <div class="container-form-name-input">
+                    <input
+                    id="receiverName"
+                    placeholder="받는 분 이름을 입력해 주세요."
+                    autocomplete="on" 
+                    type="text"
+                    class="input-payment">
+                  </div>
+                </div>
+                <div class="container-form-phoneNumber">
+                  <div class="container-form-phoneNumber-label">
+                    <label for="receiverPhoneNumber">연락처</label>
+                  </div>
+                  <div class="container-form-phoneNumber-input">
+                    <input 
+                    class="input-payment"
+                    type="text"
+                    id="receiverPhoneNumber"
+                    placeholder="- 없이 입력해 주세요."
+                    autocomplete="on"
+                    >
+                  </div>
+                </div>
+                <div class="container-form-address">
+                  <div class="container-form-address-label">
+                    <label for="address2">주소</label>
+                  </div>
+                  <div class="container-form-address-input">
+                    <div class="container-form-address-input1">
+                      <input
+                      class="input-payment"
+                      type="text"
+                      id="postalCode"
+                      placeholder="주소찾기를 클릭해 주세요."
+                      readonly
+                      >
+                      <button class="addressFindButton" id="searchAddressButton">주소 찾기</button>
+                    </div>
+                    <div class="container-form-address-input2">
+                      <input
+                      id="address1"
+                      placeholder=""
+                      autocomplete="on"
+                      readonly
+                      class="input-payment"
+                      type="text">
+                    </div>
+                    <div class="container-form-address-input3">
+                      <input
+                      id="address2"
+                      type="text"
+                      placeholder=""
+                      autocomplete="on"
+                      class="input-payment"
+                      type="text">
+                    </div>                
+                  </div>
+                </div>
+                <div class="container-form-customerRequest">
+                  <div class="container-form-customerRequest-label">
+                    <label for="requestSelectBox">요청 사항</label>
+                  </div>
+                  <div class="container-form-customerRequest-input">
+                    <input id="requestSelectBox" class="input-payment" type="text">
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>  
+      
+          <div class="container-paymentInformation">
+            <div class="paymentInformation">
+              <div class="container-paymentInformation-subject">
+                <div class="paymentInformation-subject"> <h4>결제 정보</h4></div>
+              </div>
+              <div class="container-paymentInformation-NameAndCountList">
+                <div class="container-paymentInformation-NameAndCount-subject">
+                  <div class="paymentInformation-NameAndCount-subject">주문 상품</div>
+                </div>
+                <div class="container-paymentInformation-NameAndCountList-list">
+                  <ul class="paymentInformation-NameAndCountList-list-ul">
+                    <li>여행 코디 여성 / 1개</li>
+                    <li>여행 코디 여성 / 1개</li>
+                    <li>여행 코디 여성 / 1개</li>
+                    <li>여행 코디 여성 / 1개</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="container-paymentInformation-totalPrice">
+                <div class="container-paymentInformation-totalPrice-subject">
+                  <div class="paymentInformation-totalPrice">상품 총액</div>
+                </div>
+                <div class="container-paymentInformation-totalPrice-price">
+                  <div class="paymentInformation-totalPrice-totalPrice">300,000원</div>
+                </div>
+              </div>
+              <div class="container-paymentInformation-deliveryFee">
+                <div class="container-paymentInformation-deliveryFee-subject">
+                  <div class="paymentInformation-deliveryFee-subject">배송비</div>
+                </div>
+                <div class="container-paymentInformation-deliveryFee-deliveryFee">
+                  <div class="paymentInformation-deliveryFee-deliveryFee">3000원</div>
+                </div>
+              </div>      
+              <div class="container-paymentInformation-totalPrice">
+                <div class="container-paymentInformation-totalPrice-subject">
+                  <div class="paymentInformation-totalPrice-subject">총 결제 금액</div>
+                </div>
+                <div class="container-paymentInformation-totalPrice-totalPrice">
+                  <div class="paymentInformation-totalPrice-totalPrice">200,000원</div>
+                </div>
+              </div>
+              <div class="container-paymentInformation-paymentButton">
+                <button id="orderButton" class="paymentInformation-paymentButton">구매하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gridItem-whole-footer">
+      <div class="container-footer">
+        <footer>푸터</footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- 스크립트 -->
+  <script src="./orderAndPayment.js"></script>
+</body>
+</html>

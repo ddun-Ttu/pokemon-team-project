@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장바구니</title>
+  <link rel="stylesheet" href="../common/index.css">
+  <link rel="stylesheet" href="../common/reset.css">
+  <link rel="stylesheet" href="./cart.css">
+</head>
+<body>
+  <div class="gridContainer-whole">
+    <div class="main-container">
+      <nav class="main-nav-container">
+        <a href="#"><img class="logo" src="../../img/logo.png" alt=""></a>
+        <ul class="nav-bar-ul">
+          <li class="nav-bar-li"><a href="#">회원가입</a></li>
+          <li class="nav-bar-li"><a href="#">로그인</a></li>
+          <li class="nav-bar-li"><a href="#">장바구니</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="gridItem-whole-PageName">
+      <div class="container-pageName">
+          <div class="pageName">
+            <div class="container-pageName-name">
+              <span class="pageName-name">장바구니</span>
+            </div>
+            <div class="container-pageName-name-sub">
+              <span class="pageName-name-sub">&nbsp> 주문/결제 > 주문 완료 </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gridItem-whole-inCartAndpaymentInformation">
+        <div class="container-inCartAndpaymentInformation">
+          <div class="inCartAndpaymentInformation">
+            <div class="container-inCartAndpaymentInformation-inCart">
+              <div class="inCartAndpaymentInformation-inCart">
+                <div class="container-inCart-head">
+                  <div class="inCart-head">
+                    <div class="container-head-selectAllAndcancleAllCheckbox">
+                      <input class="head-selectAllAndcancleAllCheckbox" type="checkbox">
+                    </div>                 
+                    <div class="container-head-productInformation">
+                      <div class="head-productInformation">상품 정보</div>
+                    </div>
+                    <div class="container-head-productPrice">
+                      <div class="head-productPrice">상품 금액</div>
+                    </div>
+                    <div class="container-head-deleteAllButton">
+                      <button class="head-deleteAllButton">전체 삭제</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="container-inCart-productList">
+                  <div class="inCart-productList">
+                    <ul class="inCart-productList-ul">
+                      <!-- inCart 영역. js로 삽입 -->
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-paymentInformation">
+              <div class="paymentInformation">
+                <!-- paymentInformation 영역. js로 삽입 -->
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="gridItem-whole-footer">
+        <div class="container-footer">
+          <footer>
+            <!-- 더미 데이터 삽입 버튼 -->
+            <button id="button1">데이터 없을 때 데이터 하나 넣기</button>
+            <button id="button2">데이터 없을 때 데이터 여러 개 넣기</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  <script src="./cart.js"></script>
+</body>
+</html>

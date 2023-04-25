@@ -1,0 +1,192 @@
+/* ready to css */
+
+* {
+  box-sizing: border-box;
+}
+
+div {
+  /* border: 1px solid; */
+}
+
+/* 레이아웃 */
+
+div.gridContainer-whole {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: 80px auto auto;
+}
+
+/* 네비게이션 바 */
+
+div.main-container {
+  grid-column: 1/4;
+  grid-row: 1/2;
+}
+
+/* 상품 상세 페이지 */
+
+div.gridItem-whole-detail {
+  grid-column: 2/3;
+  grid-row: 2/3
+}
+
+div.container-detail {
+  padding-top: 5%;
+  margin: 0 auto;
+}
+
+div.detail {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+/* 상세 페이지 - 이미지 */
+
+div.container-detail-image {
+  width: 90%;
+  margin-right: 5%;
+}
+
+div.detail-image {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+img.detail-image-img {
+
+}
+
+/* 상세 페이지 - 상세 설명 & 주문 버튼 */
+
+div.container-detail-description {
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+}
+
+div.detail-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+div.container-description-nameAndType {
+  display: flex;
+  align-items: center;
+}
+
+div.container-description-name {
+  display: flex;
+  align-items: center;
+}
+
+div.description-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+div.container-description-type {
+  width: 25%;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid;
+  margin-left: 5%;
+}
+
+div.description-type {
+  width: 100%;
+
+  background-color: green;
+  color: white;
+
+  font-size: 1rem;
+  font-weight: bold;
+  
+  text-align: center;
+  padding: 5% 0;
+}
+
+div.container-description-price {
+  display: flex;
+  align-items: center;
+}
+
+div.description-price {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+div.container-description-description {
+  display: flex;
+  align-items: center;
+}
+
+div.description-description {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+div.container-description-cartAndOrder {
+  display: flex;
+  align-items: center;
+}
+
+div.container-description-cart {
+  display: flex;
+  align-items: center;
+
+  width: 30%;
+}
+
+button.description-cart {
+  width: 100%;
+
+  background-color: darkorange;
+  color: white;
+  
+  font-size: 1rem;
+  font-weight: bold;
+
+  padding: 5% 0 5% 0 ;
+}
+
+div.container-description-order  {
+  display: flex;
+  align-items: center;
+
+  width: 30%;
+
+  margin-left: 20px;
+}
+
+button.description-order {
+  background-color:red;
+  color: white;
+  
+  width: 100%;
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  padding: 5% 0 5% 0 ;
+}
+
+/* 푸터 */
+
+div.gridItem-whole-footer {
+  grid-column: 1/4;
+  grid-row: 3/4;
+}
+
+div.container-footer {
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+
+}

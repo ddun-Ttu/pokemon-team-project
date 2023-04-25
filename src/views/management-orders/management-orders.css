@@ -1,0 +1,95 @@
+/* 테이블 표 */
+.table-my-orders {
+    margin: 20px auto;
+    width: 80%;
+    padding: 0 100px 20px 100px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  th {
+    background-color: #ffe8ae;;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #fff3d6;;
+  }
+  
+  /* tbody tr:hover {
+    background-color: #ddd;
+  } */
+
+  .contents-mypage > h3 {
+    position: relative;
+    font-size: 26px;
+    top: 100px;
+    padding: 50px;
+    text-align: center;
+    font-weight: 700;
+    color: #ffc737;
+  }
+  
+  .btn-my-orders {
+    border: none;
+    width: 100px;
+    height: 46px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ffecbc;
+  }
+
+
+  /* 상단숫자 */
+  .contents-mypage > h3 {
+    position: relative;
+    font-size: 26px;
+    top: 100px;
+    padding: 50px;
+    text-align: center;
+    font-weight: 700;
+    color: #ffc737;
+  }
+  .flex-mypage {
+    padding: 100px 100px 50px 100px;
+    display: flex;
+  }
+  .item-mypage {
+    width: 100%;
+    margin: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .div-mypage {
+    padding: 10px;
+  }
+  
+  .div-mypage > h3 {
+    font-size: 24px;
+    font-weight: 500;
+    padding: 14px;
+  }
+  
+  .div-mypage > p {
+    color: #747474;
+  }
+
+  .items-management-orders {
+    border: none;
+    width: 120px;
+    height: 46px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ffecbc;
+  }
+  

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품판매 수정</title>
+    <link rel="stylesheet" href="../common/index.css" />
+    <link rel="stylesheet" href="../common/reset.css" />
+    <link rel="stylesheet" href="./product-edit.css">
+  </head>
+  <body>
+   
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container">
+        <a href="../main/main.html"><img class="logo" src="../../img/logo.png" alt="로고"></a>
+        <ul class="nav-bar-ul">
+          <li class="nav-bar-li"><a href="#">관리자 페이지</a></li>
+          <li class="nav-bar-li"><a href="#">로그아웃</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- 상품판매 페이지 -->
+    <div class="container-sing-up">
+      <div class="form-div border-sing-up">
+        <form>
+          <h3>상품판매 수정</h3>
+          <div>
+            <p>상품명</p>
+            <input class="form-input-sing-up" placeholder="피카츄" type="text">
+          </div>
+          <div>
+            <p>카테고리</p>
+            <select id="items" class="items-management-orders" name="items">
+                <option value="item1">전체</option>
+                <option value="item2">전기</option>
+                <option value="item3">풀</option>
+                <option value="item3">물</option>
+              </select>
+          </div>
+          <div>
+            <p>요약 설명</p>
+            <textarea class="form-input-sing-up" name="message" rows="4" cols="40" type="textarea"></textarea>  
+          </div>
+          <div>
+            <p>상세 설명</p>
+            <textarea class="form-input-sing-up" name="message" rows="4" cols="40" type="textarea"></textarea>  
+          </div>
+
+          <div class="upload-container">
+            <label for="photo-upload">상품 사진</label>
+            <input type="file" id="photo-upload" name="photo-upload" accept="image/*">
+          </div>
+
+          <div>
+            <p>재고 수</p>
+            <input class="form-input-sing-up" placeholder="0" type="number">
+          </div>
+          <div>
+
+            <p>가격</p>
+            <input class="form-input-sing-up" placeholder="10000" type="number">
+          </div>
+
+          <div>
+            <p>검색 키워드</p>
+            <input class="form-input-sing-up search" placeholder="펫" type="text">
+            <button class="search-btn">추가하기</button>
+          </div>
+
+
+          <button class="but-sing-up">상품수정완료</button>
+        </form>
+      </div>
+    </div>
+
+
+</html>
