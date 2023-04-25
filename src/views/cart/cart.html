@@ -22,72 +22,43 @@
     </div>
     <div class="gridItem-whole-PageName">
       <div class="container-pageName">
-        <div class="pageName">
-          <div class="container-pageName-name">
-            <span class="pageName-name">장바구니</span>
-          </div>
-          <div class="container-pageName-name-sub">
-            <span class="pageName-name-sub">&nbsp> 주문/결제 > 주문 완료 </span>
+          <div class="pageName">
+            <div class="container-pageName-name">
+              <span class="pageName-name">장바구니</span>
+            </div>
+            <div class="container-pageName-name-sub">
+              <span class="pageName-name-sub">&nbsp> 주문/결제 > 주문 완료 </span>
+            </div>
           </div>
         </div>
       </div>
       <div class="gridItem-whole-inCartAndpaymentInformation">
         <div class="container-inCartAndpaymentInformation">
+          <div class="inCartAndpaymentInformation">
             <div class="container-inCartAndpaymentInformation-inCart">
               <div class="inCartAndpaymentInformation-inCart">
-                <div class="container-inCart-selectAllButtonAndDeleteAllButton">
-                  <div class="container-selectAllButtonAndDeleteAllButton-selectAllButton">
-                    <button class="selectAllButtonAndDeleteAllButton-selectAllButton-button">전체 선택</button>
-                  </div>
-                  <div class="container-selectAllButtonAndDeleteAllButton-deleteAllButton">
-                    <button class="deleteAllButton-selectAllButtonAndDeleteAllButton-button">전체 삭제</button>
+                <div class="container-inCart-head">
+                  <div class="inCart-head">
+                    <div class="container-head-selectAllAndcancleAllCheckbox">
+                      <input class="head-selectAllAndcancleAllCheckbox" type="checkbox">
+                    </div>                 
+                    <div class="container-head-productInformation">
+                      <div class="head-productInformation">상품 정보</div>
+                    </div>
+                    <div class="container-head-productPrice">
+                      <div class="head-productPrice">상품 금액</div>
+                    </div>
+                    <div class="container-head-deleteAllButton">
+                      <button class="head-deleteAllButton">전체 삭제</button>
+                    </div>
                   </div>
                 </div>
                 <div class="container-inCart-productList">
                   <div class="inCart-productList">
                     <ul class="inCart-productList-ul">
-                      <!-- 
-                      <li class="inCart-productList-li">
-                        <div class="container-productList-checkbox">
-                          <input type="checkbox">
-                        </div>
-                        <div class="container-productList-productIamge">
-                          <img class="productList-productIamge" src="./img/이상해씨.png" alt="">
-                        </div>
-                        <div class="container-productList-productNameAndCountHandle">
-                          <div class="container-productList-productName">
-                            <div class="productList-productName">상품 이름</div>
-                          </div>
-                          <div class="container-productList-countHandle">
-                            <div>
-                              <button>-</button>
-                            </div> 
-                            <div>
-                              count
-                            </div>
-                            <div>
-                              <button>+</button>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="container-productList-productPrice">
-                          <div>상품 가격</div>
-                        </div>
-                        <div class="container-productList-multiple">
-                          <div class="productList-multiple">X</div>
-                        </div>
-                        <div class="container-productList-productNumber">
-                          <div>상품 개수</div>
-                        </div>
-                        <div class="container-productList-equal">
-                          <div class="productList-equal">=</div>
-                        </div>
-                        <div class="container-productList-productTotalPrice">
-                          <div>총 가격</div>
-                        </div>
-                      </li>
-                      -->
+                      <!-- inCart 영역. js로 삽입 -->
                     </ul>
+
                   </div>
                 </div>
               </div>
@@ -95,36 +66,20 @@
 
             <div class="container-paymentInformation">
               <div class="paymentInformation">
-                <div class="container-paymentInformation-subject">
-                  <div class="paymentInformation-subject">결제 정보</div>
-                </div>
-                <div class="container-paymentInformation-productCount">
-                  <div class="paymentInformation-productCount1">상품 수</div>
-                  <div class="paymentInformation-productCount2">4개</div>
-                </div>
-                <div class="container-paymentInformation-productPrice">
-                  <div class="paymentInformation-productPrice1">상품 금액</div>
-                  <div class="paymentInformation-productPrice2">300,000원</div>
-                </div>
-                <div class="container-paymentInformation-deliveryFee">
-                  <div class="paymentInformation-deliveryFee1">배송비</div>
-                  <div class="paymentInformation-deliveryFee2">3000원</div>
-                </div>      
-                <div class="container-paymentInformation-totalPrice">
-                  <div class="paymentInformation-totalPrice1">총 결제 금액</div>
-                  <div class="paymentInformation-totalPrice2">249,600원</div>
-                </div>     
-                <div class="container-paymentInformation-paymentButton">
-                  <button class="paymentInformation-paymentButton">구매하기</button>
-                </div>
+                <!-- paymentInformation 영역. js로 삽입 -->
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
       <div class="gridItem-whole-footer">
         <div class="container-footer">
-          <footer>푸터</footer>
+          <footer>
+            <!-- 더미 데이터 삽입 버튼 -->
+            <button id="button1">데이터 없을 때 데이터 하나 넣기</button>
+            <button id="button2">데이터 없을 때 데이터 여러 개 넣기</button>
+          </footer>
         </div>
       </div>
     </div>
