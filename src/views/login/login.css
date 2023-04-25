@@ -36,6 +36,7 @@
   width: 100px;
   height: 60px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .p-login {
