@@ -1,4 +1,3 @@
-// const http = require("http"); // 서버 구동을 위한 node 내장 모듈 불러옴
 import express from "express";
 import morgan from "morgan";
 import path from "path";
