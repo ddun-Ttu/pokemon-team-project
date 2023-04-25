@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Daum 주소 API 사용하기 위한 파일 --> 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <title>Document</title>
+    <title>회원정보 관리</title>
     <link rel="stylesheet" href="../common/index.css" />
     <link rel="stylesheet" href="../common/reset.css">
     <link rel="stylesheet" href="./user-account.css">
@@ -30,64 +30,21 @@
         <div class="form-div border-user-acc">
             <form>
               <h3>회원정보 관리(수정)</h3>
-              <div class="">
-                <p>이름</p>
-                <input class="form-input-user-acc" placeholder="홍길동" type="text">
-              </div>
-        
+    
               <div>
                 <p>비밀번호</p>
-                <input class="form-input-user-acc" placeholder="8자리 이상 입력해주세요" type="password">
+                <input id="account-password" class="form-input-user-acc" placeholder="8자리 이상 입력해주세요" type="password">
+                <p class="error-M block" id="password">8자리 이상 입력해주세요</p>
               </div>
               <div>
                 <p>비밀번호 확인</p>
-                <input class="form-input-user-acc" type="password">
+                <input id="account-confirmPassword" class="form-input-user-acc" type="password">
+                <p class="error-M block" id="confirmPassword" >비밀번호가 다릅니다</p>
               </div>
 
-              <!-- 주소 검색 -->
-              <div>
-                <p>연락처</p>
-                <input
-                id="receiverPhoneNumber"
-                class="form-input-user-acc"
-                type="number"
-                placeholder="- 없이 입력해 주세요."
-                autocomplete="on">
-              </div>
+            <button id="saveButton" class="but-user-acc">저장하기</button>
 
-              <div>
-                <p>주소</p>
-                <div class="flex">
-                  <input
-                  class="form-input-address address-style"
-                  id="postalCode"
-                  type="text"
-                  placeholder="주소찾기를 클릭해 주세요."
-                  readonly>
-                  <div>
-                    <button id="searchAddressButton" class="but-address">주소찾기</button>
-                  </div>
-                </div>
-                  <input
-                    class="form-input-user-acc address-style"
-                    id="address1"
-                    type="text"
-                    placeholder=""
-                    autocomplete="on"
-                    readonly>
-
-                  <input
-                    class="form-input-user-acc address-style"
-                    id="address2"
-                    type="text"
-                    placeholder=""
-                    autocomplete="on">
-              </div>
-
-            <button id="saveButton" class="but-user-acc">저장히기</button>
-
-      
+            <!-- 스크립트 -->
           <script src="./user-account.js"></script>
-            
 
 </html>

@@ -143,18 +143,15 @@ div.container-description-cart {
 }
 
 button.description-cart {
-  color: #262626;
-  border: 2px solid #ffc737;
-  background-color: white;
-  border-radius: 5px;
+  width: 100%;
+
+  background-color: darkorange;
+  color: white;
   
   font-size: 1rem;
   font-weight: bold;
-  
-  width: 120px;
-  padding: 16px ;
 
-  cursor: pointer;
+  padding: 5% 0 5% 0 ;
 }
 
 div.container-description-order  {
@@ -167,20 +164,15 @@ div.container-description-order  {
 }
 
 button.description-order {
-  background-color:#ffc737;
-  border: none;
-  border-radius: 5px;
-
+  background-color:red;
   color: white;
   
+  width: 100%;
 
   font-size: 1rem;
   font-weight: bold;
 
-  width: 120px;
-  padding: 16px ;
-  
-  cursor: pointer;
+  padding: 5% 0 5% 0 ;
 }
 
 /* 푸터 */

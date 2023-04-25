@@ -14,7 +14,7 @@
     <!-- 네비게이션 바 -->
     <div class="main-container">
       <nav class="main-nav-container">
-        <a href="../main/main.html"><img class="logo" src="../../img/logo.png" alt=""></a>
+        <a href="../main/main.html"><img class="logo" src="../../img/logo.png" alt="로고"></a>
         <ul class="nav-bar-ul">
           <li class="nav-bar-li"><a href="../sign-up/sign-up.html">회원가입</a></li>
           <li class="nav-bar-li"><a href="../login/login.html">로그인</a></li>
@@ -30,14 +30,11 @@
           <h3>로그인</h3>
       <div class="serve-login">
         <div class="input-login">
-          <input type="text" class="email" placeholder="이메일">
-          <input type="text" class="password" placeholder="비밀번호">
+          <input id="login-email" type="text" class="email" placeholder="이메일">
+          <input id="login-password" type="password" class="password" placeholder="비밀번호">
         </div>
         <div class="but-login">
-          <a href="../main/main.html">
-            <input type="button" value="로그인하기" id="login-but">
-            <!-- <button>로그인</button> -->
-          </a>  
+          <button id="login-but">로그인</button>
         </div>
       </form>
 
