@@ -1,7 +1,25 @@
 
-// 인풋값 확인
+const RegisterProduct = document.querySelector("#but-sing-up");
+const photoUpload = document.getElementById('photo-upload');
+const preview = document.getElementById('preview');
 
-const inputCheck = document.querySelector("#but-sing-up");
+// 사진 등록
+photoUpload.addEventListener('change', function() {
+    const file = this.files[0];
+    const reader = new FileReader();
+  
+    reader.addEventListener('load', function() {
+      preview.src = reader.result;
+    });
+  
+    reader.readAsDataURL(file);
+
+    console.log(file);
+  });
+햐
+
+
+// 인풋값 확인
 
 function checkInput(ev) {
     ev.preventDefault();
@@ -20,4 +38,4 @@ function checkInput(ev) {
     console.log(inputCh6.value);
 }
 
-inputCheck.addEventListener("click", checkInput);
+RegisterProduct.addEventListener("click", checkInput);
