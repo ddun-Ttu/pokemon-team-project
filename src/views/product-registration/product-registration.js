@@ -16,7 +16,6 @@ photoUpload.addEventListener('change', function() {
 
     console.log(file);
   });
-햐
 
 
 // 인풋값 확인
@@ -36,6 +35,13 @@ function checkInput(ev) {
     console.log(inputCh4.value);
     console.log(inputCh5.value);
     console.log(inputCh6.value);
+
+    // 카테고리 확인
+    const select = document.getElementById("items");
+    select.addEventListener("change", function() {
+      const selectedValue = select.value;
+      console.log("Selected option value: " + selectedValue);
+    });
 }
 
 RegisterProduct.addEventListener("click", checkInput);
