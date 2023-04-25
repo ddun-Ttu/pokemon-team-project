@@ -23,8 +23,8 @@ passwordInput.addEventListener("input", function () {
 
 // 패스워드가 동일한지 확인
 confirmPasswordInput.addEventListener("input", function () {
-  if (this.value !== passwordInput.value) {
-    errorMessage.textContent = "Passwords do not match";
+  if (confirmPasswordInput.value !== passwordInput.value) {
+    errorMessage.textContent = "비밀번호가 다릅니다";
     errorMessage.style.display = "block";
     confirmPasswordInput.parentNode.insertBefore(
       errorMessage,
