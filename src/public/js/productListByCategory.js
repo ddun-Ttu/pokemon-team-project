@@ -115,7 +115,7 @@ function makeLiHTML() {
     let { name, price, type } = item;
   
     price = Number(price).toLocaleString();
-    image = `../../img/${name}.png`;
+    image = `../img/${name}.png`;
   
     let typeColor;
     
@@ -152,7 +152,7 @@ function makeLiHTML() {
         </div>
       </a>
       <div class="container-productListByCategory-list-description-like">
-        <button class="productListByCategory-list-like-button" id="${name}">장바구니에 추가</button>
+        <button class="productListByCategory-list-like-button">장바구니에 추가</button>
       </div>
     </li>`
   })  

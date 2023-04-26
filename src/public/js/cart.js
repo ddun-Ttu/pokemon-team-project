@@ -120,7 +120,7 @@ function printInCartAndPaymentInformation() {
               <input class="productList-checkbox" type="checkbox" ${checked}>
             </div>
             <div class="container-productList-productIamge">
-              <img class="productList-productIamge" src="../../img/${name}.png" alt="">
+              <img class="productList-productIamge" src="../img/${name}.png" alt="">
             </div>
             <div class="container-productList-productNameAndCountHandle">
               <div class="container-productList-productName">
@@ -316,52 +316,6 @@ function printInCartAndPaymentInformation() {
   async function goOrderButtonHandler() {
   // 주문 페이지로 보내기 전에 먼저 작업해줄 게 있을까?
   
-    window.location.href="../order-payment/order-payment.html";
+    window.location.href="./orderAndPayment.html";
   }
 };
-
-// minusButton[localStorageData.findIndex(item2 => item2.id == item.id)].addEventListener('click', () => {
-//   if(item.count == 1) {
-//     alert('수량 설정은 1 이상만 가능합니다.')
-//   }
-//   else{
-//     item.count = item.count - 1;
-//     console.log(item)        
-//   }
-//   localStorage.setItem('cart', JSON.stringify(localStorageData));
-//   test()
-// })
-
-// plusButton[localStorageData.findIndex(item2 => item2.id == item.id)].addEventListener('click', () => {
-//   item.count = item.count + 1;
-//   localStorage.setItem('cart', JSON.stringify(localStorageData));
-//   test()
-// })
-
-// // * 카트 수량 데이터 마이너스 조작.
-// function countMinus(e) {
-//   const id = e.target.dataset.id;
-
-//   const index = 
-//   localStorageData.findIndex(({ id }) => id == id);
-
-//   if(localStorageData[index].count == 1) {
-//     alert('수량은 1 이상으로만 설정 가능합니다.')
-//   }
-//   else{
-//     localStorageData[index].count -= 1;
-//     test();
-//   }
-// }
-
-// function countPlus() {
-//   const index = 
-//   localStorageData.findIndex(({ id }) => id == plusButton.dataset.id);
-//   console.log(plusButton.dataset.id);
-
-//   localStorageData[index].count++;
-//   localStorage.setItem('cart', JSON.stringify(localStorageData));
-//   localStorageData = JSON.parse(localStorage.getItem('cart'));
-
-//   test();
-//   }

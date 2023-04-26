@@ -5,7 +5,7 @@ const countInput = document.querySelector('#count');
 
 
 const product = {
-  image: '../../img/꼬부기.png',
+  image: '../img/꼬부기.png',
   name: '꼬부기',
   price: 12500,
   description: '등껍질에 숨어 몸을 보호한다. 상대의 빈틈을 놓치지 않고 반격한다.',
@@ -116,5 +116,5 @@ function orderNowButtonHandler() {
   },]
 
   localStorage.setItem('order', JSON.stringify(data));
-  window.location = '../order-payment/order-payment.html'
+  window.location = './orderAndPayment.html'
 }

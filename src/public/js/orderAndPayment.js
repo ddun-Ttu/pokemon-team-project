@@ -234,20 +234,13 @@ async function makeAndSendOrderData() {
     }
 
     // * 결제 완료 페이지로 이동시키기.
-    // - window.replace를 써서 아예 뒤로 가기 같은 걸로 이 페이지로 돌아올 수 없게 만드는 게 나을까?
-    window.location.href = '../orderComplete/orderComplete.html';  
-
-    // window.location.replace('../orderComplete/orderComplete.html')
+    window.location.replace('./orderComplete.html')
   }
   // * 주문 실패 시.
   else {
     console.log(res.status);
     alert('주문 실패. 다시 시도해주세요.');
-  window.location.reload();
-  // 주문 실패 시 이어질 동작을 모르겠음. 주문 실패 페이지 로드? 새로 고침 해서 재시도하게 하기?
-  }
-
-  window.location.href = '../orderComplete/orderComplete.html'; 
+  } 
 };
 
 // * paymentInformationHTML
