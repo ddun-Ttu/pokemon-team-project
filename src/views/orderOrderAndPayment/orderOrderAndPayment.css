@@ -40,7 +40,6 @@ div.deliveryInformationAndpaymentInformation {
 }
 
 /* 배송지 정보 */
-
 div.container-deliveryInformation {
   width: 60%;
 
@@ -210,7 +209,19 @@ div.container-paymentInformation-subject {
 
 div.container-paymentInformation-NameAndCountList {
   display: flex;
-  justify-content: space-between;
+}
+
+div.container-paymentInformation-NameAndCountList-list {
+  flex-grow: 1;
+}
+
+ul.paymentInformation-NameAndCountList-list-ul {
+  display: flex;
+  flex-direction: column;
+}
+
+ul.paymentInformation-NameAndCountList-list-ul > li {
+  margin-left: auto;
 }
 
 div.container-paymentInformation-totalPrice {
