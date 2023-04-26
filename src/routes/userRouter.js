@@ -5,56 +5,39 @@ const userRouter = express.Router();
 
 const PATH_NAME = __dirname.split("/").slice(0, -1).join("/");
 
-// 사용자 가입 페이지, Read
+// 회원가입 페이지
 userRouter.get("/signup", (req, res) => {
-  const PAGE_NAME = "sign-up";
-
-  res.sendFile(`${PAGE_NAME}.html`, {
-    root: path.join(PATH_NAME, `views/${PAGE_NAME}`),
-  });
+  res.send("회원가입 페이지");
 });
 
-// 사용자 로그인 페이지, Read
+// 로그인 페이지
 userRouter.get("/login", (req, res) => {
-  const PAGE_NAME = "login";
-
-  res.sendFile(`${PAGE_NAME}.html`, {
-    root: path.join(PATH_NAME, `views/${PAGE_NAME}`),
-  });
+  res.send("로그인 페이지");
 });
 
-// 사용자 페이지, Read
+// 개인 페이지
 userRouter.get("/mypage", (req, res) => {
-  const PAGE_NAME = "mypage";
-
-  res.sendFile(`${PAGE_NAME}.html`, {
-    root: path.join(PATH_NAME, `views/${PAGE_NAME}`),
-  });
+  res.send("개인 페이지");
 });
 
-// 사용자 정보 관리 페이지, Read
+// 사용자 확인 페이지
+userRouter.get("/mypage/confirm", (req, res) => {
+  res.send("사용자 확인 페이지");
+});
+
+// 사용자 정보 수정 페이지
 userRouter.get("/mypage/edit", (req, res) => {
-  const PAGE_NAME = "user-account";
-
-  res.sendFile(`${PAGE_NAME}.html`, {
-    root: path.join(PATH_NAME, `views/${PAGE_NAME}`),
-  });
+  res.send("사용자 정보 수정 페이지");
 });
 
-// 사용자 주문 목록 페이지, Read
+// 사용자 주문 목록 조회 페이지
 userRouter.get("/mypage/orders", (req, res) => {
-  const PAGE_NAME = "my-orders";
-
-  res.sendFile(`${PAGE_NAME}.html`, {
-    root: path.join(PATH_NAME, `views/${PAGE_NAME}`),
-  });
+  res.send("사용자 주문 목록 조회 페이지");
 });
 
-// 사용자 주문 수정 페이지, Read
-userRouter.get("/mypage/orders/:orderid/edit", (req, res) => {
-  const { orderid } = req.params;
-
-  res.send(`주문번호: [${orderid}]의 주문 수정 페이지입니다.`);
+// 사용자 주문 수정 페이지
+userRouter.get("/mypage/orders/:orderId/edit", (req, res) => {
+  res.send("사용자 주문 수정 페이지");
 });
 
 export default userRouter;
