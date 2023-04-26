@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 - 주문페이지</title>
+    <link rel="stylesheet" href="../public/css/index.css">
+    <link rel="stylesheet" href="../public/css/reset.css">
+    <link rel="stylesheet" href="../public/css/adminsOrders.css">
+  </head>
+  <body>
+
+
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container">
+        <a href="./mainHome.html"><img class="logo" src="../img/logo.png" alt="로고"></a>
+        <ul class="nav-bar-ul">
+          <li class="nav-bar-li"><a href="./adminsPage.html">관리자 페이지</a></li>
+          <li class="nav-bar-li"><a href="#">로그아웃</a></li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <!-- 주문조회  -->
+    <div class="container">
+      <div class="contents-mypage">
+        <h3> 관리자 - 주문관리</h3>
+        <div>
+            <!-- 상단 숫자 -->
+            <div class="flex-mypage">
+        
+                <div class="item-mypage">
+                  <div class="div-mypage">
+                    <p>총주문수</p>
+                    <h3>139</h3>
+                  </div>
+                </div>
+                <div class="item-mypage">
+                    <div class="div-mypage">
+                      <p>상품준비중</p>
+                      <h3>139</h3>
+                    </div>
+                  </div>    
+                   <div class="item-mypage">
+                    <div class="div-mypage">
+                      <p>상품배송중</p>
+                      <h3>139</h3>
+                    </div>
+                  </div>     
+                  <div class="item-mypage">
+                    <div class="div-mypage">
+                      <p>배송완료</p>
+                      <h3>139</h3>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+
+        <!-- 테이블 표 -->
+        <div class="table-my-orders">
+          <table>
+            <thead>
+              <tr>
+                <th>날짜</th>
+                <th>주문 정보</th>
+                <th>주문총액</th>
+                <th>상태관리</th>
+                <th>취소</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>2023-04-20</td>
+                <td>피카츄/ 1마리</td>
+                <td>상품 준비중</td>
+                <td>
+                    <select id="items" class="items-management-orders" name="items">
+                        <option value="item1">상품준비중</option>
+                        <option value="item2">상품배송중</option>
+                        <option value="item3">배송완료</option>
+                      </select>
+                </td>
+                <td><button class="btn-my-orders">주문 취소</button></td>
+              </tr>
+              <tr>
+                <td>2023-04-20</td>
+                <td>피카츄/ 1마리</td>
+                <td>배송중</td>
+                <td>
+                  <select id="items" class="items-management-orders" name="items">
+                      <option value="item1">상품준비중</option>
+                      <option value="item2">상품배송중</option>
+                      <option value="item3">배송완료</option>
+                    </select>
+              </td>
+                <td><button class="btn-my-orders">주문 취소</button></td>
+              </tr>
+
+              <tr>
+                <td>2023-04-20</td>
+                <td>피카츄/ 1마리</td>
+                <td>취소</td>
+                <td>
+                  <select id="items" class="items-management-orders" name="items">
+                      <option value="item1">상품준비중</option>
+                      <option value="item2">상품배송중</option>
+                      <option value="item3">배송완료</option>
+                    </select>
+              </td>
+                <td><button class="btn-my-orders">주문 취소</button></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</html>
