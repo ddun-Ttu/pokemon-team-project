@@ -53,9 +53,9 @@ const data = [];
 for(i = 0; i < 50; i++) {
   
   const product = {
-    name: '이상해씨',
+    name: '피카츄',
     price: 12500,
-    type: '풀',
+    type: '전기',
   }
 
   data.push(product);

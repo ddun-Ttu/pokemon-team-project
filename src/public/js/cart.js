@@ -3,34 +3,52 @@ const paymentInformation = document.querySelector('.paymentInformation');
 const inCartAndpaymentInformationArea = document.querySelector('.inCartAndpaymentInformation');
 
 // * 더미 데이터.
+
 const dummyData = [
-  { id: 1,
-  name: '이상해씨',
-  type: '풀',
-  price: 5000,
-  count: 1,
-  checked: true },
-
-  { id: 2,
-  name: '피카츄',
-  type: '전기',
-  price: 10000,
-  count: 1, 
-  checked: true},
-
-  { id: 3,
-    name: '꼬부기',
-    type: '물',
-    price: 3000,
-    count: 1, 
-    checked: true},
-
-  { id: 4,
-    name: '메타몽',
-    type: '개구쟁이',
-    price: 10000,
-    count: 1, 
-    checked: true},
+  { 
+    pokemonId: 1,
+    pokemonName: '이상해씨',
+    categoryId: '풀',
+    pokemonNum: 1,
+    price: 5000,
+    sumInfo: '',
+    detailInfo: '',
+    pokemonImage: `../img/${this.pokemonId}.png`,
+    checked: true,
+  },  
+  { 
+    pokemonId: 2,
+    pokemonName: '피카츄',
+    categoryId: '전기',
+    pokemonNum: 2,
+    price: 5000,
+    sumInfo: '',
+    detailInfo: '',
+    pokemonImage: `../img/${this.pokemonId}.png`,
+    checked: true,
+  }, 
+  { 
+    pokemonId: 3,
+    pokemonName: '꼬부기',
+    categoryId: '물',
+    pokemonNum: 3,
+    price: 5000,
+    sumInfo: '',
+    detailInfo: '',
+    pokemonImage: `../img/${this.pokemonId}.png`,
+    checked: true,
+  },
+  { 
+    pokemonId: 4,
+    pokemonName: '메타몽',
+    categoryId: '말랑',
+    pokemonNum: 4,
+    price: 5000,
+    sumInfo: '',
+    detailInfo: '',
+    pokemonImage: `../img/${this.pokemonId}.png`,
+    checked: true,
+  }, 
 ];
 
 // * 더미 데이터 삽입 버튼
@@ -189,8 +207,12 @@ function printInCartAndPaymentInformation() {
             <div class="paymentInformation-deliveryFee2">${deliveryFee}</div>
           </div>      
           <div class="container-paymentInformation-totalPrice">
-            <div class="paymentInformation-totalPrice1">총 결제 금액</div>
-            <div class="paymentInformation-totalPrice2">${totalPrice + deliveryFee}원</div>
+            <div class="container-paymentInformation-totalPrice1">
+              <div class="paymentInformation-totalPrice1">총 결제 금액</div>
+            </div>
+            <div class="container-paymentInformation-totalPrice2">
+              <div class="paymentInformation-totalPrice2">${totalPrice + deliveryFee}원</div>
+            </div>
           </div>     
           <div class="container-paymentInformation-paymentButton">
             <button class="paymentInformation-paymentButton">구매하기</button>

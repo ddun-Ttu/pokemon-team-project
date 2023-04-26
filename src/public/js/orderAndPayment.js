@@ -59,8 +59,6 @@ else {
   });
 }
 
-// let dataName = [];
-// let dataCount = [];
 let dataProductTotalPrice;
 let dataDeliveryFee;
 let dataFinalPrice;
@@ -80,9 +78,6 @@ orderData.forEach((item, index) => {
     `;
 
   productTotalPrice += count * price;
-
-  // dataName.push(name);
-  // dataCount.push(count);
   
   if(index == orderData.length - 1) {
     const finalPrice = productTotalPrice + deliveryFee;
@@ -151,11 +146,16 @@ const orderButton = document.querySelector('#orderButton');
 orderButton.addEventListener('click', orderButtonHandler);
 
 function orderButtonHandler() {
-  // 입력받은 배송지 정보 체크.
-  checkDeliveryData()
 
-  // 서버로 주문 데이터 전송.
-  makeAndSendOrderData()
+  const result = confirm('주문을 진행합니다.');
+
+  if(result) {
+    // 입력받은 배송지 정보 체크.
+    checkDeliveryData()
+
+    // 서버로 주문 데이터(배송지 & 주문 상품 정보) 전송.
+    makeAndSendOrderData()
+  }
 }
 
 // * 배송지 정보 확인 & 데이터 제작 & 데이터 전송.
@@ -189,61 +189,56 @@ async function makeAndSendOrderData() {
     address1,
     address2,
     request
-  }
-  
-  // ㅇㅇㅇ 변수로 채워주고.
-  alert('ㅇㅇㅇ 에 대한 결제를 진행합니다.')
+  };
 
-  // * 주문 정보 데이터 제작.
-
+  // * 주문 정보 데이터 & 주문 확인 문구 제작.
   let orderProductData = [];
+
   orderData.forEach(item => {
     const { name, count } = item;
 
     orderProductData.push({ name, count });
   });
 
-  // 배열 형태로 저장되어 있는 주문 상품 정보는 배송지 정보 객체에 한 필드를 파서 객체들을 담은 배열 형태로 만들어 서버로 넘겨줌.
   data.orderProductData = orderProductData;
 
-  console.log(data);
+  // * api(url: '/', method: 'POST')
+  const dataJson = JSON.stringify(data);
 
-  // const dataJson = JSON.stringify(data);
+  const apiUrl = `https://${window.location.hostname}:8190/api/order`
 
-  // const apiUrl = `https://${window.location.hostname}:8190/api/order`
+  const res = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: dataJson
+  });
 
-  // const res = await fetch(apiUrl, {
-  //   method: 'POST',
-  //   headers: {
-  //       'Content-Type': 'application/json',
-  //   },
-  //   body: dataJson
-  // });
+  // * 주문 성공 시.
+  if(res.ok) {
+    // * 주문 완료 데이터 삭제.
+    if(localStorageOrderData !== null) {
+      localStorage.removeItem('order');
+    }
+    else {
+      const checkedFalseCartData = localStorageCartData.filter(item => {return item.checked == false});
+      if(checkedFalseCartData.length == 0) {
+        localStorage.removeItem('cart');
+      }
+      else {
+        localStorage.setItem('cart', JSON.stringify(checkedFalseCartData)); 
+      }
+    }
 
-  // // * 주문 성공 시.
-  // if(res.ok) {
-  //   // * 주문 완료 데이터 삭제.
-  //   if(localStorageOrderData !== null) {
-  //     localStorage.removeItem('order');
-  //   }
-  //   else {
-  //     const checkedFalseCartData = localStorageCartData.filter(item => {return item.checked == false});
-  //     if(checkedFalseCartData.length == 0) {
-  //       localStorage.removeItem('cart');
-  //     }
-  //     else {
-  //       localStorage.setItem('cart', JSON.stringify(checkedFalseCartData)); 
-  //     }
-  //   }
+    // * 결제 완료 페이지로 이동시키기.
+    window.location.replace('./orderComplete.html');
+  }
+  // * 주문 실패 시.
+  else {
+    console.log(res.status);
+    alert('주문 실패. 다시 시도해주세요.');
+  } 
 
-  //   // * 결제 완료 페이지로 이동시키기.
-  //   window.location.replace('./orderComplete.html');
-  // }
-  // // * 주문 실패 시.
-  // else {
-  //   console.log(res.status);
-  //   alert('주문 실패. 다시 시도해주세요.');
-  // } 
-
-  // window.location.replace('./orderComplete.html')
+  window.location.replace('./orderComplete.html')
 };

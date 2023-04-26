@@ -8,7 +8,7 @@
 
 div.gridContainer-whole {
   display: grid;
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: auto 900px auto;
   grid-template-rows: 80px auto auto auto;
 }
 

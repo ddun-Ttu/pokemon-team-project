@@ -1,9 +1,12 @@
 const goOrderListButton = document.querySelector('#button-button1');
 
+console.log(common)
+
 goOrderListButton.addEventListener('click', goOrderListButtonHandler);
 
-function goOrderListButtonHandler() {
+async function goOrderListButtonHandler() {
   const user = JSON.parse(localStorage.getItem('user'));
 
-  window.location = `.../${user.id}`;
+  // * api(url: '/user.id', method: 'GET')
+  window.location = `/${user.id}`;
 }
