@@ -33,6 +33,7 @@ const finalPriceArea =
 const localStorageCartData = JSON.parse(localStorage.getItem('cart'));
 const localStorageOrderData = JSON.parse(localStorage.getItem('order'));
 
+// 더미데이터
 // localStorage.setItem('order', JSON.stringify(
 //   [{ id: 1,
 //   name: '이상해씨',
