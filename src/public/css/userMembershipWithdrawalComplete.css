@@ -53,6 +53,8 @@ div.container-membershipWithdrawalCompeleteMessageBox {
 
 div.membershipWithdrawalCompeleteMessageBox {
   border: solid 1px;
+  display: flex;
+  flex-direction: column;
 }
 
 div.container-membershipWithdrawalCompeleteMessageBox-subject {
@@ -77,6 +79,18 @@ div.container-membershipWithdrawalCompeleteMessageBox-message {
 
 div.membershipWithdrawalCompeleteMessageBox-message {
 
+}
+
+div.container-membershipWithdrawalCompeleteMessageBox-homeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+button#homeButton {
+  cursor: pointer;
 }
 
 /* 푸터 */

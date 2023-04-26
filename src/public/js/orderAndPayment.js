@@ -12,6 +12,7 @@ window.onpageshow = function(event){
 // });
 
 // * 페이지 이동(구매 버튼 클릭이 아닌 다른 방법으로) 시 로컬 스토리지의 order 데이터 삭제.
+// - 이 데이터를 삭제하지 않으면 장바구니에서 넘어와도 오더 데이터가 잡히게 됨.
 // - cart 데이터는 남기기. cart 데이터는 주문 버튼 클릭으로 주문 완료 시에만 주문한 목록 삭제. 
 window.addEventListener('unload', () => {
   localStorage.removeItem('order');
@@ -46,7 +47,7 @@ const localStorageOrderData = JSON.parse(localStorage.getItem('order'));
 let orderData;
 
 if(localStorageCartData == null && localStorageOrderData == null) {
-  alert('잘못된 접근입니다!!!');
+  alert('잘못된 접근입니다.');
   // 허용해선 안 될 방법으로 접근 시 출력될 페이지를 하나 만들어야겠음.
 }
 else if(localStorageOrderData !== null) {
