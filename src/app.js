@@ -1,6 +1,5 @@
 import express from "express";
 import morgan from "morgan";
-import path from "path";
 // 라우터
 import userRouter from "./routes/userRouter";
 import adminRouter from "./routes/adminRouter";
@@ -16,13 +15,5 @@ app.use(express.static(__dirname + "/views")); // 화면 경로 고정
 app.use("/users", userRouter); // 사용자(개인) 페이지 관련 라우터
 app.use("/admins", adminRouter); // 사용자(개인) 페이지 관련 라우터
 app.use("/", rootRouter);
-
-/*
-app.use("/", (req, res) => {
-  res.sendFile("main.html", {
-    root: path.join(__dirname, "views/main"),
-  });
-});
-*/
 
 export default app;
