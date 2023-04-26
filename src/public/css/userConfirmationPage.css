@@ -21,33 +21,8 @@
     padding: 10px;
     border: 1px solid #dedede;
     border-radius: 5px;
+    
 }
-
-.border-sing-up {
-  border: 1px solid #dedede;
-}
-.form-div > form > h3 {
-  text-align: center;
-  padding: 20px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #FFC737;
-}
-.form-div > form > div > p {
-  padding: 8px;
-  font-weight: 500;
-}
-.form-div > form > div {
-  margin: 24px;
-}
-.form-input-sing-up {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #dedede;
-  border-radius: 5px;
-  
-}
-
 
 .but-user-acc {
     width: 90%;

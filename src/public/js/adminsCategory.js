@@ -30,7 +30,6 @@ if (categoryObj) {
       const categoryObjStr = JSON.stringify(categoryObj);
       localStorage.setItem("categoryObj", categoryObjStr);
 
-
       btn.closest("tr").remove();
     });
   });
