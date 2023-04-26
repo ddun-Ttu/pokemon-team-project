@@ -27,14 +27,14 @@ userRouter.get("/mypage", (req, res) => {
 
 // 사용자 확인 페이지
 userRouter.get("/mypage/confirm", (req, res) => {
-  const PAGE_NAME = "userAccount";
+  const PAGE_NAME = "userConfirmationPage";
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 사용자 정보 수정 페이지
 userRouter.get("/mypage/edit", (req, res) => {
-  const PAGE_NAME = "?";
+  const PAGE_NAME = "userAccount";
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
@@ -48,7 +48,7 @@ userRouter.get("/mypage/orders", (req, res) => {
 
 // 사용자 주문 수정 페이지
 userRouter.get("/mypage/orders/:orderId/edit", (req, res) => {
-  const PAGE_NAME = "?";
+  const PAGE_NAME = "userEditOrder";
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
