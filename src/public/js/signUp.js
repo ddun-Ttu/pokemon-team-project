@@ -5,7 +5,7 @@ const confirmPassword = document.querySelector("#confirmPassword");
 
 // 패스워드가 8글자인지 확인
 passwordInput.addEventListener("input", function () {
-  // console.log(passwordInput.value.length);
+  console.log(passwordInput.value.length);
   const passwordLength = passwordInput.value.length;
 
   if (passwordLength < 8) {
