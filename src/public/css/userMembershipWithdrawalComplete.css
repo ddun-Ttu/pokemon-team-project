@@ -86,7 +86,7 @@ div.container-membershipWithdrawalCompeleteMessageBox-homeButton {
   justify-content: center;
   align-items: center;
 
-  padding: 20px;
+  padding: 10px 0 20px 0;
 }
 
 button#homeButton {

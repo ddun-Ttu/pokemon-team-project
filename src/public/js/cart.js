@@ -190,7 +190,7 @@ function printInCartAndPaymentInformation() {
           </div>      
           <div class="container-paymentInformation-totalPrice">
             <div class="paymentInformation-totalPrice1">총 결제 금액</div>
-            <div class="paymentInformation-totalPrice2">${totalPrice}원</div>
+            <div class="paymentInformation-totalPrice2">${totalPrice + deliveryFee}원</div>
           </div>     
           <div class="container-paymentInformation-paymentButton">
             <button class="paymentInformation-paymentButton">구매하기</button>

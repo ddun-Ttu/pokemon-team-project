@@ -59,8 +59,8 @@ else {
   });
 }
 
-let dataName = [];
-let dataCount = [];
+// let dataName = [];
+// let dataCount = [];
 let dataProductTotalPrice;
 let dataDeliveryFee;
 let dataFinalPrice;
@@ -81,8 +81,8 @@ orderData.forEach((item, index) => {
 
   productTotalPrice += count * price;
 
-  dataName.push(name);
-  dataCount.push(count);
+  // dataName.push(name);
+  // dataCount.push(count);
   
   if(index == orderData.length - 1) {
     const finalPrice = productTotalPrice + deliveryFee;
@@ -182,7 +182,7 @@ async function makeAndSendOrderData() {
   const address2 = address2Input.value;
   const request = requestSelectBox.value;
 
-  const data1 = {
+  const data = {
     receiverName,
     receiverPhoneNumber,
     postalCode,
@@ -195,125 +195,55 @@ async function makeAndSendOrderData() {
   alert('ㅇㅇㅇ 에 대한 결제를 진행합니다.')
 
   // * 주문 정보 데이터 제작.
-  const data2 = { 
-    dataName, 
-    dataCount, 
-    dataProductTotalPrice, 
-    dataDeliveryFee, 
-    dataFinalPrice 
-  };
 
-  const dataJson1 = JSON.stringify(data1);
-  const dataJson2 = JSON.stringify(data2);
+  let orderProductData = [];
+  orderData.forEach(item => {
+    const { name, count } = item;
 
-  console.log(dataJson2);
-
-  const apiUrl = `https://${window.location.hostname}:8190/api/order`
-
-  const res = await fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: [dataJson1, dataJson2],
-    // 보내야 할 데이터가 여러 개일 때 어떤 식으로 합쳐야 할지 모르겠음..
+    orderProductData.push({ name, count });
   });
 
-  // * 주문 성공 시.
-  if(res.ok) {
-    // * 주문 완료 데이터 삭제.
-    if(localStorageOrderData !== null) {
-      localStorage.removeItem('order');
-    }
-    else {
-      const checkedFalseCartData = localStorageCartData.filter(item => {return item.checked == false});
-      if(checkedFalseCartData.length == 0) {
-        localStorage.removeItem('cart');
-      }
-      else {
-        localStorage.setItem('cart', JSON.stringify(checkedFalseCartData)); 
-      }
-    }
+  // 배열 형태로 저장되어 있는 주문 상품 정보는 배송지 정보 객체에 한 필드를 파서 객체들을 담은 배열 형태로 만들어 서버로 넘겨줌.
+  data.orderProductData = orderProductData;
 
-    // * 결제 완료 페이지로 이동시키기.
-    window.location.replace('./orderComplete.html')
-  }
-  // * 주문 실패 시.
-  else {
-    console.log(res.status);
-    alert('주문 실패. 다시 시도해주세요.');
-  } 
+  console.log(data);
+
+  // const dataJson = JSON.stringify(data);
+
+  // const apiUrl = `https://${window.location.hostname}:8190/api/order`
+
+  // const res = await fetch(apiUrl, {
+  //   method: 'POST',
+  //   headers: {
+  //       'Content-Type': 'application/json',
+  //   },
+  //   body: dataJson
+  // });
+
+  // // * 주문 성공 시.
+  // if(res.ok) {
+  //   // * 주문 완료 데이터 삭제.
+  //   if(localStorageOrderData !== null) {
+  //     localStorage.removeItem('order');
+  //   }
+  //   else {
+  //     const checkedFalseCartData = localStorageCartData.filter(item => {return item.checked == false});
+  //     if(checkedFalseCartData.length == 0) {
+  //       localStorage.removeItem('cart');
+  //     }
+  //     else {
+  //       localStorage.setItem('cart', JSON.stringify(checkedFalseCartData)); 
+  //     }
+  //   }
+
+  //   // * 결제 완료 페이지로 이동시키기.
+  //   window.location.replace('./orderComplete.html');
+  // }
+  // // * 주문 실패 시.
+  // else {
+  //   console.log(res.status);
+  //   alert('주문 실패. 다시 시도해주세요.');
+  // } 
+
+  // window.location.replace('./orderComplete.html')
 };
-
-// * paymentInformationHTML
-// let productListHTML = '';
-
-// makePaymentInformationHTML()
-
-// paymentInformationContainer.innerHTML = productListHTML;
-
-// * 입력된 배송지 정보 검증 & 서버로 전송.
-// function makePaymentInformationHTML() {
-
-//   let productListHTML = '';
-//   let productTotalPrice = 0;
-//   let finalPrice = 0;
-  
-//   orderData.forEach((item) => {
-//     const { name, count, price, deliveryFee = 3000 } = item;
-    
-//     productListHTML += 
-//     `
-//     <li>
-//         <div>${name} / ${count}개</div>
-//     </li>
-//     `;
-
-//     productTotalPrice += count * price;
-//     finalPrice = productTotalPrice + deliveryFee;
-
-//     paymentinformationHTML = 
-//   `<div class="paymentInformation">
-//     <div class="container-paymentInformation-subject">
-//       <div class="paymentInformation-subject"> <h4>결제 정보</h4></div>
-//     </div>
-//     <div class="container-paymentInformation-NameAndCountList">
-//       <div class="container-paymentInformation-NameAndCount-subject">
-//         <div class="paymentInformation-NameAndCount-subject">주문 상품</div>
-//       </div>
-//       <div class="container-paymentInformation-NameAndCountList-list">
-//         <ul class="paymentInformation-NameAndCountList-list-ul">
-//           ${productListHTML}
-//         </ul>
-//       </div>
-//     </div>
-//     <div class="container-paymentInformation-totalPrice">
-//       <div class="container-paymentInformation-totalPrice-subject">
-//         <div class="paymentInformation-totalPrice">상품 총액</div>
-//       </div>
-//       <div class="container-paymentInformation-totalPrice-price">
-//         <div class="paymentInformation-totalPrice-totalPrice">${productTotalPrice}원</div>
-//       </div>
-//     </div>
-//     <div class="container-paymentInformation-deliveryFee">
-//       <div class="container-paymentInformation-deliveryFee-subject">
-//         <div class="paymentInformation-deliveryFee-subject">배송비</div>
-//       </div>
-//       <div class="container-paymentInformation-deliveryFee-deliveryFee">
-//         <div class="paymentInformation-deliveryFee-deliveryFee">${deliveryFee}원</div>
-//       </div>
-//     </div>      
-//     <div class="container-paymentInformation-totalPrice">
-//       <div class="container-paymentInformation-totalPrice-subject">
-//         <div class="paymentInformation-totalPrice-subject">총 결제 금액</div>
-//       </div>
-//       <div class="container-paymentInformation-totalPrice-totalPrice">
-//         <div class="paymentInformation-totalPrice-totalPrice">${finalPrice}원</div>
-//       </div>
-//     </div>
-//     <div class="container-paymentInformation-paymentButton">
-//       <button id="orderButton" class="paymentInformation-paymentButton">구매하기</button>
-//     </div>
-//   </div>`
-//   })
-// };
