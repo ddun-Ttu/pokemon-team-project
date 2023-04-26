@@ -1,9 +1,8 @@
 import express from "express";
-import path from "path";
 
 const userRouter = express.Router();
 
-const PATH_NAME = __dirname.split("/").slice(0, -1).join("/");
+// const PATH_NAME = __dirname.split("/").slice(0, -1).join("/");
 
 // 회원가입 페이지
 userRouter.get("/signup", (req, res) => {
