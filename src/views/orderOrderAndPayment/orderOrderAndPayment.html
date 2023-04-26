@@ -8,7 +8,7 @@
   <title>주문 및 결제 페이지</title>
   <link rel="stylesheet" href="../common/index.css">
   <link rel="stylesheet" href="../common/reset.css">
-  <link rel="stylesheet" href="./orderAndPayment.css">
+  <link rel="stylesheet" href="./orderOrderAndPayment.css">
 </head>
 <body>
 
@@ -123,14 +123,11 @@
               </div>
               <div class="container-paymentInformation-NameAndCountList">
                 <div class="container-paymentInformation-NameAndCount-subject">
-                  <div class="paymentInformation-NameAndCount-subject">주문 상품</div>
+                  <div class="paymentInformation-NameAndCount-subject">상품 정보</div>
                 </div>
                 <div class="container-paymentInformation-NameAndCountList-list">
                   <ul class="paymentInformation-NameAndCountList-list-ul">
-                    <li>여행 코디 여성 / 1개</li>
-                    <li>여행 코디 여성 / 1개</li>
-                    <li>여행 코디 여성 / 1개</li>
-                    <li>여행 코디 여성 / 1개</li>
+                    <!-- 주문 상품 리스트(js) -->
                   </ul>
                 </div>
               </div>
@@ -139,7 +136,9 @@
                   <div class="paymentInformation-totalPrice">상품 총액</div>
                 </div>
                 <div class="container-paymentInformation-totalPrice-price">
-                  <div class="paymentInformation-totalPrice-totalPrice">300,000원</div>
+                  <div class="paymentInformation-productTotalPrice">
+                    <!-- 상품 총액(js) -->
+                  </div>
                 </div>
               </div>
               <div class="container-paymentInformation-deliveryFee">
@@ -147,7 +146,9 @@
                   <div class="paymentInformation-deliveryFee-subject">배송비</div>
                 </div>
                 <div class="container-paymentInformation-deliveryFee-deliveryFee">
-                  <div class="paymentInformation-deliveryFee-deliveryFee">3000원</div>
+                  <div class="paymentInformation-deliveryFee-deliveryFee">
+                    <!-- 배송비(js) -->
+                  </div>
                 </div>
               </div>      
               <div class="container-paymentInformation-totalPrice">
@@ -155,7 +156,9 @@
                   <div class="paymentInformation-totalPrice-subject">총 결제 금액</div>
                 </div>
                 <div class="container-paymentInformation-totalPrice-totalPrice">
-                  <div class="paymentInformation-totalPrice-totalPrice">200,000원</div>
+                  <div class="paymentInformation-finalPrice">
+                    <!-- 총 결제 예정 금액(js) -->
+                  </div>
                 </div>
               </div>
               <div class="container-paymentInformation-paymentButton">
@@ -173,7 +176,6 @@
     </div>
   </div>
 
-  <!-- 스크립트 -->
-  <script src="./orderAndPayment.js"></script>
+  <script src="./orderOrderAndPayment.js"></script>
 </body>
 </html>
