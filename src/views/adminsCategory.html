@@ -24,11 +24,11 @@
           <div class="flex-mypage">
             <div class="item-mypage">
               <div class="div-mypage">
-                <a href="../adminsCategoryAdd/adminsCategoryAdd.html"
-                  ><button class="button-admins-cotegories">
+                <a href="/admins/categories/add">
+                  <button class="button-admins-cotegories">
                     카테고리 추가
-                  </button></a
-                >
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -45,7 +45,11 @@
                   <th></th>
                 </tr>
               </thead>
-
+              <!-- 
+                카테고리 목록들 출력 *JS
+                수정 - 수정 페이지로 이동
+                삭제 - [DELETE] 카테고리 삭제 API 요청
+              -->
               <tbody id="list-category"></tbody>
             </table>
           </div>

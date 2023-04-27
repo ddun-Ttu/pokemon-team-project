@@ -45,7 +45,9 @@
 
         <!-- 테이블 표 -->
         <div class="table-my-orders">
-          <button class="add-product-but">상품 추가</button>
+          <a href="/admins/pokemons/add">
+            <button class="add-product-but">상품 추가</button>
+          </a>
           <table>
             <thead>
               <tr>
@@ -57,7 +59,11 @@
                 <th>삭제</th>
               </tr>
             </thead>
-
+            <!--
+              포켓몬(상품) 목록들 출력 *JS
+              수정 - 상품 내용 수정 페이지로 이동
+              삭제 - [DELETE] 상품 삭제 API 요청
+            -->
             <tbody>
               <tr>
                 <td>2023-04-20</td>
