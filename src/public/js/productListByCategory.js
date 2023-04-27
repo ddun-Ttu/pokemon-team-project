@@ -1,153 +1,193 @@
 // * 카테고리 목록 생성.
-const cartegoryBar_categoryList_ul = document.querySelector('.cartegoryBar-categoryList-ul');
+const cartegoryBar_categoryList_ul = document.querySelector(
+  ".cartegoryBar-categoryList-ul"
+);
 
-makeCategoryList();
+let categoryListArray;
 
-async function makeCategoryList() {
-  // const res = await fetch('common.API_URL/category');
-  // const data = await JSON.parse(res); 
+makeCategoryBar();
 
-  // { 
-  //   pokemonImage: `../img/${this.pokemonName}.png`,
-  //   pokemonName: '이상해씨',
-  //   quantity: 1,
-  //   pokemonPrice: 5000,
-  //   checked: true,
+async function makeCategoryBar() {
+  // const res = fetch("common.API_URL/???");
+  // const data = await JSON.parse(res);
 
-  //   pokemonId: 0,
-  //   pokemonNum: 0,
-  //   sumInfo: '',
-  //   detailInfo: '',
-  //   categoryId: '풀',
-  // }
+  const data = ["물", "전기", "풀"];
+  categoryListArray = ["전체", ...data];
 
-  // 데이터 받았다 치고,
+  let categoryListLiHTML = "";
 
-  // * 관리자가 지정한 카테고리 목록.
-  const data = [ { _id : 1, categoryId : '물' }, { _id : 2, categoryId : '전기' }, { _id : 3, categoryId : '풀' }, 
-  // { _id : 4, type : '바람' }, { _id : 5, type : '바위' }, { _id : 6, type : '용기' },  { _id : 7, type : '권력' }, { _id : 8, type : '고통' }, { _id : 9, type : '프롤레타리아' }, { _id : 10, type : '자본가' }, { _id : 11, type : '혁명가' }, 
-  ];
-
-  let categoryListLiHTML = '';
-
-  data.forEach(item => {
-    const { categoryId } = item;
-
+  categoryListArray.forEach((item) => {
     let typeColor;
-    
-    switch(categoryId) {
-      case '물':
-        typeColor = 'rgb(41, 146, 255)';
-        break;  
-      case '전기':
-        typeColor = 'rgb(255, 219, 0)';
+
+    switch (item) {
+      case "전체":
+        typeColor = "white";
         break;
-      case '풀': 
-        typeColor = 'green';
+      case "물":
+        typeColor = "rgb(41, 146, 255)";
+        break;
+      case "전기":
+        typeColor = "rgb(255, 219, 0)";
+        break;
+      case "풀":
+        typeColor = "green";
         break;
     }
 
-    categoryListLiHTML += `<li><a href="/category/${ categoryId }" id=${ categoryId } style="color: ${ typeColor }";>${ categoryId }</a></li>`
-  })
+    if (item == "전체") {
+      categoryListLiHTML += `<li><a href="/category/${item}" class="selected" id=${item} style="color: ${typeColor}; border-left: solid 1px black;">${item}</a></li>`;
+    } else {
+      categoryListLiHTML += `<li><a href="/category/${item}" id=${item} style="color: ${typeColor}";>${item}</a></li>`;
+    }
+  });
 
   cartegoryBar_categoryList_ul.innerHTML += categoryListLiHTML;
 }
 
-// * 선택된 카테고리의 상품 리스트 출력.
-const productListByCategory_list_ul = document.querySelector('.productListByCategory-list-ul');
+makeProductList();
 
-async function makeProductList() {
-  // const data = await fetch('/');
-  
-  // 데이터 받았다 치고.
-  
+const allCategoryButton = document.querySelectorAll(
+  ".cartegoryBar-categoryList-ul > li > a"
+);
+
+let selectedCategory;
+
+allCategoryButton.forEach((item, index) => {
+  const eachCategoryButton = allCategoryButton[index];
+
+  eachCategoryButton.addEventListener("click", eachCategoryHandler);
+});
+
+function eachCategoryHandler(e) {
+  e.preventDefault();
+
+  allCategoryButton.forEach((item, index) => {
+    item.classList.remove("selected");
+  });
+
+  e.target.classList.add("selected");
+
+  selectedCategory = e.target.id;
+
+  makeProductList(selectedCategory);
 }
 
-const data = [];
+// * 선택된 카테고리의 상품 리스트 출력.
+async function makeProductList(category) {
+  const productListByCategory_list_ul = document.querySelector(
+    ".productListByCategory-list-ul"
+  );
 
-for(i = 0; i < 50; i++) {
-  
-  const product = {
-    pokemonName: '피카츄',
-    pokemonPrice: 12500,
-    categoryId: '전기',
+  // const res = await fetch(`common.API_URL/category/${category}`);
+  // const data = await JSON.parse(res);
+
+  let data = [];
+
+  // * 더미 데이터 제작
+
+  let product;
+
+  for (i = 0; i < 50; i++) {
+    if (category == "물") {
+      product = {
+        pokemonName: "꼬부기",
+        pokemonPrice: 12500,
+        categoryId: "물",
+      };
+    } else if (category == "전기") {
+      product = {
+        pokemonName: "피카츄",
+        pokemonPrice: 12500,
+        categoryId: "전기",
+      };
+    } else if (category == "풀") {
+      product = {
+        pokemonName: "이상해씨",
+        pokemonPrice: 12500,
+        categoryId: "풀",
+      };
+    } else {
+      product = {
+        pokemonName: "메타몽",
+        pokemonPrice: 12500,
+        categoryId: "장난",
+      };
+    }
+
+    data.push(product);
   }
 
-  data.push(product);
-}
+  let liHTML = "";
 
-// 데이터 받았다 치고,
+  makeLiHTML();
 
-let liHTML = '';
+  productListByCategory_list_ul.innerHTML = liHTML;
 
-makeLiHTML()
+  // * 장바구니 버튼 기능
+  let alreadyInCartData = JSON.parse(localStorage.getItem("cart"));
 
-productListByCategory_list_ul.innerHTML = liHTML;
+  const putInCartButton = document.querySelectorAll(
+    ".productListByCategory-list-like-button"
+  );
 
-let alreadyInCartData = JSON.parse(localStorage.getItem('cart'));
-
-const putInCartButton = document.querySelectorAll('.productListByCategory-list-like-button');
-
-data.forEach((item, index) => {
-  putInCartButton[index].addEventListener('click', () => {
-
-    if(alreadyInCartData == null) {
-      // data 객체에 더해줄 필드.
-      item.quantity = 1;
-      item.checked = true;
-
-      // data 객체에서 빼줄 필드.
-      delete item.categoryId;
-      
-      alreadyInCartData = [];
-      alreadyInCartData.push(item);
-
-      localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
-    }
-    else{
-      const findedIndex = alreadyInCartData.findIndex((({ name }) => name == item.pokemonName));
-
-      if(findedIndex == -1){
+  data.forEach((item, index) => {
+    putInCartButton[index].addEventListener("click", () => {
+      if (alreadyInCartData == null) {
+        // data 객체에 더해줄 필드.
         item.quantity = 1;
         item.checked = true;
 
+        // data 객체에서 빼줄 필드.
         delete item.categoryId;
 
+        alreadyInCartData = [];
         alreadyInCartData.push(item);
 
-        localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
-      }
-      else {
-        alreadyInCartData[findedIndex].count++
-        localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
-      }
-    }
-  })
-}) 
+        localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+      } else {
+        const findedIndex = alreadyInCartData.findIndex(
+          ({ pokemonName }) => pokemonName == item.pokemonName
+        );
 
-function makeLiHTML() {
-  data.forEach(item => {
-    let { pokemonName, pokemonPrice, categoryId } = item;
-  
-    price = Number(pokemonPrice).toLocaleString();
-    image = `../img/${pokemonName}.png`;
-  
-    let typeColor;
-    
-    switch(categoryId) {
-      case '물':
-        typeColor = 'rgb(41, 146, 255)';
-        break;  
-      case '전기':
-        typeColor = 'rgb(255, 219, 0)';
-        break;
-      case '풀': 
-        typeColor = 'green';
-        break;
-    }
-  
-    liHTML += 
-    `
+        if (findedIndex == -1) {
+          item.quantity = 1;
+          item.checked = true;
+
+          delete item.categoryId;
+
+          alreadyInCartData.push(item);
+
+          localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+        } else {
+          alreadyInCartData[findedIndex].quantity++;
+          localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+        }
+      }
+    });
+  });
+
+  function makeLiHTML() {
+    data.forEach((item) => {
+      let { pokemonName, pokemonPrice, categoryId } = item;
+
+      price = Number(pokemonPrice).toLocaleString();
+      image = `../img/${pokemonName}.png`;
+
+      let typeColor;
+
+      switch (categoryId) {
+        case "물":
+          typeColor = "rgb(41, 146, 255)";
+          break;
+        case "전기":
+          typeColor = "rgb(255, 219, 0)";
+          break;
+        case "풀":
+          typeColor = "green";
+          break;
+      }
+
+      liHTML += `
     <li class="productListByCategory-list-li">
       <a href="/detail/${pokemonName}">
         <div class="container-productListByCategory-list-image">
@@ -169,6 +209,7 @@ function makeLiHTML() {
       <div class="container-productListByCategory-list-description-like">
         <button class="productListByCategory-list-like-button">장바구니에 추가</button>
       </div>
-    </li>`
-  })  
-};
+    </li>`;
+    });
+  }
+}
