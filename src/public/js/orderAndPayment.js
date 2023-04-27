@@ -39,10 +39,10 @@ const localStorageOrderData = JSON.parse(localStorage.getItem("order"));
 // 더미데이터
 // localStorage.setItem('order', JSON.stringify(
 //   [{ id: 1,
-//   name: '이상해씨',
+//   pokemonName: '이상해씨',
 //   type: '풀',
-//   price: 5000,
-//   count: 1,
+//   pokemonPrice: 5000,
+//   quantity: 1,
 //   checked: true }]
 //   ))
 
@@ -59,11 +59,16 @@ if (localStorageCartData == null && localStorageOrderData == null) {
   });
 }
 
+let dataProductTotalPrice;
+let dataDeliveryFee;
+let dataFinalPrice;
+
 let productListHTML = "";
-let totalPrice = 0;
+let productTotalPrice = 0;
+let deliveryFee = 0;
 
 orderData.forEach((item, index) => {
-  let { pokemonName, quantity, pokemonPrice, deliveryFee = 3000 } = item;
+  let { pokemonName, quantity, pokemonPrice } = item;
 
   productListHTML += `
     <li>
@@ -71,15 +76,20 @@ orderData.forEach((item, index) => {
     </li>
     `;
 
-  totalPrice += quantity * pokemonPrice;
+  productTotalPrice += quantity * pokemonPrice;
+  deliveryFee += quantity * 5000;
 
   if (index == orderData.length - 1) {
-    const finalPrice = totalPrice + deliveryFee;
+    const finalPrice = productTotalPrice + deliveryFee;
 
     productNameAndProductCountArea.innerHTML = productListHTML;
-    productTotalPriceArea.innerHTML = totalPrice;
+    productTotalPriceArea.innerHTML = productTotalPrice;
     deliveryFeeArea.innerHTML = deliveryFee;
     finalPriceArea.innerHTML = finalPrice;
+
+    dataProductTotalPrice = productTotalPrice;
+    dataDeliveryFee = deliveryFee;
+    dataFinalPrice = finalPrice;
   }
 });
 
@@ -148,38 +158,38 @@ function orderButtonHandler() {
 
 // * 배송지 정보 확인 & 데이터 제작 & 데이터 전송.
 async function checkDeliveryData() {
-  const receiver = receiverNameInput.value;
-  const phoneNumber = receiverPhoneNumberInput.value;
+  const receiverName = receiverNameInput.value;
+  const receiverPhoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
   // const address1 = address1Input.value;
   const address2 = address2Input.value;
   // const request = requestSelectBox.value;
 
-  if (!receiver || !phoneNumber || !postalCode || !address2) {
-    return alert("배송지 정보를 모두 입력해 주세요.");
-  }
+  // if (!receiverName || !receiverPhoneNumber || !postalCode || !address2) {
+  //   return alert("배송지 정보를 모두 입력해 주세요.")
+  // };
 }
 
 // * 서버로 보낼 데이터 제작 & 전송.
 async function makeAndSendOrderData() {
   // * 배송지 정보 데이터 제작.
-  const receiver = receiverNameInput.value;
-  const phoneNumber = receiverPhoneNumberInput.value;
+  const receiverName = receiverNameInput.value;
+  const receiverPhoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
   const address1 = address1Input.value;
   const address2 = address2Input.value;
   const request = requestSelectBox.value;
 
   const data = {
-    receiver,
-    phoneNumber,
+    receiverName,
+    receiverPhoneNumber,
     postalCode,
     address1,
     address2,
     request,
   };
 
-  // * 주문 정보 데이터 제작
+  // * 주문 정보 데이터 & 주문 확인 문구 제작.
   let orderProductData = [];
 
   orderData.forEach((item) => {
@@ -193,7 +203,7 @@ async function makeAndSendOrderData() {
   // * api(url: '/', method: 'POST')
   const dataJson = JSON.stringify(data);
 
-  const apiUrl = `${common.API_URL}/order`;
+  const apiUrl = `https://${window.location.hostname}:8190/api/order`;
 
   const res = await fetch(apiUrl, {
     method: "POST",

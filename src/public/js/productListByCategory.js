@@ -8,10 +8,30 @@ let categoryListArray;
 makeCategoryBar();
 
 async function makeCategoryBar() {
-  // const res = fetch("common.API_URL/???");
+  // const res = fetch(`${common.API_URL}/???`);
   // const data = await JSON.parse(res);
 
-  const data = ["물", "전기", "풀"];
+  // * 타입명 한글로 변경.
+  let data = ["water", "electric", "grass"];
+
+  // data.forEach((item, index) => {
+  //   let kor;
+
+  //   switch (item) {
+  //     case "water":
+  //       kor = "물";
+  //       break;
+  //     case "electric":
+  //       kor = "전기";
+  //       break;
+  //     case "grass":
+  //       kor = "풀";
+  //       break;
+  //   }
+
+  //   data[index] = kor;
+  // });
+
   categoryListArray = ["전체", ...data];
 
   let categoryListLiHTML = "";
@@ -23,13 +43,13 @@ async function makeCategoryBar() {
       case "전체":
         typeColor = "white";
         break;
-      case "물":
+      case "water":
         typeColor = "rgb(41, 146, 255)";
         break;
-      case "전기":
+      case "electric":
         typeColor = "rgb(255, 219, 0)";
         break;
-      case "풀":
+      case "grass":
         typeColor = "green";
         break;
     }
@@ -78,7 +98,7 @@ async function makeProductList(category) {
     ".productListByCategory-list-ul"
   );
 
-  // const res = await fetch(`common.API_URL/category/${category}`);
+  // const res = await fetch(`/${common.API_URL}/pokemons?category=[${category}]);
   // const data = await JSON.parse(res);
 
   let data = [];
@@ -88,29 +108,33 @@ async function makeProductList(category) {
   let product;
 
   for (i = 0; i < 50; i++) {
-    if (category == "물") {
+    if (category == "water") {
       product = {
+        pokemonId: 1,
         pokemonName: "꼬부기",
         pokemonPrice: 12500,
-        categoryId: "물",
+        pokemonType: "water",
       };
-    } else if (category == "전기") {
+    } else if (category == "electric") {
       product = {
+        pokemonId: 2,
         pokemonName: "피카츄",
         pokemonPrice: 12500,
-        categoryId: "전기",
+        pokemonType: "electric",
       };
-    } else if (category == "풀") {
+    } else if (category == "grass") {
       product = {
+        pokemonId: 3,
         pokemonName: "이상해씨",
         pokemonPrice: 12500,
-        categoryId: "풀",
+        pokemonType: "grass",
       };
     } else {
       product = {
+        pokemonId: 4,
         pokemonName: "메타몽",
         pokemonPrice: 12500,
-        categoryId: "장난",
+        pokemonType: "장난",
       };
     }
 
@@ -138,7 +162,7 @@ async function makeProductList(category) {
         item.checked = true;
 
         // data 객체에서 빼줄 필드.
-        delete item.categoryId;
+        delete item.pokemonType;
 
         alreadyInCartData = [];
         alreadyInCartData.push(item);
@@ -153,7 +177,7 @@ async function makeProductList(category) {
           item.quantity = 1;
           item.checked = true;
 
-          delete item.categoryId;
+          delete item.pokemonType;
 
           alreadyInCartData.push(item);
 
@@ -168,28 +192,28 @@ async function makeProductList(category) {
 
   function makeLiHTML() {
     data.forEach((item) => {
-      let { pokemonName, pokemonPrice, categoryId } = item;
+      let { pokemonId, pokemonName, pokemonPrice, pokemonType } = item;
 
       price = Number(pokemonPrice).toLocaleString();
       image = `../img/${pokemonName}.png`;
 
       let typeColor;
 
-      switch (categoryId) {
-        case "물":
+      switch (pokemonType) {
+        case "water":
           typeColor = "rgb(41, 146, 255)";
           break;
-        case "전기":
+        case "electric":
           typeColor = "rgb(255, 219, 0)";
           break;
-        case "풀":
+        case "grass":
           typeColor = "green";
           break;
       }
 
       liHTML += `
     <li class="productListByCategory-list-li">
-      <a href="/detail/${pokemonName}">
+      <a href="/pokemons/${pokemonId}">
         <div class="container-productListByCategory-list-image">
           <img class="productListByCategory-list-image" src=${image} alt="">
         </div>
@@ -202,7 +226,7 @@ async function makeProductList(category) {
           </div>
           <div class="container-productListByCategory-list-description-type">
             <div class="productListByCategory-list-description-type"
-              style="background-color: ${typeColor}">${categoryId}</div>
+              style="background-color: ${typeColor}">${pokemonType}</div>
           </div> 
         </div>
       </a>
