@@ -5,22 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  <link rel="stylesheet" href="../public/css/index.css">
-  <link rel="stylesheet" href="../public/css/reset.css">
-    <link rel="stylesheet" href="../public/css/login.css">
+    <link rel="stylesheet" href="../public/css/index.css" />
+    <link rel="stylesheet" href="../public/css/reset.css" />
+    <link rel="stylesheet" href="../public/css/login.css" />
   </head>
   <body>
-   
     <!-- 네비게이션 바 -->
     <div class="main-container">
-      <nav class="main-nav-container">
-        <a href="./mainHome.html"><img class="logo" src="../img/logo.png" alt=""></a>
-        <ul class="nav-bar-ul">
-          <li class="nav-bar-li"><a href="./signUp.html">회원가입</a></li>
-          <li class="nav-bar-li"><a href="./login.html">로그인</a></li>
-          <li class="nav-bar-li"><a href="./cart.html">장바구니</a></li>
-        </ul>
-      </nav>
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
     </div>
 
     <!-- 로그인 화면 -->
@@ -28,23 +20,35 @@
       <div class="form-div contents-login">
         <form class="form-login">
           <h3>로그인</h3>
-      <div class="serve-login">
-        <div class="input-login">
-          <input id="login-email" type="text" class="email" placeholder="이메일">
-          <input id="login-password" type="password" class="password" placeholder="비밀번호">
-        </div>
-        <div class="but-login">
-          <button id="login-but">로그인</button>
-        </div>
-      </form>
+          <div class="serve-login">
+            <div class="input-login">
+              <input
+                id="login-email"
+                type="text"
+                class="email"
+                placeholder="이메일"
+              />
+              <input
+                id="login-password"
+                type="password"
+                class="password"
+                placeholder="비밀번호"
+              />
+            </div>
+            <div class="but-login">
+              <button id="login-but">로그인</button>
+            </div>
+          </div>
+        </form>
 
-      <p class="error-message" style="display: none;">Please enter a valid email address</p>
-    </form>
+        <p class="error-message" style="display: none">
+          Please enter a valid email address
+        </p>
       </div>
     </div>
-    </div>
-  </div>
 
-  <script src="../public/js/login.js"></script>
-
+    <!-- JS 파일 -->
+    <script src="/public/js/common/navBar.js"></script>
+    <script src="../public/js/login.js"></script>
+  </body>
 </html>
