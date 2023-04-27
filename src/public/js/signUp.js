@@ -1,39 +1,38 @@
-const passwordInput = document.querySelector(".password");
+const passwordInput = document.querySelector("#account-password");
+const confirmPasswordInput = document.querySelector("#account-confirmPassword");
+const password = document.querySelector("#password");
+const confirmPassword = document.querySelector("#confirmPassword");
+
+// 패스워드가 8글자인지 확인
+passwordInput.addEventListener("input", function () {
+  console.log(passwordInput.value.length);
+  const passwordLength = passwordInput.value.length;
+
+  if (passwordLength < 8) {
+    password.classList.remove("block");
+  } else {
+    password.classList.add("block");
+  }
+});
+
+// 패스워드가 동일한지
+confirmPasswordInput.addEventListener("input", function () {
+  console.log(confirmPasswordInput.value);
+  console.log(passwordInput.value);
+  if (confirmPasswordInput.value !== passwordInput.value) {
+    confirmPassword.classList.remove("block");
+  } else {
+    confirmPassword.classList.add("block");
+  }
+});
+
+// 이메일
 const emailInput = document.querySelector(".email");
-const confirmPasswordInput = document.querySelector(".confirmPassword");
 
 // 에러메세지
 const errorMessage = document.createElement("p");
 errorMessage.style.color = "red";
 errorMessage.style.fontSize = "12px";
-
-// 패스워드 8글자 이상인지 확인
-passwordInput.addEventListener("input", function () {
-  if (this.value.length > 0 && this.value.length < 8) {
-    errorMessage.textContent = "8자리 이상 입력해주세요";
-    errorMessage.style.display = "block";
-    passwordInput.parentNode.insertBefore(
-      errorMessage,
-      passwordInput.nextSibling
-    );
-  } else {
-    errorMessage.style.display = "none";
-  }
-});
-
-// 패스워드가 동일한지 확인
-confirmPasswordInput.addEventListener("input", function () {
-  if (confirmPasswordInput.value !== passwordInput.value) {
-    errorMessage.textContent = "비밀번호가 다릅니다";
-    errorMessage.style.display = "block";
-    confirmPasswordInput.parentNode.insertBefore(
-      errorMessage,
-      confirmPasswordInput.nextSibling
-    );
-  } else {
-    errorMessage.style.display = "none";
-  }
-});
 
 // 이메일 형식이 맞는지 확인
 emailInput.addEventListener("input", function () {
@@ -50,7 +49,7 @@ emailInput.addEventListener("input", function () {
 
 // 빈값일 경우 경고창
 const signUpForm = document.querySelector("#sign-up-form");
-const signUpBut = document.querySelector(".but-sing-up");
+const signUpBut = document.querySelector("#saveButton");
 
 signUpBut.addEventListener("click", function (event) {
   event.preventDefault();
@@ -66,7 +65,7 @@ signUpBut.addEventListener("click", function (event) {
   }
 
   //   모든 값이 채워지면 양식 제출
-  form.submit();
+  signUpForm.submit();
 });
 
 // 가입양식을 제출하는 함수
@@ -93,29 +92,4 @@ function handleSignUpSubmit(event) {
   });
 }
 
-signUpForm.addEventListener("submit", handleSignUpSubmit);
-
-// 사용자 입력 확인
-if (
-  validateInput(
-    signUpName,
-    signUpUsername,
-    signUpEmail,
-    signUpPassword,
-    siginUpConfirmPassword
-  )
-) {
-  // 사용자등록 및 사용자를 로그인 페이지로 리디렉션
-  window.location.href = "login.html";
-} else {
-  // 오류 메세지 표시
-  alert("잘못된 입력입니다.");
-  //   const error = document.getElementById("error");
-  //   error.innerHTML = "Invalid input.";
-}
-
-//가입 양식에 이벤트 리스너 추가
-function addSignUpListeners() {
-  const signUpForm = document.querySelector("#sign-up-form");
-  signUpForm.addEventListener("submit", handleSignUpSubmit);
-}
+signUpForm.addEventListener("input", handleSignUpSubmit);

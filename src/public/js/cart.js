@@ -342,8 +342,7 @@ function printInCartAndPaymentInformation() {
   goOrderButton.addEventListener('click', goOrderButtonHandler);
 
   async function goOrderButtonHandler() {
-  // 주문 페이지로 보내기 전에 먼저 작업해줄 게 있을까?
-  
+    
     window.location.href="./orderAndPayment.html";
   }
 };
