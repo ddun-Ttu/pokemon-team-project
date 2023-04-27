@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>네비게이션 바</title>
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/public/css/reset.css">
+  </head>
+  <body>
+    <div class="main-container">
+        <a href="/"><img class="logo" src="../img/logo.png" alt=""></a>
+        <ul class="nav-bar-ul">
+          <!-- 로그인 전: 공통-->
+          <li class="nav-bar-li not-logged-in"><a href="/users/login">로그인</a></li>
+          <li class="nav-bar-li not-logged-in"><a href="/users/signup">회원가입</a></li>
+          <li class="nav-bar-li not-logged-in"><a href="/carts">장바구니</a></li>
+          <!-- 로그인 후: 관리자 전용 -->
+          <li class="nav-bar-li logged-in admin-only"><a href="/admins">관리페이지</a></li>
+          <!-- 로그인 후: 사용자 전용 -->
+          <li class="nav-bar-li logged-in user-only"><a href="/users/mypage">마이페이지</a></li>
+          <!-- 로그인 후: 공통-->
+          <li class="nav-bar-li logged-in"><a href="">로그아웃</a></li>
+          
+        </ul>
+    </div>
+</html>
