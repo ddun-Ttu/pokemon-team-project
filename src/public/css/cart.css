@@ -8,11 +8,15 @@ div {
   /* border: 1px solid; */
 }
 
+body {
+  /* font-size: 90%; */
+}
+
 /* 레이아웃 */
 
 div.gridContainer-whole {
   display: grid;
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: auto 900px auto;
   grid-template-rows: 80px auto auto auto;
 }
 
@@ -45,7 +49,7 @@ div.pageName {
 }
 
 span.pageName-name {
-  font-size: 2rem;
+  font-size: 150%;
   font-weight: bold;
 }
 
@@ -359,13 +363,23 @@ div.container-paymentInformation-totalPrice {
   padding: 5px 0;
 }
 
+div.container-paymentInformation-totalPrice1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 div.paymentInformation-totalPrice1 {
-  font-size: 1.1rem;
+  font-size: 110%;
   font-weight: bold;
 }
 
+div.container-paymentInformation-totalPrice2 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 div.paymentInformation-totalPrice2 {
-  font-size: 1.5rem;
+  font-size: 110%;
   font-weight: bold;
 }
 
