@@ -4,66 +4,73 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Daum 주소 API 사용하기 위한 파일 --> 
+    <!-- Daum 주소 API 사용하기 위한 파일 -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>주문관리 수정</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/public/css/common/index.css">
     <link rel="stylesheet" href="/public/css/common/reset.css">
     <link rel="stylesheet" href="/public/css/userEditOrder.css">
+=======
+    <link rel="stylesheet" href="../public/css/index.css" />
+    <link rel="stylesheet" href="../public/css/reset.css" />
+    <link rel="stylesheet" href="../public/css/userEditOrder.css" />
+>>>>>>> develop
   </head>
-  
+
   <body>
     <!-- 네비게이션 바 -->
     <div class="main-container">
-        <nav class="main-nav-container">
-            <a href="./mainHome.html"><img class="logo" src="../img/logo.png" alt=""></a>
-            <ul class="nav-bar-ul">
-              <li class="nav-bar-li"><a href="./signUp.html">회원가입</a></li>
-              <li class="nav-bar-li"><a href="./login.html">로그인</a></li>
-              <li class="nav-bar-li"><a href="./cart.html">장바구니</a></li>
-            </ul>
-          </nav>
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
     </div>
 
     <!-- 주문관리 수정 페이지 -->
     <div class="container container-user-acc">
-        <div class="form-div border-user-acc">
-            <form>
-              <h3>배송지정보 수정</h3>
-             
+      <div class="form-div border-user-acc">
+        <form>
+          <h3>배송지정보 수정</h3>
+
+          <div>
+            <p>주소</p>
+            <div class="flex">
+              <input
+                class="form-input-address address-style"
+                id="postalCode"
+                type="text"
+                placeholder="주소찾기를 클릭해 주세요."
+                readonly
+              />
               <div>
-                <p>주소</p>
-                <div class="flex">
-                  <input
-                  class="form-input-address address-style"
-                  id="postalCode"
-                  type="text"
-                  placeholder="주소찾기를 클릭해 주세요."
-                  readonly>
-                  <div>
-                    <button id="searchAddressButton" class="but-address">주소찾기</button>
-                  </div>
-                </div>
-                  <input
-                    class="form-input-user-acc address-style"
-                    id="address1"
-                    type="text"
-                    placeholder=""
-                    autocomplete="on"
-                    readonly>
-
-                  <input
-                    class="form-input-user-acc address-style"
-                    id="address2"
-                    type="text"
-                    placeholder=""
-                    autocomplete="on">
+                <button id="searchAddressButton" class="but-address">
+                  주소찾기
+                </button>
               </div>
+            </div>
+            <input
+              class="form-input-user-acc address-style"
+              id="address1"
+              type="text"
+              placeholder=""
+              autocomplete="on"
+              readonly
+            />
 
-            <button id="saveButton" class="but-user-acc">저장히기</button>
+            <input
+              class="form-input-user-acc address-style"
+              id="address2"
+              type="text"
+              placeholder=""
+              autocomplete="on"
+            />
+          </div>
 
-      
-          <script src="../public/js/userEditOrder.js"></script>
-            
+          <button id="saveButton" class="but-user-acc">저장히기</button>
+        </form>
+      </div>
+    </div>
 
+    <!-- JS 파일 -->
+    <script src="/public/js/common/navBar.js"></script>
+    <script src="../public/js/userEditOrder.js"></script>
+  </body>
 </html>
