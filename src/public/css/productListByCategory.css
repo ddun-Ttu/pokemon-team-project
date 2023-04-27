@@ -251,5 +251,6 @@ div.container-footer {
 }
 
 .selected {
-  border: solid black;
+  transform: scale(1.5, 1.5);
+  background-color: aquamarine;
 }

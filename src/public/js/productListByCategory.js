@@ -35,7 +35,7 @@ async function makeCategoryBar() {
     }
 
     if (item == "전체") {
-      categoryListLiHTML += `<li class="selected"><a href="/category/${item}" id=${item} style="color: ${typeColor}; border-left: solid 1px black;">${item}</a></li>`;
+      categoryListLiHTML += `<li><a href="/category/${item}" class="selected" id=${item} style="color: ${typeColor}; border-left: solid 1px black;">${item}</a></li>`;
     } else {
       categoryListLiHTML += `<li><a href="/category/${item}" id=${item} style="color: ${typeColor}";>${item}</a></li>`;
     }
@@ -58,14 +58,23 @@ categoryListArray.forEach((item, index) => {
   function eachCategoryHandler(e) {
     e.preventDefault();
 
+    for (i = 0; i < categoryListArray.length; i++) {
+      allCategoryButton[i].classList.remove("selected");
+    }
+
+    eachCategoryButton.classList.add("selected");
+
     selectedCategory = eachCategoryButton.id;
+
+    makeProductList(selectedCategory);
   }
 });
 
-// * 선택된 카테고리의 상품 리스트 출력.
 makeProductList();
 
-async function makeProductList() {
+// * 선택된 카테고리의 상품 리스트 출력.
+
+async function makeProductList(type) {
   const productListByCategory_list_ul = document.querySelector(
     ".productListByCategory-list-ul"
   );
@@ -79,7 +88,7 @@ async function makeProductList() {
     const product = {
       pokemonName: "피카츄",
       pokemonPrice: 12500,
-      categoryId: "풀",
+      categoryId: `${type}`,
     };
     data.push(product);
   }
