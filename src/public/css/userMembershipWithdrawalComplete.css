@@ -12,7 +12,7 @@ div {
 
 div.gridContainer-whole {
   display: grid;
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: auto 900px auto;
   grid-template-rows: 80px auto auto auto;
 }
 
@@ -34,7 +34,7 @@ div.container-pageName {
 }
 
 div.pageName {
-  font-size: 2rem;
+  font-size: 150%;
   font-weight: bold;
 }
 
@@ -53,6 +53,8 @@ div.container-membershipWithdrawalCompeleteMessageBox {
 
 div.membershipWithdrawalCompeleteMessageBox {
   border: solid 1px;
+  display: flex;
+  flex-direction: column;
 }
 
 div.container-membershipWithdrawalCompeleteMessageBox-subject {
@@ -77,6 +79,18 @@ div.container-membershipWithdrawalCompeleteMessageBox-message {
 
 div.membershipWithdrawalCompeleteMessageBox-message {
 
+}
+
+div.container-membershipWithdrawalCompeleteMessageBox-homeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px 0 20px 0;
+}
+
+button#homeButton {
+  cursor: pointer;
 }
 
 /* 푸터 */
