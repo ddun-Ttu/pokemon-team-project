@@ -31,7 +31,5 @@ loginInput.addEventListener("input", function () {
 
     console.log(passwordInput.value);
     console.log(loginInput.value);
-
-
   })
   
