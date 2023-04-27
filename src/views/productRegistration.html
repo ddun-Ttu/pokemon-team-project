@@ -5,21 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상품 등록</title>
-    <link rel="stylesheet" href="../public/css/index.css">
-    <link rel="stylesheet" href="../public/css/reset.css">
-    <link rel="stylesheet" href="../public/css/productRegistration.css">
+    <link rel="stylesheet" href="../public/css/index.css" />
+    <link rel="stylesheet" href="../public/css/reset.css" />
+    <link rel="stylesheet" href="../public/css/productRegistration.css" />
   </head>
   <body>
-   
     <!-- 네비게이션 바 -->
     <div class="main-container">
-      <nav class="main-nav-container">
-        <a href="./mainHome.html"><img class="logo" src="../img/logo.png" alt="로고"></a>
-        <ul class="nav-bar-ul">
-          <li class="nav-bar-li"><a href="./adminsPage.html">관리자 페이지</a></li>
-          <li class="nav-bar-li"><a href="#">로그아웃</a></li>
-        </ul>
-      </nav>
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
     </div>
 
     <!-- 상품등록 페이지 -->
@@ -29,57 +22,92 @@
           <h3>상품 등록</h3>
           <div>
             <p>상품명</p>
-            <input id="prodeuct-name" class="form-input-sing-up" placeholder="피카츄" type="text">
+            <input
+              id="prodeuct-name"
+              class="form-input-sing-up"
+              placeholder="피카츄"
+              type="text"
+            />
           </div>
           <div>
             <p>카테고리</p>
             <select id="items" class="items-management-orders" name="items">
-                <option value="item1">전체</option>
-                <option value="item2">전기</option>
-                <option value="item3">풀</option>
-                <option value="item3">물</option>
-              </select>
+              <option value="item1">전체</option>
+              <option value="item2">전기</option>
+              <option value="item3">풀</option>
+              <option value="item3">물</option>
+            </select>
           </div>
           <div>
             <p>요약 설명</p>
-            <textarea id="summary" class="form-input-sing-up" name="message" rows="4" cols="40" type="textarea"></textarea>  
+            <textarea
+              id="summary"
+              class="form-input-sing-up"
+              name="message"
+              rows="4"
+              cols="40"
+              type="textarea"
+            ></textarea>
           </div>
           <div>
             <p>상세 설명</p>
-            <textarea id="detailed-description" class="form-input-sing-up" name="message" rows="4" cols="40" type="textarea"></textarea>  
+            <textarea
+              id="detailed-description"
+              class="form-input-sing-up"
+              name="message"
+              rows="4"
+              cols="40"
+              type="textarea"
+            ></textarea>
           </div>
 
           <div class="upload-container">
             <label for="photo-upload">상품 사진</label>
-            <input type="file" id="photo-upload" name="photo-upload" accept="image/*">
+            <input
+              type="file"
+              id="photo-upload"
+              name="photo-upload"
+              accept="image/*"
+            />
             <div>
-              <img src="#" alt="상품 등록 사진" id="preview">
+              <img src="#" alt="상품 등록 사진" id="preview" />
             </div>
           </div>
 
           <div>
             <p>재고 수</p>
-            <input id="inventory" class="form-input-sing-up" placeholder="0" type="number">
+            <input
+              id="inventory"
+              class="form-input-sing-up"
+              placeholder="0"
+              type="number"
+            />
           </div>
           <div>
-
             <p>가격</p>
-            <input id="price" class="form-input-sing-up" placeholder="10000" type="number">
+            <input
+              id="price"
+              class="form-input-sing-up"
+              placeholder="10000"
+              type="number"
+            />
           </div>
 
-          <!-- 
-            2차 구현예정
+          <!-- 2차 구현예정 
             <div>
-            <p>검색 키워드</p>
-            <input class="form-input-sing-up search" placeholder="펫" type="text">
-            <button class="search-btn">추가하기</button>
-          </div>
- -->
+              <p>검색 키워드</p>
+              <input class="form-input-sing-up search" placeholder="펫" type="text">
+              <button class="search-btn">추가하기</button>
+            </div>
+          -->
 
           <button id="but-sing-up" class="but-sing-up">상품등록하기</button>
         </form>
       </div>
     </div>
 
+    <!-- JS 파일 -->
+    <script src="/public/js/common/navBar.js"></script>
     <script src="../public/js/productRegistration.js"></script>
+  </body>
 </html>
