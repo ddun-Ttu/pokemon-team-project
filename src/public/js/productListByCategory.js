@@ -4,7 +4,8 @@ const cartegoryBar_categoryList_ul = document.querySelector('.cartegoryBar-categ
 makeCategoryList();
 
 async function makeCategoryList() {
-  // const data = await fetch('/category'); 
+  // const res = await fetch('common.API_URL/category');
+  // const data = await JSON.parse(res); 
 
   // { 
   //   pokemonImage: `../img/${this.pokemonName}.png`,
