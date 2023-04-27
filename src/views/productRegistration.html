@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상품 등록</title>
-    <link rel="stylesheet" href="/public/css/index.css" />
-    <link rel="stylesheet" href="/public/css/reset.css" />
-    <link rel="stylesheet" href="/public/css/productRegistration.css" />
+    <link rel="stylesheet" href="../public/css/index.css" />
+    <link rel="stylesheet" href="../public/css/reset.css" />
+    <link rel="stylesheet" href="../public/css/productRegistration.css" />
   </head>
   <body>
     <!-- 네비게이션 바 -->
@@ -32,10 +32,10 @@
           <div>
             <p>카테고리</p>
             <select id="items" class="items-management-orders" name="items">
-              <option value="item1">전체</option>
-              <option value="item2">전기</option>
-              <option value="item3">풀</option>
-              <option value="item3">물</option>
+              <option value="전체">전체</option>
+              <option value="전기">전기</option>
+              <option value="풀">풀</option>
+              <option value="물">물</option>
             </select>
           </div>
           <div>
@@ -102,12 +102,13 @@
           -->
 
           <button id="but-sing-up" class="but-sing-up">상품등록하기</button>
+          <a href="./adminsProduct.html"> &#60; 상품관리 조회</a>
         </form>
       </div>
     </div>
 
     <!-- JS 파일 -->
     <script src="/public/js/common/navBar.js"></script>
-    <script src="/public/js/productRegistration.js"></script>
+    <script src="../public/js/productRegistration.js"></script>
   </body>
 </html>

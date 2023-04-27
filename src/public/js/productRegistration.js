@@ -79,17 +79,15 @@ RegisterProduct.addEventListener("click", function (e) {
   }
 
   //인풋값에 담기는 정보 상수에 담기
-  const categoryObj = [
-    {
-      productName: productNameInput,
-      items: itemsInput,
-      summary: summaryInput,
-      detailedDescription: detailedDescriptionInput,
-      inventory: inventoryInput,
-      price: priceInput,
-      photo: photoInput,
-    },
-  ];
+  const categoryObj = {
+    productName: productNameInput,
+    items: itemsInput,
+    summary: summaryInput,
+    detailedDescription: detailedDescriptionInput,
+    inventory: inventoryInput,
+    price: priceInput,
+    photo: photoInput,
+  };
   existingCategoryObj.push(categoryObj);
 
   // 위에서 담은 상수를 JSON 후 setitem으로 담기
@@ -99,7 +97,7 @@ RegisterProduct.addEventListener("click", function (e) {
   console.log(updatedCategoryObjStr);
 
   inputCh1.value = "";
-  inputCh2.value = "";
+  inputCh2.value = "전체";
   inputCh3.value = "";
   inputCh4.value = "";
   inputCh5.value = "";

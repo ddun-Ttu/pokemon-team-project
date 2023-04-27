@@ -1,9 +1,10 @@
 const localCategory = localStorage.getItem("categoryObj");
 const categoryObj = JSON.parse(localCategory);
 
-
 if (categoryObj) {
-  const categoryHtml = categoryObj.map((obj, index) => `
+  const categoryHtml = categoryObj
+    .map(
+      (obj, index) => `
     <tr>
       <td></td>
       <td>${obj.name}</td>
@@ -11,15 +12,16 @@ if (categoryObj) {
       <td><button class="btn-my-orders">수정</button></td>
       <td><button class="btn-my-orders delete-btn" data-index="${index}">삭제</button></td>
     </tr>
-  `).join("");
+  `
+    )
+    .join("");
 
   const listCategory = document.querySelector("#list-category");
   listCategory.innerHTML = categoryHtml;
 
-
   const deleteBtns = document.querySelectorAll(".delete-btn");
-  deleteBtns.forEach(btn => {
-    btn.addEventListener("click", function(e) {
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
       e.preventDefault();
 
       const index = parseInt(btn.dataset.index);
