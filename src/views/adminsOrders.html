@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>관리자 - 주문페이지</title>
-    <link rel="stylesheet" href="../public/css/index.css" />
-    <link rel="stylesheet" href="../public/css/reset.css" />
-    <link rel="stylesheet" href="../public/css/adminsOrders.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/adminsOrders.css" />
   </head>
   <body>
     <!-- 네비게이션 바 -->
@@ -67,6 +67,11 @@
                 <td>피카츄/ 1마리</td>
                 <td>상품 준비중</td>
                 <td>
+                  <!-- 
+                    주문 목록들 출력 *JS
+                    상태관리 - [PUT] 주문 상태 갱신 API 요청
+                    취소 - [DELETE] 주문 삭제 API 요청
+                  -->
                   <select
                     id="items"
                     class="items-management-orders"
@@ -121,6 +126,6 @@
     </div>
 
     <!-- JS 파일 -->
-    <script src="/public/js/common/navBar.js"></script>
+    <script src="/js/common/navBar.js"></script>
   </body>
 </html>

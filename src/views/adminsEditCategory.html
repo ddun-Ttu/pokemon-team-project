@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>관리자 - 카테고리 수정</title>
-    <link rel="stylesheet" href="../public/css/index.css" />
-    <link rel="stylesheet" href="../public/css/reset.css" />
-    <link rel="stylesheet" href="../public/css/adminsEditCategory.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/adminsEditCategory.css" />
   </head>
   <body>
     <!-- 네비게이션 바 -->
@@ -22,7 +22,7 @@
           <div class="container">
             <div class="form-div contents-login">
               <form class="form-login">
-                <h3>카테고리 추가</h3>
+                <h3>카테고리 수정</h3>
                 <div class="serve-login">
                   <div class="input-login">
                     <input
@@ -40,7 +40,8 @@
                   </div>
 
                   <div class="but-login">
-                    <button id="categories-but">완료</button>
+                    <!-- [PUT] 카테고리 갱신 API 요청 -->
+                    <button id="categories-but">수정하기</button>
                   </div>
                   <p class="error-message" style="display: none">
                     Please enter a valid email address
@@ -54,7 +55,7 @@
     </div>
 
     <!-- JS 파일 -->
-    <script src="/public/js/common/navBar.js"></script>
-    <script src="../public/js/adminsEditCategory.js"></script>
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/adminsEditCategory.js"></script>
   </body>
 </html>

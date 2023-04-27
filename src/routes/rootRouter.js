@@ -11,6 +11,13 @@ rootRouter.get("/", (req, res) => {
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
+// 상폼 목록 페이지
+rootRouter.get("/pokemons", (req, res) => {
+  const PAGE_NAME = "productListByCategory";
+
+  res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
+});
+
 // 상품 상세 페이지
 rootRouter.get("/pokemons/:pokemonId", (req, res) => {
   const PAGE_NAME = "productDetail";

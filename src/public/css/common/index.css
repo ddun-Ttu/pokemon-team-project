@@ -1,0 +1,56 @@
+/* 네비게이션 바 css */
+.main-container {
+  position: relative;
+}
+.main-nav-container {
+  width: 100%;
+  height: 80px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 -10px 10px 15px;
+  color: rgba(174, 174, 174, 0.2);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: block;
+  float: left;
+  width: 140px;
+  padding: 10px 0 10px 30px;
+}
+
+.nav-bar-ul {
+  float: right;
+}
+.nav-bar-li {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 80px;
+  padding: 0 30px;
+  float: left;
+}
+
+/* 공용 css */
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.form-div {
+  background-color: white;
+  position: absolute;
+  padding: 20px 90px 20px 90px;
+  width: 50%;
+  max-width: 650px;
+  margin: 80px;
+  left : 0;
+  right : 0; 
+  margin-left : auto;
+  margin-right : auto;
+  top: 50px;
+}
+
+input::placeholder {
+  color: #b6b6b6;
+}
