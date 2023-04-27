@@ -39,3 +39,5 @@ if (productObj) {
 // 등록된 상품 수
 const productCountLength = productObj.length;
 const productCount = document.querySelector("#product-count");
+
+productCount.innerHTML = productCountLength;
