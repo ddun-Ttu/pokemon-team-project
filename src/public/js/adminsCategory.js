@@ -8,7 +8,7 @@ if (categoryObj) {
       <td></td>
       <td>${obj.name}</td>
       <td>${obj.ex}</td>
-      <td><button class="btn-my-orders">수정</button></td>
+      <td><a href="/admins/pokemons/{pokemonId}/edit"><button class="btn-my-orders">수정</button></a></td>
       <td><button class="btn-my-orders delete-btn" data-index="${index}">삭제</button></td>
     </tr>
   `).join("");
