@@ -40,7 +40,7 @@ const dummyData = [
 localStorage.setItem("orderDummy", JSON.stringify(dummyData));
 const dummyStr = localStorage.getItem("orderDummy");
 const updatedDummyObjStr = JSON.parse(dummyStr);
-// console.log(updatedDummyObjStr);
+console.log(updatedDummyObjStr);
 
 // html에 뿌리기
 if(updatedDummyObjStr) {
@@ -96,6 +96,6 @@ if (dummyLength > 0) {
 
  itemSelect.addEventListener("change", function(){
     const selectValue = itemSelect.value;
-    console.log(selectValue);
+    console.log(selectValue)
     localStorage.setItem("selectItem", selectValue)
  })
