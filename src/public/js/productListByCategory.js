@@ -44,52 +44,76 @@ async function makeCategoryBar() {
   cartegoryBar_categoryList_ul.innerHTML += categoryListLiHTML;
 }
 
-let selectedCategory;
+makeProductList();
 
 const allCategoryButton = document.querySelectorAll(
   ".cartegoryBar-categoryList-ul > li > a"
 );
 
-categoryListArray.forEach((item, index) => {
+let selectedCategory;
+
+allCategoryButton.forEach((item, index) => {
   const eachCategoryButton = allCategoryButton[index];
 
   eachCategoryButton.addEventListener("click", eachCategoryHandler);
-
-  function eachCategoryHandler(e) {
-    e.preventDefault();
-
-    for (i = 0; i < categoryListArray.length; i++) {
-      allCategoryButton[i].classList.remove("selected");
-    }
-
-    eachCategoryButton.classList.add("selected");
-
-    selectedCategory = eachCategoryButton.id;
-
-    makeProductList(selectedCategory);
-  }
 });
 
-makeProductList();
+function eachCategoryHandler(e) {
+  e.preventDefault();
+
+  allCategoryButton.forEach((item, index) => {
+    item.classList.remove("selected");
+  });
+
+  e.target.classList.add("selected");
+
+  selectedCategory = e.target.id;
+
+  makeProductList(selectedCategory);
+}
 
 // * 선택된 카테고리의 상품 리스트 출력.
-
-async function makeProductList(type) {
+async function makeProductList(category) {
   const productListByCategory_list_ul = document.querySelector(
     ".productListByCategory-list-ul"
   );
 
-  // const res = await fetch(`common.API_URL/category/${selectedCategory}`);
+  // const res = await fetch(`common.API_URL/category/${category}`);
   // const data = await JSON.parse(res);
 
   let data = [];
 
+  // * 더미 데이터 제작
+
+  let product;
+
   for (i = 0; i < 50; i++) {
-    const product = {
-      pokemonName: "피카츄",
-      pokemonPrice: 12500,
-      categoryId: `${type}`,
-    };
+    if (category == "물") {
+      product = {
+        pokemonName: "꼬부기",
+        pokemonPrice: 12500,
+        categoryId: "물",
+      };
+    } else if (category == "전기") {
+      product = {
+        pokemonName: "피카츄",
+        pokemonPrice: 12500,
+        categoryId: "전기",
+      };
+    } else if (category == "풀") {
+      product = {
+        pokemonName: "이상해씨",
+        pokemonPrice: 12500,
+        categoryId: "풀",
+      };
+    } else {
+      product = {
+        pokemonName: "메타몽",
+        pokemonPrice: 12500,
+        categoryId: "장난",
+      };
+    }
+
     data.push(product);
   }
 
@@ -99,6 +123,7 @@ async function makeProductList(type) {
 
   productListByCategory_list_ul.innerHTML = liHTML;
 
+  // * 장바구니 버튼 기능
   let alreadyInCartData = JSON.parse(localStorage.getItem("cart"));
 
   const putInCartButton = document.querySelectorAll(

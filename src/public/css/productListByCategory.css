@@ -251,6 +251,5 @@ div.container-footer {
 }
 
 .selected {
-  transform: scale(1.5, 1.5);
-  background-color: aquamarine;
+  background-color: gainsboro;
 }
