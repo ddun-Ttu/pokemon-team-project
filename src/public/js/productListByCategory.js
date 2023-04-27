@@ -6,21 +6,35 @@ makeCategoryList();
 async function makeCategoryList() {
   // const data = await fetch('/category'); 
 
+  // { 
+  //   pokemonImage: `../img/${this.pokemonName}.png`,
+  //   pokemonName: '이상해씨',
+  //   quantity: 1,
+  //   pokemonPrice: 5000,
+  //   checked: true,
+
+  //   pokemonId: 0,
+  //   pokemonNum: 0,
+  //   sumInfo: '',
+  //   detailInfo: '',
+  //   categoryId: '풀',
+  // }
+
   // 데이터 받았다 치고,
 
   // * 관리자가 지정한 카테고리 목록.
-  const data = [ { _id : 1, type : '물' }, { _id : 2, type : '전기' }, { _id : 3, type : '풀' }, 
+  const data = [ { _id : 1, categoryId : '물' }, { _id : 2, categoryId : '전기' }, { _id : 3, categoryId : '풀' }, 
   // { _id : 4, type : '바람' }, { _id : 5, type : '바위' }, { _id : 6, type : '용기' },  { _id : 7, type : '권력' }, { _id : 8, type : '고통' }, { _id : 9, type : '프롤레타리아' }, { _id : 10, type : '자본가' }, { _id : 11, type : '혁명가' }, 
   ];
 
   let categoryListLiHTML = '';
 
   data.forEach(item => {
-    const { type } = item;
+    const { categoryId } = item;
 
     let typeColor;
     
-    switch(type) {
+    switch(categoryId) {
       case '물':
         typeColor = 'rgb(41, 146, 255)';
         break;  
@@ -32,7 +46,7 @@ async function makeCategoryList() {
         break;
     }
 
-    categoryListLiHTML += `<li><a href="/category/${ type }" id=${ type } style="color: ${ typeColor }";>${ type }</a></li>`
+    categoryListLiHTML += `<li><a href="/category/${ categoryId }" id=${ categoryId } style="color: ${ typeColor }";>${ categoryId }</a></li>`
   })
 
   cartegoryBar_categoryList_ul.innerHTML += categoryListLiHTML;
@@ -53,9 +67,9 @@ const data = [];
 for(i = 0; i < 50; i++) {
   
   const product = {
-    name: '피카츄',
-    price: 12500,
-    type: '전기',
+    pokemonName: '피카츄',
+    pokemonPrice: 12500,
+    categoryId: '전기',
   }
 
   data.push(product);
@@ -78,11 +92,11 @@ data.forEach((item, index) => {
 
     if(alreadyInCartData == null) {
       // data 객체에 더해줄 필드.
-      item.count = 1;
+      item.quantity = 1;
       item.checked = true;
 
       // data 객체에서 빼줄 필드.
-      delete item.type;
+      delete item.categoryId;
       
       alreadyInCartData = [];
       alreadyInCartData.push(item);
@@ -90,13 +104,13 @@ data.forEach((item, index) => {
       localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
     }
     else{
-      const findedIndex = alreadyInCartData.findIndex((({ name }) => name == item.name));
+      const findedIndex = alreadyInCartData.findIndex((({ name }) => name == item.pokemonName));
 
       if(findedIndex == -1){
-        item.count = 1;
+        item.quantity = 1;
         item.checked = true;
 
-        delete item.type;
+        delete item.categoryId;
 
         alreadyInCartData.push(item);
 
@@ -112,14 +126,14 @@ data.forEach((item, index) => {
 
 function makeLiHTML() {
   data.forEach(item => {
-    let { name, price, type } = item;
+    let { pokemonName, pokemonPrice, categoryId } = item;
   
-    price = Number(price).toLocaleString();
-    image = `../img/${name}.png`;
+    price = Number(pokemonPrice).toLocaleString();
+    image = `../img/${pokemonName}.png`;
   
     let typeColor;
     
-    switch(type) {
+    switch(categoryId) {
       case '물':
         typeColor = 'rgb(41, 146, 255)';
         break;  
@@ -134,20 +148,20 @@ function makeLiHTML() {
     liHTML += 
     `
     <li class="productListByCategory-list-li">
-      <a href="/detail/${name}">
+      <a href="/detail/${pokemonName}">
         <div class="container-productListByCategory-list-image">
           <img class="productListByCategory-list-image" src=${image} alt="">
         </div>
         <div class="container-productListByCategory-list-description">
           <div class="container-productListByCategory-list-description-name">
-            <div class="productListByCategory-list-description-name">${name}</div>
+            <div class="productListByCategory-list-description-name">${pokemonName}</div>
           </div>
           <div class="container-productListByCategory-list-description-price">
-            <div class="productListByCategory-list-description-price">${price}원</div>
+            <div class="productListByCategory-list-description-price">${pokemonPrice}원</div>
           </div>
           <div class="container-productListByCategory-list-description-type">
             <div class="productListByCategory-list-description-type"
-              style="background-color: ${typeColor}">${type}</div>
+              style="background-color: ${typeColor}">${categoryId}</div>
           </div> 
         </div>
       </a>
@@ -156,4 +170,4 @@ function makeLiHTML() {
       </div>
     </li>`
   })  
-}
+};

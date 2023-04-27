@@ -8,5 +8,5 @@ async function goOrderListButtonHandler() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   // * api(url: '/user.id', method: 'GET')
-  window.location = `/${user.id}`;
+  window.location = `/orderStaus/${user.id}`;
 }

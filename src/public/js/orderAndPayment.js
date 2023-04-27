@@ -1,9 +1,9 @@
 // * 앞으로/뒤로 가기 등으로 접근하면 안내 문구 출력.
-window.onpageshow = function(event){
-  if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
-    document.write('잘못된 접근입니다!!!');
-  }
-};
+// window.onpageshow = function(event){
+//   if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+//     document.write('잘못된 접근입니다!!!');
+//   }
+// };
 
 // // * 새로 고침, 뒤로 가기 등 브라우저 이벤트 방지.
 // window.addEventListener('beforeunload', (event) => {
@@ -68,16 +68,16 @@ let productTotalPrice = 0;
 
 orderData.forEach((item, index) => {
   
-  let { name, count, price, deliveryFee = 3000 } = item;
+  let { pokemonName, quantity, pokemonPrice, deliveryFee = 3000 } = item;
 
   productListHTML += 
     `
     <li>
-        <div>${name} / ${count}개</div>
+        <div>${pokemonName} / ${quantity}개</div>
     </li>
     `;
 
-  productTotalPrice += count * price;
+  productTotalPrice += quantity * pokemonPrice;
   
   if(index == orderData.length - 1) {
     const finalPrice = productTotalPrice + deliveryFee;
@@ -191,13 +191,27 @@ async function makeAndSendOrderData() {
     request
   };
 
-  // * 주문 정보 데이터 & 주문 확인 문구 제작.
+  // { 
+//   pokemonImage: `../img/${this.pokemonId}.png`,
+//   pokemonName: '이상해씨',
+//   quantity: 1,
+//   pokemonPrice: 5000,
+//   checked: true,
+
+//   pokemonId: 0,
+//   pokemonNum: 0,
+//   sumInfo: '',
+//   detailInfo: '',
+//   categoryId: '풀',
+// }, 
+
+  // * 주문 정보 데이터 제작
   let orderProductData = [];
 
   orderData.forEach(item => {
-    const { name, count } = item;
+    const { pokemonName, quantity } = item;
 
-    orderProductData.push({ name, count });
+    orderProductData.push({ pokemonName, quantity });
   });
 
   data.orderProductData = orderProductData;
@@ -205,14 +219,14 @@ async function makeAndSendOrderData() {
   // * api(url: '/', method: 'POST')
   const dataJson = JSON.stringify(data);
 
-  const apiUrl = `https://${window.location.hostname}:8190/api/order`
+  const apiUrl = `${common.API_URL}/order`
 
   const res = await fetch(apiUrl, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
     },
-    body: dataJson
+    body: dataJson,
   });
 
   // * 주문 성공 시.

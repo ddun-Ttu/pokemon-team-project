@@ -3,24 +3,42 @@ const putInCartButton = document.querySelector('.description-cart');
 const orderNowButton = document.querySelector('.description-order');
 const countInput = document.querySelector('#count');
 
+const product = 
+  { 
+    // pokemonImage: `../img/${this.pokemonName}.png`,
+  pokemonName: '꼬부기',
+  pokemonPrice: 12500,
+  detailInfo: '등껍질에 숨어 몸을 보호한다. 상대의 빈틈을 놓치지 않고 반격한다.',
+  categoryId: '물',
 
-const product = {
-  image: '../img/꼬부기.png',
-  name: '꼬부기',
-  price: 12500,
-  description: '등껍질에 숨어 몸을 보호한다. 상대의 빈틈을 놓치지 않고 반격한다.',
-  type: '물',
-} 
+  pokemonId: 0,
+  pokemonNum: 0,
+  sumInfo: '',
+  }
 
 // 데이터 받았다 치고,
 
-let { image, name, type, price, description } = product;
+let { pokemonImage, pokemonName, categoryId, pokemonPrice, detailInfo, } = product;
 
-pricetoLocaleString = Number(price).toLocaleString()
+pricetoLocaleString = Number(pokemonPrice).toLocaleString()
+
+// { 
+//   pokemonImage: `../img/${this.pokemonName}.png`,
+//   pokemonName: '이상해씨',
+//   quantity: 1,
+//   pokemonPrice: 5000,
+//   checked: true,
+
+//   pokemonId: 0,
+//   pokemonNum: 0,
+//   sumInfo: '',
+//   detailInfo: '',
+//   categoryId: '풀',
+// }
 
 let typeColor;
     
-switch(type) {
+switch(categoryId) {
   case '물':
     typeColor = 'rgb(41, 146, 255)';
     break;  
@@ -38,7 +56,7 @@ const detailDescriptionOne = document.querySelector('.one');
 detailImage.innerHTML = 
 `
 <div class="detail-image">
-  <img class="detail-image-img" src=${image} alt="">
+  <img class="detail-image-img" src='../img/${pokemonName}.png' alt="">
 </div>
 `
 
@@ -47,17 +65,17 @@ detailDescriptionOne.innerHTML =
 <div class="detail-description">
   <div class="container-description-nameAndType">
     <div class="container-description-name">
-      <div class="description-name">${name}</div>
+      <div class="description-name">${pokemonName}</div>
     </div>
     <div class="container-description-type">
-      <div class="description-type" style="background-color: ${typeColor}">${type}</div>
+      <div class="description-type" style="background-color: ${typeColor}">${categoryId}</div>
     </div>
   </div>
   <div class="container-description-price">
     <div class="description-price">${pricetoLocaleString}원</div>
   </div>
   <div class="container-description-description">
-    <div class="description-description">${description}</div>
+    <div class="description-description">${detailInfo}</div>
   </div>
 </div> 
 `
@@ -72,13 +90,13 @@ function putInCartButtonHandler() {
   const count = Number(countInput.options[countInput.selectedIndex].value);
 
   let data = {
-    name,
-    price,
+    pokemonName,
+    pokemonPrice,
   }
 
   if(alreadyInCartData == null) {
     // data 객체에 더해줄 필드.
-    data.count = count;
+    data.quantity = count;
     data.checked = true;
 
     // data 객체에서 빼줄 필드.
@@ -89,10 +107,10 @@ function putInCartButtonHandler() {
     localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
   }
   else {
-    const findedIndex = alreadyInCartData.findIndex(item => item.name == name);
+    const findedIndex = alreadyInCartData.findIndex(item => item.pokemonName == pokemonName);
 
     if(alreadyInCartData !== null && findedIndex == -1){
-      data.count = count;
+      data.quantity = count;
       data.checked = true;
 
       alreadyInCartData.push(data);
@@ -100,7 +118,7 @@ function putInCartButtonHandler() {
       localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
     }
     else {
-      alreadyInCartData[findedIndex].count += count;
+      alreadyInCartData[findedIndex].quantity += count;
       localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
     }
   }
@@ -108,11 +126,12 @@ function putInCartButtonHandler() {
 
 function orderNowButtonHandler() {
   const count = Number(countInput.options[countInput.selectedIndex].value);
+  let quantity = count;
 
   let data = [{
-    name,
-    price,
-    count,
+    pokemonName,
+    pokemonPrice,
+    quantity,
   },]
 
   localStorage.setItem('order', JSON.stringify(data));
