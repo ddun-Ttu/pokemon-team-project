@@ -135,10 +135,8 @@ async function makeProductList(category) {
 
   function makeLiHTML() {
     data.forEach((item) => {
-      let { _id, pokemonName, price, pokemonType } = item;
+      let { _id, pokemonImage, pokemonName, price, pokemonType } = item;
 
-      // pokemonImage
-      let img = `../img/피카츄.png`;
       price = Number(price).toLocaleString();
 
       let typeColor;
@@ -159,7 +157,7 @@ async function makeProductList(category) {
     <li class="productListByCategory-list-li">
       <a href="/pokemons/${_id}">
         <div class="container-productListByCategory-list-image">
-          <img class="productListByCategory-list-image" src=${img} alt=""></img>
+          <img class="productListByCategory-list-image" src=${pokemonImage}; onerror="this.onerror=null; this.src='../img/피카츄.png';" alt=""></img>
         </div>
         <div class="container-productListByCategory-list-description">
           <div class="container-productListByCategory-list-description-name">

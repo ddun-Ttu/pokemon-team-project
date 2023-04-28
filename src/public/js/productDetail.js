@@ -4,23 +4,6 @@ const orderNowButton = document.querySelector(".description-order");
 const countInput = document.querySelector("#count");
 const pathname = window.location.pathname;
 
-// async function findoneTest() {
-//   console.log("Get 요청 시작");
-//   let id = "644b8f2fa3cf661314438c15"; // Objectid값
-//   console.log("id:", id);
-//   let testobj = { _id: id };
-//   console.log("obj:", testobj);
-//   console.log(JSON.stringify(testobj));
-//   const response = await fetch(common.API_URL + "/api/pokemons/" + id, {
-//     method: "GET",
-//   });
-
-//   const data = await response.json();
-//   console.log(data);
-// }
-
-// findoneTest();
-
 makeDetail();
 
 async function makeDetail() {
@@ -30,7 +13,7 @@ async function makeDetail() {
   let { pokemonImage, pokemonName, pokemonType, price, detailInfo } = data;
 
   pricetoLocaleString = Number(price).toLocaleString();
-  pokemonImage = `../img/피카츄.png`;
+  // pokemonImage = `../img/피카츄.png`;
   let typeColor;
 
   switch (pokemonType) {
@@ -50,7 +33,7 @@ async function makeDetail() {
 
   detailImage.innerHTML = `
 <div class="detail-image">
-  <img class="detail-image-img" src=${pokemonImage} alt="">
+  <img class="detail-image-img" src=${pokemonImage} onerror="this.onerror=null; this.src='../img/피카츄.png';" alt="">
 </div>
 `;
 
