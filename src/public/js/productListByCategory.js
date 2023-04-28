@@ -8,10 +8,11 @@ let categoryListArray;
 makeCategoryBar();
 
 async function makeCategoryBar() {
-  // const res = fetch("common.API_URL/???");
+  // const res = fetch(`${common.API_URL}/???`);
   // const data = await JSON.parse(res);
 
-  const data = ["물", "전기", "풀"];
+  let data = ["물", "전기", "풀"];
+
   categoryListArray = ["전체", ...data];
 
   let categoryListLiHTML = "";
@@ -20,9 +21,6 @@ async function makeCategoryBar() {
     let typeColor;
 
     switch (item) {
-      case "전체":
-        typeColor = "white";
-        break;
       case "물":
         typeColor = "rgb(41, 146, 255)";
         break;
@@ -34,11 +32,7 @@ async function makeCategoryBar() {
         break;
     }
 
-    if (item == "전체") {
-      categoryListLiHTML += `<li><a href="/category/${item}" class="selected" id=${item} style="color: ${typeColor}; border-left: solid 1px black;">${item}</a></li>`;
-    } else {
-      categoryListLiHTML += `<li><a href="/category/${item}" id=${item} style="color: ${typeColor}";>${item}</a></li>`;
-    }
+    categoryListLiHTML += `<li><a href="/category/${item}" id=${item} style="color: ${typeColor}";>${item}</a></li>`;
   });
 
   cartegoryBar_categoryList_ul.innerHTML += categoryListLiHTML;
@@ -78,7 +72,7 @@ async function makeProductList(category) {
     ".productListByCategory-list-ul"
   );
 
-  // const res = await fetch(`common.API_URL/category/${category}`);
+  // const res = await fetch(`/${common.API_URL}/pokemons?category=[${category}]);
   // const data = await JSON.parse(res);
 
   let data = [];
@@ -90,27 +84,31 @@ async function makeProductList(category) {
   for (i = 0; i < 50; i++) {
     if (category == "물") {
       product = {
+        pokemonId: 1,
         pokemonName: "꼬부기",
         pokemonPrice: 12500,
-        categoryId: "물",
+        pokemonType: "물",
       };
     } else if (category == "전기") {
       product = {
+        pokemonId: 2,
         pokemonName: "피카츄",
         pokemonPrice: 12500,
-        categoryId: "전기",
+        pokemonType: "전기",
       };
     } else if (category == "풀") {
       product = {
+        pokemonId: 3,
         pokemonName: "이상해씨",
         pokemonPrice: 12500,
-        categoryId: "풀",
+        pokemonType: "풀",
       };
     } else {
       product = {
+        pokemonId: 4,
         pokemonName: "메타몽",
         pokemonPrice: 12500,
-        categoryId: "장난",
+        pokemonType: "장난",
       };
     }
 
@@ -138,7 +136,7 @@ async function makeProductList(category) {
         item.checked = true;
 
         // data 객체에서 빼줄 필드.
-        delete item.categoryId;
+        delete item.pokemonType;
 
         alreadyInCartData = [];
         alreadyInCartData.push(item);
@@ -153,7 +151,7 @@ async function makeProductList(category) {
           item.quantity = 1;
           item.checked = true;
 
-          delete item.categoryId;
+          delete item.pokemonType;
 
           alreadyInCartData.push(item);
 
@@ -168,14 +166,14 @@ async function makeProductList(category) {
 
   function makeLiHTML() {
     data.forEach((item) => {
-      let { pokemonName, pokemonPrice, categoryId } = item;
+      let { pokemonId, pokemonName, pokemonPrice, pokemonType } = item;
 
       price = Number(pokemonPrice).toLocaleString();
       image = `../img/${pokemonName}.png`;
 
       let typeColor;
 
-      switch (categoryId) {
+      switch (pokemonType) {
         case "물":
           typeColor = "rgb(41, 146, 255)";
           break;
@@ -189,7 +187,7 @@ async function makeProductList(category) {
 
       liHTML += `
     <li class="productListByCategory-list-li">
-      <a href="/detail/${pokemonName}">
+      <a href="/pokemons/${pokemonId}">
         <div class="container-productListByCategory-list-image">
           <img class="productListByCategory-list-image" src=${image} alt="">
         </div>
@@ -202,7 +200,7 @@ async function makeProductList(category) {
           </div>
           <div class="container-productListByCategory-list-description-type">
             <div class="productListByCategory-list-description-type"
-              style="background-color: ${typeColor}">${categoryId}</div>
+              style="background-color: ${typeColor}">${pokemonType}</div>
           </div> 
         </div>
       </a>
