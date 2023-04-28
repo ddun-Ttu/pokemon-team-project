@@ -4,97 +4,6 @@ const inCartAndpaymentInformationArea = document.querySelector(
   ".inCartAndpaymentInformation"
 );
 
-// * 더미 데이터.
-
-// const dummyData = [
-//   {
-//     _id: 1,
-//     pokemonImage: `../img/${this.pokemonName}.png`,
-//     pokemonName: "이상해씨",
-//     quantity: 1,
-//     price: 5000,
-//     checked: true,
-
-//     pokemonNum: 0,
-//     sumInfo: "",
-//     detailInfo: "",
-//     pokemonType: "풀",
-//   },
-//   {
-//     _id: 2,
-//     pokemonImage: `../img/${this.pokemonName}.png`,
-//     pokemonName: "피카츄",
-//     quantity: 1,
-//     price: 5000,
-//     checked: true,
-
-//     pokemonType: "전기",
-//     pokemonNum: "",
-//     sumInfo: "",
-//     detailInfo: "",
-//   },
-//   {
-//     _id: 3,
-//     pokemonImage: `../img/${this.pokemonName}.png`,
-//     pokemonName: "꼬부기",
-//     quantity: 1,
-//     price: 5000,
-//     checked: true,
-
-//     pokemonType: "물",
-//     pokemonNum: 0,
-//     sumInfo: "",
-//     detailInfo: "",
-//   },
-//   {
-//     _id: 4,
-//     pokemonImage: `../img/${this.pokemonName}.png`,
-//     pokemonName: "메타몽",
-//     quantity: 1,
-//     price: 5000,
-//     checked: true,
-
-//     pokemonType: "말랑",
-//     pokemonNum: 4,
-//     sumInfo: "",
-//     detailInfo: "",
-//   },
-// ];
-
-// // * 더미 데이터 삽입 버튼
-// const button1 = document.querySelector("#button1");
-// const button2 = document.querySelector("#button2");
-
-// button1.addEventListener("click", () => {
-//   let localStorageData = JSON.parse(localStorage.getItem("cart"));
-
-//   if (localStorageData == null) {
-//     localStorageData = [];
-
-//     localStorageData.push(dummyData[0]);
-
-//     localStorage.setItem("cart", JSON.stringify(localStorageData));
-//   } else {
-//     const index = localStorageData.findIndex(({ id }) => id == dummyData[0].id);
-
-//     if (index == -1) {
-//       localStorageData.push(dummyData[0]);
-//     } else {
-//       localStorageData[index].quantity += 1;
-//     }
-//   }
-// });
-
-// button2.addEventListener("click", () => {
-//   let localStorageData = JSON.parse(localStorage.getItem("cart"));
-
-//   if (localStorageData == null) {
-//     localStorageData = dummyData;
-
-//     localStorage.setItem("cart", JSON.stringify(localStorageData));
-//   }
-// });
-
 printInCartAndPaymentInformation();
 
 function printInCartAndPaymentInformation() {
@@ -339,6 +248,6 @@ function printInCartAndPaymentInformation() {
   goOrderButton.addEventListener("click", goOrderButtonHandler);
 
   async function goOrderButtonHandler() {
-    window.location.href = "./orderAndPayment.html";
+    window.location.href = "/orders";
   }
 }
