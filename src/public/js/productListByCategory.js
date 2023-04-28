@@ -1,8 +1,4 @@
 // * 카테고리 목록 생성.
-
-localStorage.setItem("token", "ddd");
-localStorage.setItem("isAdmin", "ddd");
-
 const cartegoryBar_categoryList_ul = document.querySelector(
   ".cartegoryBar-categoryList-ul"
 );
