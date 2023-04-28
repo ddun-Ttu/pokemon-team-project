@@ -13,7 +13,7 @@ async function makeDetail() {
   let { pokemonImage, pokemonName, pokemonType, price, detailInfo } = data;
 
   pricetoLocaleString = Number(price).toLocaleString();
-  // pokemonImage = `../img/피카츄.png`;
+
   let typeColor;
 
   switch (pokemonType) {
