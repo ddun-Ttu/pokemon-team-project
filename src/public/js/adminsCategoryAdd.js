@@ -2,6 +2,7 @@ const button = document.querySelector("#categories-but");
 const categoriesName = document.querySelector("#categories-name");
 const explanation = document.querySelector("#explanation");
 
+//임의로 더미 만들기
 button.addEventListener("click", function(e) {
   e.preventDefault();
   const categoriesNameInput = categoriesName.value;
