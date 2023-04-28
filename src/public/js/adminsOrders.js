@@ -1,41 +1,41 @@
-//임의로 덤미 만들기
-const dummyData = [
-  {
-    date: "2023.04.26",
-    orderName: "피카츄",
-    count: 2,
-    item: "상품준비중",
-    totalPrice: 2000,
-  },
-  {
-    date: "2023.04.22",
-    orderName: "파이리",
-    count: 1,
-    item: "배송완료",
-    totalPrice: 2000,
-  },
-  {
-    date: "2023.04.21",
-    orderName: "캐터피",
-    count: 1,
-    item: "상품배송중",
-    totalPrice: 2000,
-  },
-  {
-    date: "2023.04.19",
-    orderName: "병아리",
-    count: 1,
-    item: "배송완료",
-    totalPrice: 4000,
-  },
-  {
-    date: "2023.04.26",
-    orderName: "파이리",
-    count: 2,
-    item: "상품준비중",
-    totalPrice: 2000,
-  },
-];
+// //임의로 덤미 만들기
+// const dummyData = [
+//   {
+//     date: "2023.04.26",
+//     orderName: "피카츄",
+//     count: 2,
+//     item: "상품준비중",
+//     totalPrice: 2000,
+//   },
+//   {
+//     date: "2023.04.22",
+//     orderName: "파이리",
+//     count: 1,
+//     item: "배송완료",
+//     totalPrice: 2000,
+//   },
+//   {
+//     date: "2023.04.21",
+//     orderName: "캐터피",
+//     count: 1,
+//     item: "상품배송중",
+//     totalPrice: 2000,
+//   },
+//   {
+//     date: "2023.04.19",
+//     orderName: "병아리",
+//     count: 1,
+//     item: "배송완료",
+//     totalPrice: 4000,
+//   },
+//   {
+//     date: "2023.04.26",
+//     orderName: "파이리",
+//     count: 2,
+//     item: "상품준비중",
+//     totalPrice: 2000,
+//   },
+// ];
 
 const orderCount = document.querySelector("#order-count");
 const prepareCount = document.querySelector("#prepare-count");
