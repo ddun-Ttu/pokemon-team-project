@@ -1,114 +1,215 @@
-/*
+// * 카테고리 목록 생성.
+const cartegoryBar_categoryList_ul = document.querySelector(
+  ".cartegoryBar-categoryList-ul"
+);
 
-<구현 목록 및 방법>
-
-* 페이지 로드 시
-1. 카테고리 목록 생성.
-  - 카테고리 리스트의 ul를 잡아 변수에 할당.
-  - 관리자가 지정해놓은 취급 포켓몬 종류 데이터를 /??? 경로에서 get 요청으로 가져옴.
-  - (객체들이 잔뜩 저장된 배열 데이터를 전송받는다고 가정.) 
-  - .forEach 등으로 반복문을 실행. 잡아둔 ul 요소에 innerHTML +=로 <li><a></a></li> 형태로 차례대로 삽입.
-  - a 태그에는 해당 url로 이동할 수 있는 url get 요청 링크를 할당.
-    - 아마 데이터에 있을 것.
-  - 가장 첫 번째 카테고리는 항상 전체여야 함.
-
-* 카테고리 버튼 클릭 시
-1. 해당 카테고리에 속한 포켓몬들의 데이터를 서버에 요청하고 데이터를 리스트로 가공해 출력. 
-  - ul.innerHTML +=
-  - 받아온 데이터를 사용해서 변수만 잘 할당해주면 될 것.
-2. 선택한 카테고리 밑에 밑줄 생성. 기존의 밑줄은 제거.
-  - class="active" 지우고 삽입하는 식으로 구현하면 될 듯.
-3. 타입 배찌의 문구/색상을 해당 카테고리에 맞게 수정.
-  - 데이터 중 타입 필드 값이랑 조건문으로 지정해줘야겠다.
-
-* 특정 포켓몬 클릭 시
-1. 해당 포켓몬의 상세 페이지로 이동.
-  - innerHTML 삽입 시 a 태그에 링크 작성.
-
-* 찜하기 선택 시
-  - 뭐.. 하지? 찜했습니다!!!!!! 출력? 부모님한테 푸시 보내기? 장바구니에 담기랑 다른 건가???
-  - 버튼 형태를 수정했더니 클릭 시 눌리는 효과가 안 나옴. 음음음.. transition 같은 걸로 보완해줄 수 있을지도..
-*/
-
-// @카테고리 목록 생성.
-const cartegoryBar_categoryList_ul = document.querySelector('.cartegoryBar-categoryList-ul');
+let categoryListArray;
 
 makeCategoryBar();
 
 async function makeCategoryBar() {
-  // const res = await fetch('/???');
-  // const data = await res.json();
-  // 데이터 받았다 치고,
+  // const res = fetch("common.API_URL/???");
+  // const data = await JSON.parse(res);
 
-  // 관리자가 지정한 카테고리 데이터.
-  const data = [ { _id : 1, type : '물' }, { _id : 2, type : '전기' }, { _id : 3, type : '풀' }, 
-  // { _id : 4, type : '바람' }, { _id : 5, type : '바위' }, { _id : 6, type : '용기' },  { _id : 7, type : '권력' }, { _id : 8, type : '고통' }, { _id : 9, type : '프롤레타리아' }, { _id : 10, type : '자본가' }, { _id : 11, type : '혁명가' }, 
-];
+  const data = ["물", "전기", "풀"];
+  categoryListArray = ["전체", ...data];
 
-  data.forEach(item => {
-    cartegoryBar_categoryList_ul.innerHTML += `<li><a href="/category/${item._id}" id=${item._id}>${item.type}</a></li>`
-  })
+  let categoryListLiHTML = "";
+
+  categoryListArray.forEach((item) => {
+    let typeColor;
+
+    switch (item) {
+      case "전체":
+        typeColor = "white";
+        break;
+      case "물":
+        typeColor = "rgb(41, 146, 255)";
+        break;
+      case "전기":
+        typeColor = "rgb(255, 219, 0)";
+        break;
+      case "풀":
+        typeColor = "green";
+        break;
+    }
+
+    if (item == "전체") {
+      categoryListLiHTML += `<li><a href="/category/${item}" class="selected" id=${item} style="color: ${typeColor}; border-left: solid 1px black;">${item}</a></li>`;
+    } else {
+      categoryListLiHTML += `<li><a href="/category/${item}" id=${item} style="color: ${typeColor}";>${item}</a></li>`;
+    }
+  });
+
+  cartegoryBar_categoryList_ul.innerHTML += categoryListLiHTML;
 }
 
-// @선택된 카테고리의 상품 리스트 출력.
-const productListByCategory_list_ul = document.querySelector('.productListByCategory-list-ul');
+makeProductList();
 
-const data = [];
+const allCategoryButton = document.querySelectorAll(
+  ".cartegoryBar-categoryList-ul > li > a"
+);
 
-for(i = 0; i < 50; i++) {
-  
-  const product = {
-    name: '이상해씨',
-    price: 12500,
-    type: '풀',
-  }
+let selectedCategory;
 
-  data.push(product);
+allCategoryButton.forEach((item, index) => {
+  const eachCategoryButton = allCategoryButton[index];
+
+  eachCategoryButton.addEventListener("click", eachCategoryHandler);
+});
+
+function eachCategoryHandler(e) {
+  e.preventDefault();
+
+  allCategoryButton.forEach((item, index) => {
+    item.classList.remove("selected");
+  });
+
+  e.target.classList.add("selected");
+
+  selectedCategory = e.target.id;
+
+  makeProductList(selectedCategory);
 }
 
-// 데이터 받았다 치고,
+// * 선택된 카테고리의 상품 리스트 출력.
+async function makeProductList(category) {
+  const productListByCategory_list_ul = document.querySelector(
+    ".productListByCategory-list-ul"
+  );
 
-for(i = 0; i < data.length; i++) {
-  
-  let { name, price, type } = data[i];
+  // const res = await fetch(`common.API_URL/category/${category}`);
+  // const data = await JSON.parse(res);
 
-  price = Number(price).toLocaleString();
-  image = `../img/${name}.png`;
+  let data = [];
 
-  let typeColor;
-  
-  if(type == '물') {
-    typeColor = 'blue'; 
+  // * 더미 데이터 제작
+
+  let product;
+
+  for (i = 0; i < 50; i++) {
+    if (category == "물") {
+      product = {
+        pokemonName: "꼬부기",
+        pokemonPrice: 12500,
+        categoryId: "물",
+      };
+    } else if (category == "전기") {
+      product = {
+        pokemonName: "피카츄",
+        pokemonPrice: 12500,
+        categoryId: "전기",
+      };
+    } else if (category == "풀") {
+      product = {
+        pokemonName: "이상해씨",
+        pokemonPrice: 12500,
+        categoryId: "풀",
+      };
+    } else {
+      product = {
+        pokemonName: "메타몽",
+        pokemonPrice: 12500,
+        categoryId: "장난",
+      };
+    }
+
+    data.push(product);
   }
-  else if(type == '전기') {
-    typeColor = 'rgb(255, 219, 0)';
-  }
-  else if(type == '풀') {
-    typeColor = 'green';
-  }
 
-  productListByCategory_list_ul.innerHTML += 
-    `<li class="productListByCategory-list-li">
-      <a href="">
+  let liHTML = "";
+
+  makeLiHTML();
+
+  productListByCategory_list_ul.innerHTML = liHTML;
+
+  // * 장바구니 버튼 기능
+  let alreadyInCartData = JSON.parse(localStorage.getItem("cart"));
+
+  const putInCartButton = document.querySelectorAll(
+    ".productListByCategory-list-like-button"
+  );
+
+  data.forEach((item, index) => {
+    putInCartButton[index].addEventListener("click", () => {
+      if (alreadyInCartData == null) {
+        // data 객체에 더해줄 필드.
+        item.quantity = 1;
+        item.checked = true;
+
+        // data 객체에서 빼줄 필드.
+        delete item.categoryId;
+
+        alreadyInCartData = [];
+        alreadyInCartData.push(item);
+
+        localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+      } else {
+        const findedIndex = alreadyInCartData.findIndex(
+          ({ pokemonName }) => pokemonName == item.pokemonName
+        );
+
+        if (findedIndex == -1) {
+          item.quantity = 1;
+          item.checked = true;
+
+          delete item.categoryId;
+
+          alreadyInCartData.push(item);
+
+          localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+        } else {
+          alreadyInCartData[findedIndex].quantity++;
+          localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+        }
+      }
+    });
+  });
+
+  function makeLiHTML() {
+    data.forEach((item) => {
+      let { pokemonName, pokemonPrice, categoryId } = item;
+
+      price = Number(pokemonPrice).toLocaleString();
+      image = `../img/${pokemonName}.png`;
+
+      let typeColor;
+
+      switch (categoryId) {
+        case "물":
+          typeColor = "rgb(41, 146, 255)";
+          break;
+        case "전기":
+          typeColor = "rgb(255, 219, 0)";
+          break;
+        case "풀":
+          typeColor = "green";
+          break;
+      }
+
+      liHTML += `
+    <li class="productListByCategory-list-li">
+      <a href="/detail/${pokemonName}">
         <div class="container-productListByCategory-list-image">
           <img class="productListByCategory-list-image" src=${image} alt="">
         </div>
         <div class="container-productListByCategory-list-description">
           <div class="container-productListByCategory-list-description-name">
-            <div class="productListByCategory-list-description-name">${name}</div>
+            <div class="productListByCategory-list-description-name">${pokemonName}</div>
           </div>
           <div class="container-productListByCategory-list-description-price">
-            <div class="productListByCategory-list-description-price">${price}원</div>
+            <div class="productListByCategory-list-description-price">${pokemonPrice}원</div>
           </div>
           <div class="container-productListByCategory-list-description-type">
             <div class="productListByCategory-list-description-type"
-              style="background-color: ${typeColor}">${type}</div>
-            <div class="productListByCategory-list-description-type2">타입2</div>
+              style="background-color: ${typeColor}">${categoryId}</div>
           </div> 
         </div>
       </a>
       <div class="container-productListByCategory-list-description-like">
-        <button class="productListByCategory-list-like-button">찜하기</button>
+        <button class="productListByCategory-list-like-button">장바구니에 추가</button>
       </div>
-    </li>`
+    </li>`;
+    });
+  }
 }

@@ -1,91 +1,94 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>상품 상세 페이지</title>
-  <link rel="stylesheet" href="../public/css/index.css">
-  <link rel="stylesheet" href="../public/css/reset.css">
-  <link rel="stylesheet" href="../public/css/productDetail.css">
-</head>
-<body>
-  <div class="gridContainer-whole">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 상세 페이지</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/productDetail.css" />
+  </head>
+  <body>
+    <!-- 네비게이션 바 -->
     <div class="main-container">
-      <nav class="main-nav-container">
-        <a href="./mainHome.html"><img class="logo" src="../img/logo.png" alt=""></a>
-        <ul class="nav-bar-ul">
-          <li class="nav-bar-li"><a href="./signUp.html">회원가입</a></li>
-          <li class="nav-bar-li"><a href="./login.html">로그인</a></li>
-          <li class="nav-bar-li"><a href="./cart.html">장바구니</a></li>
-        </ul>
-      </nav>
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
     </div>
-    <div class="gridItem-whole-detail">
-      <div class="container-detail">
-        <div class="detail">
-          <div class="container-detail-image">
-          <!--  
-            <div class="detail-image">
-              <img class="detail-image-img" src=${image} alt="">
-            </div>
-          -->
-          </div>
-          <div class="container-detail-description">
-            <div class="one">
-              <!-- 
-                <div class="detail-description">
-                  <div class="container-description-nameAndType">
-                    <div class="container-description-name">
-                      <div class="description-name">${name}</div>
-                    </div>
-                    <div class="container-description-type">
-                      <div class="description-type" style="background-color: ${typeColor}">${type}</div>
-                    </div>
-                  </div>
-                  <div class="container-description-price">
-                    <div class="description-price">${price}원</div>
-                  </div>
-                  <div class="container-description-description">
-                    <div class="description-description">${description}</div>
-                  </div>
-                </div> 
-               -->
-            </div>
-            <div class="three">
-              <div class="container-countInput">
-                <label for="count">수량</label>
-                <select name="" id="count">
-                  <option value="">1</option>
-                  <option value="">2</option>
-                  <option value="">3</option>
-                  <option value="">4</option>
-                  <option value="">5</option>
-                  <option value="">6</option>
-                  <option value="">7</option>
-                  <option value="">8</option>
-                  <option value="">9</option>
-                  <option value="">10</option>
-                </select>
-              </div>
-              <div class="container-description-cartAndOrder">
-                <div class="container-description-cart">
-                  <button class="description-cart">장바구니에 추가</button>
+
+    <div class="gridContainer-whole">
+      <!-- [시작] 그리드: 상세 -->
+      <div class="gridItem-whole-detail">
+        <div class="container-detail">
+          <div class="detail">
+            <div class="container-detail-image">
+              <!--  
+                <div class="detail-image">
+                  <img class="detail-image-img" src=${image} alt="">
                 </div>
-                <div class="container-description-order">
-                  <button class="description-order">바로 구매</button>
+              -->
+            </div>
+            <div class="container-detail-description">
+              <div class="one">
+                <!-- 
+                  <div class="detail-description">
+                    <div class="container-description-nameAndType">
+                      <div class="container-description-name">
+                        <div class="description-name">${name}</div>
+                      </div>
+                      <div class="container-description-type">
+                        <div class="description-type" style="background-color: ${typeColor}">${type}</div>
+                      </div>
+                    </div>
+                    <div class="container-description-price">
+                      <div class="description-price">${price}원</div>
+                    </div>
+                    <div class="container-description-description">
+                      <div class="description-description">${description}</div>
+                    </div>
+                  </div> 
+                -->
+              </div>
+              <div class="three">
+                <div class="container-countInput">
+                  <label for="count">수량</label>
+                  <select name="" id="count">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                    <option value="">6</option>
+                    <option value="">7</option>
+                    <option value="">8</option>
+                    <option value="">9</option>
+                    <option value="">10</option>
+                  </select>
+                </div>
+                <div class="container-description-cartAndOrder">
+                  <div class="container-description-cart">
+                    <button class="description-cart">장바구니에 추가</button>
+                  </div>
+                  <div class="container-description-order">
+                    <button class="description-order">바로 구매</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="gridItem-whole-footer">
-      <div class="container-footer">
-        <footer>푸터</footer>
+      <!-- [끝] 그리드: 상세 -->
+
+      <!-- [시작] 그리드: 푸터 -->
+      <div class="gridItem-whole-footer">
+        <div class="container-footer">
+          <footer>푸터</footer>
+        </div>
       </div>
+      <!-- [끝] 그리드: 푸터 -->
     </div>
-  </div>
-  <script src="../public/js/productDetail.js"></script>
-</body>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/productDetail.js"></script>
+  </body>
 </html>
