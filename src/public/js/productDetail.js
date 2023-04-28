@@ -3,14 +3,13 @@ const putInCartButton = document.querySelector(".description-cart");
 const orderNowButton = document.querySelector(".description-order");
 const countInput = document.querySelector("#count");
 const pathname = window.location.pathname;
-
 makeDetail();
 
 async function makeDetail() {
   const res = await fetch(`${common.API_URL}/api${pathname}`);
-  const data = await res.json();
+  let data = await res.json();
 
-  let { pokemonImage, pokemonName, pokemonType, price, detailInfo } = data;
+  let { _id, pokemonImage, pokemonName, pokemonType, price, detailInfo } = data;
 
   pricetoLocaleString = Number(price).toLocaleString();
 
@@ -55,66 +54,67 @@ async function makeDetail() {
   </div>
 </div>
 `;
-}
 
-putInCartButton.addEventListener("click", putInCartButtonHandler);
+  putInCartButton.addEventListener("click", putInCartButtonHandler);
 
-orderNowButton.addEventListener("click", orderNowButtonHandler);
+  orderNowButton.addEventListener("click", orderNowButtonHandler);
 
-function putInCartButtonHandler() {
-  let alreadyInCartData = JSON.parse(localStorage.getItem("cart"));
+  function putInCartButtonHandler() {
+    let alreadyInCartData = JSON.parse(localStorage.getItem("cart"));
 
-  const count = Number(countInput.options[countInput.selectedIndex].value);
+    const count = Number(countInput.options[countInput.selectedIndex].value);
 
-  let data = {
-    _id,
-    pokemonName,
-    price,
-  };
+    let data = {
+      _id,
+      pokemonName,
+      price,
+    };
 
-  if (alreadyInCartData == null) {
-    // data 객체에 더해줄 필드.
-    data.quantity = count;
-    data.checked = true;
-
-    // data 객체에서 빼줄 필드.
-
-    alreadyInCartData = [];
-    alreadyInCartData.push(data);
-
-    localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
-  } else {
-    const findedIndex = alreadyInCartData.findIndex(
-      (item) => item.pokemonName == pokemonName
-    );
-
-    if (alreadyInCartData !== null && findedIndex == -1) {
+    if (alreadyInCartData == null) {
+      // data 객체에 더해줄 필드.
       data.quantity = count;
       data.checked = true;
 
+      // data 객체에서 빼줄 필드.
+
+      alreadyInCartData = [];
       alreadyInCartData.push(data);
 
       localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
     } else {
-      alreadyInCartData[findedIndex].quantity += count;
-      localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+      const findedIndex = alreadyInCartData.findIndex(
+        (item) => item.pokemonName == pokemonName
+      );
+
+      if (alreadyInCartData !== null && findedIndex == -1) {
+        data.quantity = count;
+        data.checked = true;
+
+        alreadyInCartData.push(data);
+
+        localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+      } else {
+        alreadyInCartData[findedIndex].quantity += count;
+        localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+      }
     }
   }
-}
 
-function orderNowButtonHandler() {
-  const count = Number(countInput.options[countInput.selectedIndex].value);
-  let quantity = count;
+  function orderNowButtonHandler() {
+    const count = Number(countInput.options[countInput.selectedIndex].value);
+    let quantity = count;
 
-  let data = [
-    {
-      _id,
-      pokemonName,
-      price,
-      quantity,
-    },
-  ];
+    let data = [
+      {
+        _id,
+        pokemonName,
+        price,
+        quantity,
+      },
+    ];
 
-  localStorage.setItem("order", JSON.stringify(data));
-  window.location = "./orderAndPayment.html";
+    localStorage.setItem("order", JSON.stringify(data));
+
+    window.location = "/orders";
+  }
 }
