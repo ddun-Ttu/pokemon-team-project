@@ -51,8 +51,18 @@ loginBut.addEventListener("click", async function (e) {
       dataObj = data;
     });
 
-  const { token } = dataObj;
+  const { token, isAdmin } = dataObj;
+
   if (token !== undefined) {
+    // 로컬 스토리지 token에 토큰 저장.
+    localStorage.setItem("token", token);
+
+    // 관리자일 시 로컬 스토리지에 isAdmin에 isAdmin 문자열 저장.
+    if (isAdmin) {
+      localStorage.setItem("isAdmin", "isAdmin");
+    }
+
+    // 로그인 완료 시 메인 페이지로 이동시킴.
     let urlArr = window.location.href.split("/");
     urlArr.pop();
     urlArr.pop();
