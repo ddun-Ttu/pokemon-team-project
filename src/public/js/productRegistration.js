@@ -1,7 +1,7 @@
 // const e = require("express");
 
 const RegisterProduct = document.querySelector("#but-sing-up");
-const photoUpload = document.getElementById("photo-upload");
+const photoUpload = document.getElementById("photo_upload");
 const preview = document.getElementById("preview");
 
 // 사진 등록
@@ -54,7 +54,7 @@ const inputCh3 = document.querySelector("#inventory"); // 설명
 // const inputCh4 = document.querySelector("#detailed-description"); // 자세한설명
 const inputCh5 = document.querySelector("#inventory"); // 번호
 const inputCh6 = document.querySelector("#price"); // 가격
-const photo = document.querySelector("#photo-upload"); // 사진
+const photo = document.querySelector("#photo_upload"); // 사진
 
 RegisterProduct.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -66,8 +66,8 @@ RegisterProduct.addEventListener("click", async (e) => {
   // const detailedDescriptionInput = inputCh4.value; //자세한 설명
   const inventoryInput = inputCh5.value; //번호
   const priceInput = inputCh6.value; // 가격
-  // const photoInput = photo.files[0];
-  const photoInput = "photo-img-addr";
+  const photoInput = photo.files[0];
+  // const photoInput = "photo-img-addr";
   console.log(photoInput);
 
   console.log({
@@ -108,17 +108,17 @@ RegisterProduct.addEventListener("click", async (e) => {
   // localStorage.setItem("registratObj", updatedCategoryObjStr);
 
   // multer 전송위한 form 데이터 설정용
-  // const formData = new FormData();
-  // formData.append("pokemonName", productNameInput);
-  // formData.append("pokemonType", itemsInput);
-  // formData.append("detailInfo", summaryInput);
-  // formData.append("price", priceInput);
-  // formData.append("pokemonImage", photoInput);
+  const formData = new FormData();
+  formData.append("pokemonName", productNameInput);
+  formData.append("pokemonType", itemsInput);
+  formData.append("detailInfo", summaryInput);
+  formData.append("price", priceInput);
+  formData.append("pokemonImage", photoInput);
 
-  // console.log("폼 데이터 값 확인용 출력");
-  // for (let key of formData.keys()) {
-  //   console.log(key, ":", formData.get(key));
-  // }
+  console.log("폼 데이터 값 확인용 출력");
+  for (let key of formData.keys()) {
+    console.log(key, ":", formData.get(key));
+  }
 
   // console.log(categoryObj);
 
@@ -126,12 +126,12 @@ RegisterProduct.addEventListener("click", async (e) => {
   await fetch(common.API_URL + "/api/pokemons", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json",
       // "Content-Type": "multipart/form-data",
       // "Content-Type":
       //   "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
     },
-    body: JSON.stringify(categoryObj),
-    // body: formData,
+    // body: JSON.stringify(categoryObj),
+    body: formData,
   });
 });
