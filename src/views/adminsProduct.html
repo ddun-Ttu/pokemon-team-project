@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>관리자 - 상품 관리</title>
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/index.css" />
-    <link rel="stylesheet" href="/css/adminsProduct.css" />
+    <link rel="stylesheet" href="/public/css/index.css" />
+    <link rel="stylesheet" href="/public/css/reset.css" />
+    <link rel="stylesheet" href="/public/css/adminsProduct.css" />
   </head>
   <body>
     <!-- 네비게이션 바 -->
@@ -15,7 +15,7 @@
       <nav class="main-nav-container"><!--common/navBar.js--></nav>
     </div>
 
-    <!-- 주문조회  -->
+    <!-- 관리자 상품 관리  -->
     <div class="container">
       <div class="contents-mypage">
         <h3>관리자 - 상품 관리</h3>
@@ -25,19 +25,19 @@
             <div class="item-mypage">
               <div class="div-mypage">
                 <p>총인원수</p>
-                <h3>139</h3>
+                <h3>0</h3>
               </div>
             </div>
             <div class="item-mypage">
               <div class="div-mypage">
                 <p>관리자수</p>
-                <h3>139</h3>
+                <h3>0</h3>
               </div>
             </div>
             <div class="item-mypage">
               <div class="div-mypage">
                 <p>가입자수</p>
-                <h3>139</h3>
+                <h3>0</h3>
               </div>
             </div>
           </div>
@@ -51,12 +51,13 @@
           <table>
             <thead>
               <tr>
-                <th>등록날짜</th>
-                <th>카테고리</th>
-                <th>번호(2주차)</th>
-                <th>상품명</th>
-                <th>수정</th>
-                <th>삭제</th>
+                <th>생성날짜</th>
+                <th>번호</th>
+                <th>포켓몬 이름</th>
+                <th>타입</th>
+                <th>가격</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <!--
@@ -64,39 +65,17 @@
               수정 - 상품 내용 수정 페이지로 이동
               삭제 - [DELETE] 상품 삭제 API 요청
             -->
-            <tbody>
-              <tr>
-                <td>2023-04-20</td>
-                <td>피카츄/ 1마리</td>
-                <td>상품 준비중</td>
-                <td>상품 준비중</td>
-                <td><button class="btn-my-orders">수정</button></td>
-                <td><button class="btn-my-orders">삭제</button></td>
-              </tr>
-              <tr>
-                <td>2023-04-20</td>
-                <td>피카츄/ 1마리</td>
-                <td>배송중</td>
-                <td>상품 준비중</td>
-                <td><button class="btn-my-orders">수정</button></td>
-                <td><button class="btn-my-orders">삭제</button></td>
-              </tr>
-
-              <tr>
-                <td>2023-04-20</td>
-                <td>피카츄/ 1마리</td>
-                <td>취소</td>
-                <td>상품 준비중</td>
-                <td><button class="btn-my-orders">수정</button></td>
-                <td><button class="btn-my-orders">삭제</button></td>
-              </tr>
-            </tbody>
+            <tbody id="list-orders"></tbody>
           </table>
         </div>
       </div>
     </div>
 
     <!-- JS 파일 -->
+    <script src="/js/common/common.js"></script>
+    <!-- 공용 파일 (api domain ip 있음) -->
     <script src="/js/common/navBar.js"></script>
+    <!-- 공용 파일 (네비게이션 바) -->
+    <script src="/js/adminsProduct.js"></script>
   </body>
 </html>

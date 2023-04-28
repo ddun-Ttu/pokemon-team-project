@@ -30,29 +30,36 @@
             />
           </div>
           <div>
+            <p>번호 - id</p>
+            <input
+              id="inventory"
+              class="form-input-sing-up"
+              placeholder="0"
+              type="number"
+            />
+          </div>
+          <div>
             <p>카테고리</p>
             <select id="items" class="items-management-orders" name="items">
-              <option value="item1">전체</option>
-              <option value="item2">전기</option>
-              <option value="item3">풀</option>
-              <option value="item3">물</option>
+              <option value="전체">전체</option>
+              <option value="전기">전기</option>
+              <option value="풀">풀</option>
+              <option value="물">물</option>
             </select>
           </div>
           <div>
-            <p>요약 설명</p>
-            <textarea
-              id="summary"
+            <p>가격</p>
+            <input
+              id="price"
               class="form-input-sing-up"
-              name="message"
-              rows="4"
-              cols="40"
-              type="textarea"
-            ></textarea>
+              placeholder="10000"
+              type="number"
+            />
           </div>
           <div>
-            <p>상세 설명</p>
+            <p>설명</p>
             <textarea
-              id="detailed-description"
+              id="summary"
               class="form-input-sing-up"
               name="message"
               rows="4"
@@ -74,25 +81,6 @@
             </div>
           </div>
 
-          <div>
-            <p>재고 수</p>
-            <input
-              id="inventory"
-              class="form-input-sing-up"
-              placeholder="0"
-              type="number"
-            />
-          </div>
-          <div>
-            <p>가격</p>
-            <input
-              id="price"
-              class="form-input-sing-up"
-              placeholder="10000"
-              type="number"
-            />
-          </div>
-
           <!-- 2차 구현예정
             <div>
               <p>검색 키워드</p>
@@ -103,11 +91,15 @@
 
           <!-- [PUT] 해당 포켓몬(상품) 내용 수정 API 요청 -->
           <button id="but-sing-up" class="but-sing-up">수정하기</button>
+          <a href="/admins/pokemons"> &#60; 상품관리 조회</a>
         </form>
       </div>
     </div>
 
     <!-- JS 파일 -->
+
+    <script src="/js/common/common.js"></script>
+    <!-- 공용 파일 (api domain ip 있음) -->
     <script src="/js/common/navBar.js"></script>
     <script src="/js/adminsProductEdit.js"></script>
   </body>

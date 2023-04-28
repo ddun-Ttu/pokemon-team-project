@@ -96,6 +96,12 @@ RegisterProduct.addEventListener("click", async (e) => {
     price: priceInput,
     pokemonImage: photoInput,
   };
+
+  // 클릭하면 다시 빈값 만들어줌
+  inputCh1.value = "";
+  inputCh2.value = "전체";
+  inputCh3.value = "";
+  inputCh6.value = "";
   // existingCategoryObj.push(categoryObj);
 
   // 위에서 담은 상수를 JSON 후 setitem으로 담기
@@ -130,13 +136,4 @@ RegisterProduct.addEventListener("click", async (e) => {
     body: JSON.stringify(categoryObj),
     // body: formData,
   });
-
-  /*
-  inputCh1.value = "";
-  inputCh2.value = "전체";
-  inputCh3.value = "";
-  // inputCh4.value = "";
-  // inputCh5.value = "";
-  inputCh6.value = "";
-  */
 });
