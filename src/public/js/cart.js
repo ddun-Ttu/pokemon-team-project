@@ -6,94 +6,94 @@ const inCartAndpaymentInformationArea = document.querySelector(
 
 // * 더미 데이터.
 
-const dummyData = [
-  {
-    pokemonId: 1,
-    pokemonImage: `../img/${this.pokemonName}.png`,
-    pokemonName: "이상해씨",
-    quantity: 1,
-    pokemonPrice: 5000,
-    checked: true,
+// const dummyData = [
+//   {
+//     _id: 1,
+//     pokemonImage: `../img/${this.pokemonName}.png`,
+//     pokemonName: "이상해씨",
+//     quantity: 1,
+//     price: 5000,
+//     checked: true,
 
-    pokemonNum: 0,
-    sumInfo: "",
-    detailInfo: "",
-    pokemonType: "풀",
-  },
-  {
-    pokemonId: 2,
-    pokemonImage: `../img/${this.pokemonName}.png`,
-    pokemonName: "피카츄",
-    quantity: 1,
-    pokemonPrice: 5000,
-    checked: true,
+//     pokemonNum: 0,
+//     sumInfo: "",
+//     detailInfo: "",
+//     pokemonType: "풀",
+//   },
+//   {
+//     _id: 2,
+//     pokemonImage: `../img/${this.pokemonName}.png`,
+//     pokemonName: "피카츄",
+//     quantity: 1,
+//     price: 5000,
+//     checked: true,
 
-    pokemonType: "전기",
-    pokemonNum: "",
-    sumInfo: "",
-    detailInfo: "",
-  },
-  {
-    pokemonId: 3,
-    pokemonImage: `../img/${this.pokemonName}.png`,
-    pokemonName: "꼬부기",
-    quantity: 1,
-    pokemonPrice: 5000,
-    checked: true,
+//     pokemonType: "전기",
+//     pokemonNum: "",
+//     sumInfo: "",
+//     detailInfo: "",
+//   },
+//   {
+//     _id: 3,
+//     pokemonImage: `../img/${this.pokemonName}.png`,
+//     pokemonName: "꼬부기",
+//     quantity: 1,
+//     price: 5000,
+//     checked: true,
 
-    pokemonType: "물",
-    pokemonNum: 0,
-    sumInfo: "",
-    detailInfo: "",
-  },
-  {
-    pokemonId: 4,
-    pokemonImage: `../img/${this.pokemonName}.png`,
-    pokemonName: "메타몽",
-    quantity: 1,
-    pokemonPrice: 5000,
-    checked: true,
+//     pokemonType: "물",
+//     pokemonNum: 0,
+//     sumInfo: "",
+//     detailInfo: "",
+//   },
+//   {
+//     _id: 4,
+//     pokemonImage: `../img/${this.pokemonName}.png`,
+//     pokemonName: "메타몽",
+//     quantity: 1,
+//     price: 5000,
+//     checked: true,
 
-    pokemonType: "말랑",
-    pokemonNum: 4,
-    sumInfo: "",
-    detailInfo: "",
-  },
-];
+//     pokemonType: "말랑",
+//     pokemonNum: 4,
+//     sumInfo: "",
+//     detailInfo: "",
+//   },
+// ];
 
-// * 더미 데이터 삽입 버튼
-const button1 = document.querySelector("#button1");
-const button2 = document.querySelector("#button2");
+// // * 더미 데이터 삽입 버튼
+// const button1 = document.querySelector("#button1");
+// const button2 = document.querySelector("#button2");
 
-button1.addEventListener("click", () => {
-  let localStorageData = JSON.parse(localStorage.getItem("cart"));
+// button1.addEventListener("click", () => {
+//   let localStorageData = JSON.parse(localStorage.getItem("cart"));
 
-  if (localStorageData == null) {
-    localStorageData = [];
+//   if (localStorageData == null) {
+//     localStorageData = [];
 
-    localStorageData.push(dummyData[0]);
+//     localStorageData.push(dummyData[0]);
 
-    localStorage.setItem("cart", JSON.stringify(localStorageData));
-  } else {
-    const index = localStorageData.findIndex(({ id }) => id == dummyData[0].id);
+//     localStorage.setItem("cart", JSON.stringify(localStorageData));
+//   } else {
+//     const index = localStorageData.findIndex(({ id }) => id == dummyData[0].id);
 
-    if (index == -1) {
-      localStorageData.push(dummyData[0]);
-    } else {
-      localStorageData[index].quantity += 1;
-    }
-  }
-});
+//     if (index == -1) {
+//       localStorageData.push(dummyData[0]);
+//     } else {
+//       localStorageData[index].quantity += 1;
+//     }
+//   }
+// });
 
-button2.addEventListener("click", () => {
-  let localStorageData = JSON.parse(localStorage.getItem("cart"));
+// button2.addEventListener("click", () => {
+//   let localStorageData = JSON.parse(localStorage.getItem("cart"));
 
-  if (localStorageData == null) {
-    localStorageData = dummyData;
+//   if (localStorageData == null) {
+//     localStorageData = dummyData;
 
-    localStorage.setItem("cart", JSON.stringify(localStorageData));
-  }
-});
+//     localStorage.setItem("cart", JSON.stringify(localStorageData));
+//   }
+// });
 
 printInCartAndPaymentInformation();
 
@@ -127,7 +127,7 @@ function printInCartAndPaymentInformation() {
       // 출력 횟수를 줄이는 게 좋으니까 변수에 할당하고 마지막에 innerHTML로 조작.
 
       localStorageData.forEach((item, index) => {
-        let { pokemonId, pokemonName, quantity, pokemonPrice, checked } = item;
+        let { _id, pokemonImage, pokemonName, quantity, price, checked } = item;
 
         if (checked == true) {
           checked = "checked";
@@ -141,7 +141,7 @@ function printInCartAndPaymentInformation() {
               <input class="productList-checkbox" type="checkbox" ${checked}>
             </div>
             <div class="container-productList-productIamge">
-            <a href='/pokemons/${pokemonId}' class="img"><img class="productList-productIamge" src="../img/${pokemonName}.png" alt=""></a>
+            <a href='/pokemons/${_id}' class="img"><img class="productList-productIamge" src=${pokemonImage} onerror="this.onerror=null; this.src='../img/피카츄.png';" alt=""></a>
             </div>
             <div class="container-productList-productNameAndCountHandle">
               <div class="container-productList-productName">
@@ -160,7 +160,7 @@ function printInCartAndPaymentInformation() {
               </div>
             </div>
             <div class="container-productList-productPrice">
-              <div>${pokemonPrice.toLocaleString()}</div>
+              <div>${price.toLocaleString()}</div>
             </div>
             <div class="container-productList-multiplication">
               <div class="productList-multiple">X</div>
@@ -172,7 +172,7 @@ function printInCartAndPaymentInformation() {
               <div class="productList-equal">=</div>
             </div>
             <div class="container-productList-productTotalPrice">
-              <div>${(pokemonPrice * quantity).toLocaleString()}</div>
+              <div>${(price * quantity).toLocaleString()}</div>
             </div>
             <div class="container-productList-deleteButton">
               <button class="productList-deleteButton">삭제</button>
@@ -184,11 +184,11 @@ function printInCartAndPaymentInformation() {
 
     function makePaymentInformationHTML() {
       localStorageData.forEach((item) => {
-        let { pokemonPrice, quantity, checked } = item;
+        let { price, quantity, checked } = item;
 
         if (checked == true) {
           totalProductCount += quantity;
-          totalProductPrice += quantity * pokemonPrice;
+          totalProductPrice += quantity * price;
           deliveryFee += quantity * 5000;
         }
 
