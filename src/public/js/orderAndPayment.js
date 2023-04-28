@@ -41,7 +41,7 @@ const localStorageOrderData = JSON.parse(localStorage.getItem("order"));
 //   [{ id: 1,
 //   pokemonName: '이상해씨',
 //   type: '풀',
-//   pokemonPrice: 5000,
+//   price: 5000,
 //   quantity: 1,
 //   checked: true }]
 //   ))
@@ -68,7 +68,7 @@ let productTotalPrice = 0;
 let deliveryFee = 0;
 
 orderData.forEach((item, index) => {
-  let { pokemonName, quantity, pokemonPrice } = item;
+  let { pokemonName, quantity, price } = item;
 
   productListHTML += `
     <li>
@@ -76,20 +76,16 @@ orderData.forEach((item, index) => {
     </li>
     `;
 
-  productTotalPrice += quantity * pokemonPrice;
+  productTotalPrice += quantity * price;
   deliveryFee += quantity * 5000;
 
   if (index == orderData.length - 1) {
     const finalPrice = productTotalPrice + deliveryFee;
 
     productNameAndProductCountArea.innerHTML = productListHTML;
-    productTotalPriceArea.innerHTML = productTotalPrice;
-    deliveryFeeArea.innerHTML = deliveryFee;
-    finalPriceArea.innerHTML = finalPrice;
-
-    dataProductTotalPrice = productTotalPrice;
-    dataDeliveryFee = deliveryFee;
-    dataFinalPrice = finalPrice;
+    productTotalPriceArea.innerHTML = `${productTotalPrice.toLocaleString()}원`;
+    deliveryFeeArea.innerHTML = `${deliveryFee.toLocaleString()}원`;
+    finalPriceArea.innerHTML = `${finalPrice.toLocaleString()}원`;
   }
 });
 
@@ -195,9 +191,9 @@ async function makeAndSendOrderData() {
   let orderProductData = [];
 
   orderData.forEach((item) => {
-    const { pokemonId, quantity } = item;
+    const { _id, quantity } = item;
 
-    orderProductData.push({ pokemonId, quantity });
+    orderProductData.push({ _id, quantity });
   });
 
   data.orderProductData = orderProductData;
@@ -205,7 +201,7 @@ async function makeAndSendOrderData() {
   // * api(url: '/', method: 'POST')
   const dataJson = JSON.stringify(data);
 
-  const apiUrl = `${common.API_URL}/order`;
+  const apiUrl = `${common.API_URL}/orders`;
 
   const res = await fetch(apiUrl, {
     method: "POST",
