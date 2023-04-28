@@ -11,6 +11,8 @@ async function makeDetail() {
 
   let { _id, pokemonImage, pokemonName, pokemonType, price, detailInfo } = data;
 
+  console.log(data);
+
   pricetoLocaleString = Number(price).toLocaleString();
 
   let typeColor;
