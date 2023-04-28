@@ -137,7 +137,7 @@ async function makeProductList(category) {
     data.forEach((item) => {
       let { _id, pokemonImage, pokemonName, price, pokemonType } = item;
       console.log(pokemonImage);
-      console.log((pokemonImage = common.API_URL + "/" + pokemonImage));
+      console.log((pokemonImage = common.API_URL + pokemonImage));
       price = Number(price).toLocaleString();
 
       let typeColor;

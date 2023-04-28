@@ -81,29 +81,37 @@ async function checkInput(ev) {
   });
 
   // 수정값 생성
-  const photoInput = "modi-photo-img-addr";
-  const categoryObj = {
-    pokemonName: inputCh1.value,
-    pokemonType: inputCh2.value,
-    detailInfo: inputCh3.value,
-    price: inputCh6.value,
-    pokemonImage: photoInput,
-  };
+  const photoInput = photo.files[0];
+  // const categoryObj = {
+  //   pokemonName: inputCh1.value,
+  //   pokemonType: inputCh2.value,
+  //   detailInfo: inputCh3.value,
+  //   price: inputCh6.value,
+  //   pokemonImage: photoInput,
+  // };
 
-  console.log(categoryObj);
+  // console.log(categoryObj);
+
+  // multer 전송위한 form 데이터 설정용
+  const formData = new FormData();
+  formData.append("pokemonName", inputCh1.value);
+  formData.append("pokemonType", inputCh2.value);
+  formData.append("detailInfo", inputCh3.value);
+  formData.append("price", inputCh6.value);
+  formData.append("pokemonImage", photoInput);
 
   // [PUT] /api/pokemons/{pokemonId} 요청
   const id = pokemonId;
   await fetch(common.API_URL + "/api/pokemons/" + id, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json",
       // "Content-Type": "multipart/form-data",
       // "Content-Type":
       //   "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
     },
-    body: JSON.stringify(categoryObj),
-    // body: formData,
+    // body: JSON.stringify(categoryObj),
+    body: formData,
   });
 }
 
