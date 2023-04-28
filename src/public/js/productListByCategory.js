@@ -8,10 +8,10 @@ let categoryListArray;
 makeCategoryBar();
 
 async function makeCategoryBar() {
-  // const res = fetch(`${common.API_URL}/pokemons?물`);
-  // const data = await JSON.parse(res);
+  const res = await fetch(`${common.API_URL}/api/categories`);
+  const dataObj = await res.json();
 
-  let data = ["물", "전기", "풀"];
+  const data = dataObj.map(({ categoryName }) => categoryName);
 
   categoryListArray = ["전체", ...data];
 
@@ -32,9 +32,6 @@ async function makeCategoryBar() {
         break;
     }
 
-    // if (item == "전체") {
-    //   categoryListLiHTML += `<li><a href="/category/${item}" style="color: ${typeColor}";>${item}</a></li>`;
-    // } else {
     categoryListLiHTML += `<li><a href="/category/${item}" id=${item} style="color: ${typeColor}";>${item}</a></li>`;
     // }
   });
