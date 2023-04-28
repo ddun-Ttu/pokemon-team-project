@@ -50,7 +50,7 @@ photoUpload.addEventListener("change", function () {
 
 const inputCh1 = document.querySelector("#prodeuct-name"); // 상품명
 const inputCh2 = document.querySelector("#items"); // 카테고리
-const inputCh3 = document.querySelector("#summary"); // 설명
+const inputCh3 = document.querySelector("#inventory"); // 설명
 // const inputCh4 = document.querySelector("#detailed-description"); // ?
 // const inputCh5 = document.querySelector("#inventory"); // 번호
 const inputCh6 = document.querySelector("#price"); // 가격
