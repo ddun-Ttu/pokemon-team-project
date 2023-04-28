@@ -66,7 +66,8 @@ RegisterProduct.addEventListener("click", async (e) => {
   // const detailedDescriptionInput = inputCh4.value;
   // const inventoryInput = inputCh5.value;
   const priceInput = inputCh6.value;
-  const photoInput = photo.value;
+  const photoInput = photo.files[0];
+  console.log(photoInput);
 
   console.log({
     productNameInput,
@@ -100,16 +101,30 @@ RegisterProduct.addEventListener("click", async (e) => {
   // const updatedCategoryObjStr = JSON.stringify(existingCategoryObj);
   // const updatedCategoryObjStr = JSON.stringify(categoryObj);
   // localStorage.setItem("registratObj", updatedCategoryObjStr);
+  const formData = new FormData();
+  formData.append("pokemonName", productNameInput);
+  formData.append("pokemonType", itemsInput);
+  formData.append("detailInfo", summaryInput);
+  formData.append("price", priceInput);
+  formData.append("pokemonImage", photoInput);
 
-  console.log(categoryObj);
+  console.log("폼 데이터 값 확인용 출력");
+  for (let key of formData.keys()) {
+    console.log(key, ":", formData.get(key));
+  }
+  // console.log(categoryObj);
 
   // [POST] /api/pokemons 요청
   await fetch(common.API_URL + "/api/pokemons", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json",
+      // "Content-Type": "multipart/form-data",
+      "Content-Type":
+        "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
     },
-    body: JSON.stringify(categoryObj),
+    // body: JSON.stringify(categoryObj),
+    body: formData,
   });
 
   /*
