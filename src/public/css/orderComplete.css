@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   min-height: 100%;
 }
 
@@ -60,7 +61,6 @@ div.container-pageName-name-sub {
 }
 
 span.container-pageName-name-sub {
-
 }
 
 /* 주문 완료 메세지 박스 */
@@ -74,7 +74,7 @@ div.container-orderCompleteMessageBox {
   width: 40%;
 
   border: solid 1px;
-  
+
   margin: 0 auto;
 }
 
@@ -87,7 +87,7 @@ div.container-orderCompleteMessageBox-subject {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   padding: 20px;
 }
 
@@ -107,7 +107,7 @@ div.container-orderCompleteMessageBox-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   padding: 10px 0 20px 0;
 }
 
@@ -148,5 +148,4 @@ div.container-footer {
 }
 
 footer {
-  
 }

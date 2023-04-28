@@ -4,35 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상품 상세 페이지</title>
-    <link rel="stylesheet" href="../public/css/index.css" />
-    <link rel="stylesheet" href="../public/css/reset.css" />
-    <link rel="stylesheet" href="../public/css/productDetail.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/productDetail.css" />
   </head>
   <body>
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
+    </div>
+
     <div class="gridContainer-whole">
-      <div class="main-container">
-        <nav class="main-nav-container">
-          <a href="./mainHome.html"
-            ><img class="logo" src="../img/logo.png" alt=""
-          /></a>
-          <ul class="nav-bar-ul">
-            <li class="nav-bar-li"><a href="./signUp.html">회원가입</a></li>
-            <li class="nav-bar-li"><a href="./login.html">로그인</a></li>
-            <li class="nav-bar-li"><a href="./cart.html">장바구니</a></li>
-          </ul>
-        </nav>
-      </div>
+      <!-- [시작] 그리드: 상세 -->
       <div class="gridItem-whole-detail">
         <div class="container-detail">
           <div class="detail">
             <div class="container-detail-image">
               <!--  
-          -->
+              -->
             </div>
             <div class="container-detail-description">
               <div class="one">
                 <!-- 
-               -->
+                -->
               </div>
               <div class="two">
                 <div class="container-countInput">
@@ -65,13 +59,19 @@
           </div>
         </div>
       </div>
+      <!-- [끝] 그리드: 상세 -->
+
+      <!-- [시작] 그리드: 푸터 -->
       <div class="gridItem-whole-footer">
         <div class="container-footer">
-          <footer></footer>
+          <footer>푸터</footer>
         </div>
       </div>
+      <!-- [끝] 그리드: 푸터 -->
     </div>
-    <script src="../public/js/common.js"></script>
-    <script src="../public/js/productDetail.js"></script>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/productDetail.js"></script>
   </body>
 </html>

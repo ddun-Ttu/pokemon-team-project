@@ -3,32 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>카테고리</title>
-    <link rel="stylesheet" href="../public/css/index.css" />
-    <link rel="stylesheet" href="../public/css/reset.css" />
-    <link rel="stylesheet" href="../public/css/productListByCategory.css" />
+    <title>카테고리 풀</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/productListByCategory.css" />
   </head>
   <body>
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
+    </div>
+
     <div class="gridContainer-whole">
-      <div class="main-container">
-        <nav class="main-nav-container">
-          <a href="./mainHome.html"
-            ><img class="logo" src="../img/logo.png" alt=""
-          /></a>
-          <ul class="nav-bar-ul">
-            <li class="nav-bar-li"><a href="./signUp.html">회원가입</a></li>
-            <li class="nav-bar-li"><a href="./login.html">로그인</a></li>
-            <li class="nav-bar-li"><a href="./cart.html">장바구니</a></li>
-          </ul>
-        </nav>
-      </div>
       <div class="gridItem-whole-categoryBar">
         <div class="container-categoryBar">
           <div class="categoryBar">
             <div class="container-cartegoryBar-categoryList">
               <div class="cartegoryBar-categoryList">
                 <ul class="cartegoryBar-categoryList-ul">
-                  <!-- 카테고리 리스트 삽입(js) -->
+                  <!-- 카테고리 리스트 삽입 (js)-->
                 </ul>
               </div>
             </div>
@@ -42,7 +35,7 @@
             <div class="container-productListByCategory-list">
               <div class="productListByCategory-list">
                 <ul class="productListByCategory-list-ul">
-                  <!-- 상품 리스트 삽입(js) -->
+                  <!-- 카테고리별 상품 리스트 삽입(js) -->
                 </ul>
               </div>
             </div>
@@ -56,7 +49,9 @@
         </div>
       </div>
     </div>
-    <script src="../public/js/common.js"></script>
-    <script src="../public/js/productListByCategory.js"></script>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/productListByCategory.js"></script>
   </body>
 </html>

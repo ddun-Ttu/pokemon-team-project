@@ -5,24 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>주문조회</title>
-    <link rel="stylesheet" href="../public/css/index.css">
-    <link rel="stylesheet" href="../public/css/reset.css">
-    <link rel="stylesheet" href="../public/css/orderStatus.css">
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/orderStatus.css" />
   </head>
   <body>
-
     <!-- 네비게이션 바 -->
     <div class="main-container">
-      <nav class="main-nav-container">
-        <a href="./mainHome.html"><img class="logo" src="../img/logo.png" alt=""></a>
-        <ul class="nav-bar-ul">
-          <li class="nav-bar-li"><a href="./signUp.html">회원가입</a></li>
-          <li class="nav-bar-li"><a href="./login.html">로그인</a></li>
-          <li class="nav-bar-li"><a href="./cart.html">장바구니</a></li>
-        </ul>
-      </nav>
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
     </div>
-
 
     <!-- 주문조회  -->
     <div class="container">
@@ -30,28 +21,33 @@
         <h3>주문조회</h3>
         <div class="table-my-orders">
           <table>
-
             <thead>
               <tr>
                 <th>날짜</th>
                 <th>주문 정보</th>
                 <th>상태</th>
+                <th>내용</th>
                 <th>신청</th>
-          
               </tr>
             </thead>
-
+            <!-- 
+              내 주문 목록들 출력 *JS
+              수정 - 해당 주문 수정 페이지로 이동(배송 전 상태만 가능)
+              취소 - [DELETE] 주문 삭제 API 요청
+            -->
             <tbody>
               <tr>
                 <td>2023-04-20</td>
                 <td>피카츄/ 1마리</td>
                 <td>상품 준비중</td>
+                <td><button class="btn-my-orders">수정하기</button></td>
                 <td><button class="btn-my-orders">주문 취소</button></td>
               </tr>
               <tr>
                 <td>2023-04-20</td>
                 <td>피카츄/ 1마리</td>
                 <td>배송중</td>
+                <td><button class="btn-my-orders">수정하기</button></td>
                 <td><button class="btn-my-orders">주문 취소</button></td>
               </tr>
 
@@ -59,12 +55,16 @@
                 <td>2023-04-20</td>
                 <td>피카츄/ 1마리</td>
                 <td>취소</td>
+                <td><button class="btn-my-orders">수정하기</button></td>
                 <td><button class="btn-my-orders">주문 취소</button></td>
               </tr>
-
             </tbody>
           </table>
         </div>
       </div>
     </div>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/navBar.js"></script>
+  </body>
 </html>
