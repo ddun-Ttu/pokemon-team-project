@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>관리자 - 주문페이지</title>
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/index.css" />
-    <link rel="stylesheet" href="/css/adminsOrders.css" />
+    <link rel="stylesheet" href="../public/css/common/index.css" />
+    <link rel="stylesheet" href="../public/css/common/index.css" />
+    <link rel="stylesheet" href="../public/css/adminsOrders.css" />
   </head>
   <body>
     <!-- 네비게이션 바 -->
@@ -25,25 +25,25 @@
             <div class="item-mypage">
               <div class="div-mypage">
                 <p>총주문수</p>
-                <h3>139</h3>
+                <h3 id="order-count">0</h3>
               </div>
             </div>
             <div class="item-mypage">
               <div class="div-mypage">
                 <p>상품준비중</p>
-                <h3>139</h3>
+                <h3 id="prepare-count">0</h3>
               </div>
-              <div class="item-mypage">
-                <div class="div-mypage">
-                  <p>상품배송중</p>
-                  <h3>139</h3>
-                </div>
+            </div>
+            <div class="item-mypage">
+              <div class="div-mypage">
+                <p>상품배송중</p>
+                <h3 id="delivery-count">0</h3>
               </div>
-              <div class="item-mypage">
-                <div class="div-mypage">
-                  <p>배송완료</p>
-                  <h3>139</h3>
-                </div>
+            </div>
+            <div class="item-mypage">
+              <div class="div-mypage">
+                <p>배송완료</p>
+                <h3 id="complete-count">0</h3>
               </div>
             </div>
           </div>
@@ -61,64 +61,12 @@
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td>2023-04-20</td>
-                <td>피카츄/ 1마리</td>
-                <td>상품 준비중</td>
-                <td>
-                  <!-- 
+            <tbody id="list-orders">
+              <!-- 
                     주문 목록들 출력 *JS
                     상태관리 - [PUT] 주문 상태 갱신 API 요청
                     취소 - [DELETE] 주문 삭제 API 요청
                   -->
-                  <select
-                    id="items"
-                    class="items-management-orders"
-                    name="items"
-                  >
-                    <option value="item1">상품준비중</option>
-                    <option value="item2">상품배송중</option>
-                    <option value="item3">배송완료</option>
-                  </select>
-                </td>
-                <td><button class="btn-my-orders">주문 취소</button></td>
-              </tr>
-              <tr>
-                <td>2023-04-20</td>
-                <td>피카츄/ 1마리</td>
-                <td>배송중</td>
-                <td>
-                  <select
-                    id="items"
-                    class="items-management-orders"
-                    name="items"
-                  >
-                    <option value="item1">상품준비중</option>
-                    <option value="item2">상품배송중</option>
-                    <option value="item3">배송완료</option>
-                  </select>
-                </td>
-                <td><button class="btn-my-orders">주문 취소</button></td>
-              </tr>
-
-              <tr>
-                <td>2023-04-20</td>
-                <td>피카츄/ 1마리</td>
-                <td>취소</td>
-                <td>
-                  <select
-                    id="items"
-                    class="items-management-orders"
-                    name="items"
-                  >
-                    <option value="item1">상품준비중</option>
-                    <option value="item2">상품배송중</option>
-                    <option value="item3">배송완료</option>
-                  </select>
-                </td>
-                <td><button class="btn-my-orders">주문 취소</button></td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -126,6 +74,7 @@
     </div>
 
     <!-- JS 파일 -->
-    <script src="/js/common/navBar.js"></script>
+    <script src="../js/common/navBar.js"></script>
+    <script src="../public/js/adminsOrders.js"></script>
   </body>
 </html>
