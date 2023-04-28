@@ -72,48 +72,50 @@ async function makeProductList(category) {
     ".productListByCategory-list-ul"
   );
 
-  // const res = await fetch(`/${common.API_URL}/pokemons?category=[${category}]);
-  // const data = await JSON.parse(res);
+  const res = await fetch(
+    `/${common.API_URL}/api/pokemons?category=${category}`
+  );
+  const data = await res.json();
 
-  let data = [];
+  // let data = [];
 
-  // * 더미 데이터 제작
+  // // * 더미 데이터 제작
 
-  let product;
+  // let product;
 
-  for (i = 0; i < 50; i++) {
-    if (category == "물") {
-      product = {
-        pokemonId: 1,
-        pokemonName: "꼬부기",
-        pokemonPrice: 12500,
-        pokemonType: "물",
-      };
-    } else if (category == "전기") {
-      product = {
-        pokemonId: 2,
-        pokemonName: "피카츄",
-        pokemonPrice: 12500,
-        pokemonType: "전기",
-      };
-    } else if (category == "풀") {
-      product = {
-        pokemonId: 3,
-        pokemonName: "이상해씨",
-        pokemonPrice: 12500,
-        pokemonType: "풀",
-      };
-    } else {
-      product = {
-        pokemonId: 4,
-        pokemonName: "메타몽",
-        pokemonPrice: 12500,
-        pokemonType: "장난",
-      };
-    }
+  // for (i = 0; i < 50; i++) {
+  //   if (category == "물") {
+  //     product = {
+  //       pokemonId: 1,
+  //       pokemonName: "꼬부기",
+  //       pokemonPrice: 12500,
+  //       pokemonType: "물",
+  //     };
+  //   } else if (category == "전기") {
+  //     product = {
+  //       pokemonId: 2,
+  //       pokemonName: "피카츄",
+  //       pokemonPrice: 12500,
+  //       pokemonType: "전기",
+  //     };
+  //   } else if (category == "풀") {
+  //     product = {
+  //       pokemonId: 3,
+  //       pokemonName: "이상해씨",
+  //       pokemonPrice: 12500,
+  //       pokemonType: "풀",
+  //     };
+  //   } else {
+  //     product = {
+  //       pokemonId: 4,
+  //       pokemonName: "메타몽",
+  //       pokemonPrice: 12500,
+  //       pokemonType: "장난",
+  //     };
+  //   }
 
-    data.push(product);
-  }
+  //   data.push(product);
+  // }
 
   let liHTML = "";
 
