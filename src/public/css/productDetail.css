@@ -31,6 +31,7 @@ div.gridItem-whole-detail {
 }
 
 div.container-detail {
+  width: 900px;
   padding-top: 5%;
   margin: 0 auto;
 }
