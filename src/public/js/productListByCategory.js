@@ -8,7 +8,7 @@ let categoryListArray;
 makeCategoryBar();
 
 async function makeCategoryBar() {
-  // const res = fetch(`${common.API_URL}/???`);
+  // const res = fetch(`${common.API_URL}/pokemons?물`);
   // const data = await JSON.parse(res);
 
   let data = ["물", "전기", "풀"];
@@ -32,7 +32,11 @@ async function makeCategoryBar() {
         break;
     }
 
+    // if (item == "전체") {
+    //   categoryListLiHTML += `<li><a href="/category/${item}" style="color: ${typeColor}";>${item}</a></li>`;
+    // } else {
     categoryListLiHTML += `<li><a href="/category/${item}" id=${item} style="color: ${typeColor}";>${item}</a></li>`;
+    // }
   });
 
   cartegoryBar_categoryList_ul.innerHTML += categoryListLiHTML;
@@ -62,7 +66,6 @@ function eachCategoryHandler(e) {
   e.target.classList.add("selected");
 
   selectedCategory = e.target.id;
-
   makeProductList(selectedCategory);
 }
 
@@ -72,50 +75,14 @@ async function makeProductList(category) {
     ".productListByCategory-list-ul"
   );
 
-  const res = await fetch(
-    `/${common.API_URL}/api/pokemons?category=${category}`
-  );
-  const data = await res.json();
+  // alert(category);
 
-  // let data = [];
+  const res = await fetch(`${common.API_URL}/api/pokemons`);
+  let data = await res.json();
 
-  // // * 더미 데이터 제작
-
-  // let product;
-
-  // for (i = 0; i < 50; i++) {
-  //   if (category == "물") {
-  //     product = {
-  //       pokemonId: 1,
-  //       pokemonName: "꼬부기",
-  //       pokemonPrice: 12500,
-  //       pokemonType: "물",
-  //     };
-  //   } else if (category == "전기") {
-  //     product = {
-  //       pokemonId: 2,
-  //       pokemonName: "피카츄",
-  //       pokemonPrice: 12500,
-  //       pokemonType: "전기",
-  //     };
-  //   } else if (category == "풀") {
-  //     product = {
-  //       pokemonId: 3,
-  //       pokemonName: "이상해씨",
-  //       pokemonPrice: 12500,
-  //       pokemonType: "풀",
-  //     };
-  //   } else {
-  //     product = {
-  //       pokemonId: 4,
-  //       pokemonName: "메타몽",
-  //       pokemonPrice: 12500,
-  //       pokemonType: "장난",
-  //     };
-  //   }
-
-  //   data.push(product);
-  // }
+  if (selectedCategory !== undefined && selectedCategory !== "전체") {
+    data = data.filter(({ pokemonType }) => pokemonType == selectedCategory);
+  }
 
   let liHTML = "";
 
@@ -168,10 +135,11 @@ async function makeProductList(category) {
 
   function makeLiHTML() {
     data.forEach((item) => {
-      let { pokemonId, pokemonName, pokemonPrice, pokemonType } = item;
+      let { _id, pokemonName, price, pokemonType } = item;
 
-      price = Number(pokemonPrice).toLocaleString();
-      image = `../img/${pokemonName}.png`;
+      // pokemonImage
+      let img = `../img/피카츄.png`;
+      price = Number(price).toLocaleString();
 
       let typeColor;
 
@@ -189,16 +157,16 @@ async function makeProductList(category) {
 
       liHTML += `
     <li class="productListByCategory-list-li">
-      <a href="/pokemons/${pokemonId}">
+      <a href="/pokemons/${_id}">
         <div class="container-productListByCategory-list-image">
-          <img class="productListByCategory-list-image" src=${image} alt="">
+          <img class="productListByCategory-list-image" src=${img} alt=""></img>
         </div>
         <div class="container-productListByCategory-list-description">
           <div class="container-productListByCategory-list-description-name">
             <div class="productListByCategory-list-description-name">${pokemonName}</div>
           </div>
           <div class="container-productListByCategory-list-description-price">
-            <div class="productListByCategory-list-description-price">${pokemonPrice}원</div>
+            <div class="productListByCategory-list-description-price">${price}원</div>
           </div>
           <div class="container-productListByCategory-list-description-type">
             <div class="productListByCategory-list-description-type"

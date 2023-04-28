@@ -105,6 +105,8 @@ div.productListByCategory {
 }
 
 ul.productListByCategory-list-ul {
+  width: 900px;
+
   display: flex;
   flex-wrap: wrap;
 
