@@ -28,7 +28,7 @@ function updateUI() {
             <td>${obj.pokemonName}</td>
             <td>${obj.pokemonType}</td>
             <td>${obj.price}</td>
-            <td><button class="btn-my-orders">수정</button></td>
+            <td><a href="/admins/pokemons/${obj._id}/edit"><button class="btn-my-orders">수정</button></a></td>
             <td><button class="btn-my-orders delete-btn" data-index="${index}">삭제</button></td>
           </tr>
         `;
@@ -64,3 +64,12 @@ async function getData() {
 }
 
 getData();
+
+// 클릭하면 해당 포켓몬의 ID값을 추출하여 페이지 이동
+const editBtns = document.querySelectorAll(".btn-my-orders");
+editBtns.forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    const pokemonId = btn.getAttribute("href").split("/")[3];
+    window.location.href = "/admins/pokemons/" + pokemonId + "/edit";
+  });
+});

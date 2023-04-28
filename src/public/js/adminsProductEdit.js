@@ -3,12 +3,13 @@ const photoUpload = document.getElementById("photo-upload");
 const preview = document.getElementById("preview");
 
 // 입력 필드
-const inputCh1 = document.querySelector("#prodeuct-name");
-const inputCh2 = document.querySelector("#items");
-const inputCh3 = document.querySelector("#summary");
-// const inputCh4 = document.querySelector("#detailed-description");
-// const inputCh5 = document.querySelector("#inventory");
-const inputCh6 = document.querySelector("#price");
+const inputCh1 = document.querySelector("#prodeuct-name"); // 상품명
+const inputCh2 = document.querySelector("#items"); // 카테고리
+const inputCh3 = document.querySelector("#inventory"); // 설명
+// const inputCh4 = document.querySelector("#detailed-description"); // 자세한설명
+const inputCh5 = document.querySelector("#inventory"); // 번호
+const inputCh6 = document.querySelector("#price"); // 가격
+const photo = document.querySelector("#photo-upload"); // 사진
 
 // 주소에서 포켓몬 id값 추출
 const currUrl = window.location.href.split("/");
@@ -40,8 +41,8 @@ async function updateInfo() {
       break;
     }
   }
-  inputCh3.value = price;
-  inputCh6.value = detailInfo;
+  inputCh3.value = detailInfo;
+  inputCh6.value = price;
 }
 
 updateInfo();
