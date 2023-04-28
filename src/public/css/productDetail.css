@@ -101,7 +101,7 @@ div.description-name {
 }
 
 div.container-description-type {
-  /* width: 15%; */
+  width: 15%;
 
   display: flex;
   align-items: center;
@@ -110,12 +110,12 @@ div.container-description-type {
 }
 
 div.description-type {
-  /* width: 100%; */
+  /* width: 80%; */
 
   background-color: gainsboro;
   color: white;
 
-  font-size: 100%;
+  font-size: 120%;
   font-weight: bold;
 
   text-align: center;
@@ -123,7 +123,7 @@ div.description-type {
   border: 1px solid black;
   border-radius: 100px;
 
-  padding: 5% 15%;
+  padding: 5% 20%;
   margin: 0 2%;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }

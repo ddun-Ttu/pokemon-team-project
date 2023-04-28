@@ -9,7 +9,7 @@ const product = {
   pokemonPrice: 12500,
   detailInfo:
     "등껍질에 숨어 몸을 보호한다. 상대의 빈틈을 놓치지 않고 반격한다.",
-  pokemonType: "water",
+  pokemonType: "물",
 
   pokemonId: 0,
   pokemonNum: 0,
@@ -46,13 +46,13 @@ pricetoLocaleString = Number(pokemonPrice).toLocaleString();
 let typeColor;
 
 switch (pokemonType) {
-  case "water":
+  case "물":
     typeColor = "rgb(41, 146, 255)";
     break;
-  case "electric":
+  case "전기":
     typeColor = "rgb(255, 219, 0)";
     break;
-  case "grass":
+  case "풀":
     typeColor = "green";
     break;
 }

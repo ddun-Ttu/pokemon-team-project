@@ -18,7 +18,7 @@ const dummyData = [
     pokemonNum: 0,
     sumInfo: "",
     detailInfo: "",
-    pokemonType: "grass",
+    pokemonType: "풀",
   },
   {
     pokemonId: 2,
@@ -28,7 +28,7 @@ const dummyData = [
     pokemonPrice: 5000,
     checked: true,
 
-    pokemonType: "electric",
+    pokemonType: "전기",
     pokemonNum: "",
     sumInfo: "",
     detailInfo: "",
@@ -41,7 +41,7 @@ const dummyData = [
     pokemonPrice: 5000,
     checked: true,
 
-    pokemonType: "water",
+    pokemonType: "물",
     pokemonNum: 0,
     sumInfo: "",
     detailInfo: "",
@@ -101,7 +101,7 @@ function printInCartAndPaymentInformation() {
   let localStorageData = JSON.parse(localStorage.getItem("cart"));
 
   if (localStorageData == null) {
-    inCartAndpaymentInformationArea.innerHTML = "장바구니가 비었습니다.";
+    inCartAndpaymentInformationArea.innerHTML = `<div class="container-emptyCart"><div class="emptyCart">장바구니가 비었습니다.</div></div>`;
     return;
   } else {
     let resultInCartHTML = "";
@@ -160,7 +160,7 @@ function printInCartAndPaymentInformation() {
               </div>
             </div>
             <div class="container-productList-productPrice">
-              <div>${pokemonPrice}</div>
+              <div>${pokemonPrice.toLocaleString()}</div>
             </div>
             <div class="container-productList-multiplication">
               <div class="productList-multiple">X</div>
@@ -172,7 +172,7 @@ function printInCartAndPaymentInformation() {
               <div class="productList-equal">=</div>
             </div>
             <div class="container-productList-productTotalPrice">
-              <div>${pokemonPrice * quantity}</div>
+              <div>${(pokemonPrice * quantity).toLocaleString()}</div>
             </div>
             <div class="container-productList-deleteButton">
               <button class="productList-deleteButton">삭제</button>
@@ -198,24 +198,24 @@ function printInCartAndPaymentInformation() {
           </div>
           <div class="container-paymentInformation-productCount">
             <div class="paymentInformation-productCount1">상품 수</div>
-            <div class="paymentInformation-productCount2">${totalProductCount}</div>
+            <div class="paymentInformation-productCount2">${totalProductCount}개</div>
           </div>
           <div class="container-paymentInformation-productPrice">
             <div class="paymentInformation-productPrice1">상품 금액</div>
-            <div class="paymentInformation-productPrice2">${totalProductPrice}</div>
+            <div class="paymentInformation-productPrice2">${totalProductPrice.toLocaleString()}원</div>
           </div>
           <div class="container-paymentInformation-deliveryFee">
             <div class="paymentInformation-deliveryFee1">배송비</div>
-            <div class="paymentInformation-deliveryFee2">${deliveryFee}</div>
+            <div class="paymentInformation-deliveryFee2">${deliveryFee.toLocaleString()}원</div>
           </div>      
           <div class="container-paymentInformation-totalPrice">
             <div class="container-paymentInformation-totalPrice1">
               <div class="paymentInformation-totalPrice1">총 결제 금액</div>
             </div>
             <div class="container-paymentInformation-totalPrice2">
-              <div class="paymentInformation-totalPrice2">${
+              <div class="paymentInformation-totalPrice2">${(
                 totalProductPrice + deliveryFee
-              }원</div>
+              ).toLocaleString()}원</div>
             </div>
           </div>     
           <div class="container-paymentInformation-paymentButton">

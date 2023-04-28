@@ -11,26 +11,7 @@ async function makeCategoryBar() {
   // const res = fetch(`${common.API_URL}/???`);
   // const data = await JSON.parse(res);
 
-  // * 타입명 한글로 변경.
-  let data = ["water", "electric", "grass"];
-
-  // data.forEach((item, index) => {
-  //   let kor;
-
-  //   switch (item) {
-  //     case "water":
-  //       kor = "물";
-  //       break;
-  //     case "electric":
-  //       kor = "전기";
-  //       break;
-  //     case "grass":
-  //       kor = "풀";
-  //       break;
-  //   }
-
-  //   data[index] = kor;
-  // });
+  let data = ["물", "전기", "풀"];
 
   categoryListArray = ["전체", ...data];
 
@@ -40,25 +21,18 @@ async function makeCategoryBar() {
     let typeColor;
 
     switch (item) {
-      case "전체":
-        typeColor = "white";
-        break;
-      case "water":
+      case "물":
         typeColor = "rgb(41, 146, 255)";
         break;
-      case "electric":
+      case "전기":
         typeColor = "rgb(255, 219, 0)";
         break;
-      case "grass":
+      case "풀":
         typeColor = "green";
         break;
     }
 
-    if (item == "전체") {
-      categoryListLiHTML += `<li><a href="/category/${item}" class="selected" id=${item} style="color: ${typeColor}; border-left: solid 1px black;">${item}</a></li>`;
-    } else {
-      categoryListLiHTML += `<li><a href="/category/${item}" id=${item} style="color: ${typeColor}";>${item}</a></li>`;
-    }
+    categoryListLiHTML += `<li><a href="/category/${item}" id=${item} style="color: ${typeColor}";>${item}</a></li>`;
   });
 
   cartegoryBar_categoryList_ul.innerHTML += categoryListLiHTML;
@@ -108,26 +82,26 @@ async function makeProductList(category) {
   let product;
 
   for (i = 0; i < 50; i++) {
-    if (category == "water") {
+    if (category == "물") {
       product = {
         pokemonId: 1,
         pokemonName: "꼬부기",
         pokemonPrice: 12500,
-        pokemonType: "water",
+        pokemonType: "물",
       };
-    } else if (category == "electric") {
+    } else if (category == "전기") {
       product = {
         pokemonId: 2,
         pokemonName: "피카츄",
         pokemonPrice: 12500,
-        pokemonType: "electric",
+        pokemonType: "전기",
       };
-    } else if (category == "grass") {
+    } else if (category == "풀") {
       product = {
         pokemonId: 3,
         pokemonName: "이상해씨",
         pokemonPrice: 12500,
-        pokemonType: "grass",
+        pokemonType: "풀",
       };
     } else {
       product = {
@@ -200,13 +174,13 @@ async function makeProductList(category) {
       let typeColor;
 
       switch (pokemonType) {
-        case "water":
+        case "물":
           typeColor = "rgb(41, 146, 255)";
           break;
-        case "electric":
+        case "전기":
           typeColor = "rgb(255, 219, 0)";
           break;
-        case "grass":
+        case "풀":
           typeColor = "green";
           break;
       }

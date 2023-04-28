@@ -64,6 +64,10 @@ ul.cartegoryBar-categoryList-ul > li {
   overflow: hidden;
 }
 
+ul.cartegoryBar-categoryList-ul > li:nth-child(1) {
+  border-left: 1px solid black;
+}
+
 ul.cartegoryBar-categoryList-ul > li > a {
   flex-grow: 1;
 
@@ -151,7 +155,7 @@ div.container-productListByCategory-list-description-name {
 }
 
 div.productListByCategory-list-description-name {
-  font-size: 1.5rem;
+  font-size: 150%;
   font-weight: bold;
 }
 
@@ -188,7 +192,7 @@ div.productListByCategory-list-description-type {
   border: 1px solid black;
   border-radius: 100px;
 
-  padding: 3% 5% 3% 5%;
+  padding: 3% 7% 3% 7%;
   margin: 0 2%;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   /* text-shadow:1px 1px 1px #000; */

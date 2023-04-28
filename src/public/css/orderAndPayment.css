@@ -28,7 +28,7 @@ div.gridContainer-whole {
 
 div.gridItem-whole-deliveryInformationAndpaymentInformation {
   margin: 20px auto;
-  padding: 50px;
+  padding: 20px;
 
   grid-column: 2/3;
   grid-row: 3/4;
@@ -59,7 +59,7 @@ div.container-deliveryInformation {
 div.deliveryInformation {
   border: 1px solid #f0f0f0;
   box-shadow: 5px 5px 3px 0.5 #595959;
-  padding:40px;
+  padding: 40px;
 }
 
 div.container-deliveryInformation-subject {
@@ -190,15 +190,15 @@ div.container-paymentInformation {
 
 div.paymentInformation {
   background-color: #fff7e3;
-  padding: 40px;
+  padding: 20px;
 }
+
 .paymentInformation-subject > h4 {
   font-size: 20px;
   top: 100px;
   padding: 20px 0 20px 0;
   text-align: center;
   font-weight: 500;
-
 }
 
 div.container-paymentInformation-subject {
@@ -266,12 +266,12 @@ button.paymentInformation-paymentButton {
   width: 90%;
   padding: 16px;
   display: block;
-  margin:  40px 0 0 0;
+  margin: 40px 0 0 0;
   border: none;
   border-radius: 5px;
   font-size: 20px;
   font-weight: 600;
-  background-color: #FFC737;
+  background-color: #ffc737;
   color: white;
   cursor: pointer;
 }

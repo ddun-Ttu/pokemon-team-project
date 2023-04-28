@@ -221,7 +221,7 @@ div.container-productList-countHandle {
 }
 
 div.container-productList-productPrice {
-  width: 10%;
+  width: 13%;
 
   display: flex;
   justify-content: center;
@@ -229,7 +229,7 @@ div.container-productList-productPrice {
 }
 
 div.container-productList-multiplication {
-  width: 5%;
+  width: 3%;
 
   display: flex;
   justify-content: center;
@@ -237,7 +237,7 @@ div.container-productList-multiplication {
 }
 
 div.container-productList-productCount {
-  width: 10%;
+  width: 8%;
 
   display: flex;
   justify-content: center;
@@ -245,7 +245,7 @@ div.container-productList-productCount {
 }
 
 div.container-productList-equal {
-  width: 5%;
+  width: 3%;
 
   display: flex;
   justify-content: center;
@@ -253,7 +253,7 @@ div.container-productList-equal {
 }
 
 div.container-productList-productTotalPrice {
-  width: 10%;
+  width: 13%;
 
   display: flex;
   justify-content: center;
@@ -403,4 +403,20 @@ div.container-footer {
 }
 
 footer {
+}
+
+div.container-emptyCart {
+  width: 40%;
+  height: 100px;
+  border: solid 1px black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+div.emptyCart {
+  font-weight: bold;
 }

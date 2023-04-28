@@ -158,14 +158,14 @@ function orderButtonHandler() {
 
 // * 배송지 정보 확인 & 데이터 제작 & 데이터 전송.
 async function checkDeliveryData() {
-  const receiverName = receiverNameInput.value;
-  const receiverPhoneNumber = receiverPhoneNumberInput.value;
+  const receiver = receiverNameInput.value;
+  const phoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
   // const address1 = address1Input.value;
   const address2 = address2Input.value;
   // const request = requestSelectBox.value;
 
-  // if (!receiverName || !receiverPhoneNumber || !postalCode || !address2) {
+  // if (!receiver || !phoneNumber || !postalCode || !address2) {
   //   return alert("배송지 정보를 모두 입력해 주세요.")
   // };
 }
@@ -173,16 +173,18 @@ async function checkDeliveryData() {
 // * 서버로 보낼 데이터 제작 & 전송.
 async function makeAndSendOrderData() {
   // * 배송지 정보 데이터 제작.
-  const receiverName = receiverNameInput.value;
-  const receiverPhoneNumber = receiverPhoneNumberInput.value;
+  // const userId = ???;
+  const receiver = receiverNameInput.value;
+  const phoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
   const address1 = address1Input.value;
   const address2 = address2Input.value;
   const request = requestSelectBox.value;
 
   const data = {
-    receiverName,
-    receiverPhoneNumber,
+    // userId,
+    receiver,
+    phoneNumber,
     postalCode,
     address1,
     address2,
@@ -193,9 +195,9 @@ async function makeAndSendOrderData() {
   let orderProductData = [];
 
   orderData.forEach((item) => {
-    const { pokemonName, quantity } = item;
+    const { pokemonId, quantity } = item;
 
-    orderProductData.push({ pokemonName, quantity });
+    orderProductData.push({ pokemonId, quantity });
   });
 
   data.orderProductData = orderProductData;
@@ -203,7 +205,7 @@ async function makeAndSendOrderData() {
   // * api(url: '/', method: 'POST')
   const dataJson = JSON.stringify(data);
 
-  const apiUrl = `https://${window.location.hostname}:8190/api/order`;
+  const apiUrl = `${common.API_URL}/order`;
 
   const res = await fetch(apiUrl, {
     method: "POST",
