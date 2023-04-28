@@ -3,6 +3,12 @@ const confirmPasswordInput = document.querySelector("#account-confirmPassword");
 const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
 
+let signUpName = document.querySelector(".name").value;
+let signUpUsername = document.querySelector(".username").value;
+let signUpEmail = document.querySelector(".email").value;
+let signUpPassword = document.querySelector(".password").value;
+let siginUpConfirmPassword = document.querySelector(".confirmPassword").value;
+
 // 패스워드가 8글자인지 확인
 passwordInput.addEventListener("input", function () {
   console.log(passwordInput.value.length);
@@ -51,7 +57,8 @@ emailInput.addEventListener("input", function () {
 const signUpForm = document.querySelector("#sign-up-form");
 const signUpBut = document.querySelector("#saveButton");
 
-signUpBut.addEventListener("click", function (event) {
+signUpBut.addEventListener("click", async function (event) {
+  console.log("dsf");
   event.preventDefault();
   const singUpInputs = signUpForm.querySelectorAll("input");
 
@@ -65,7 +72,27 @@ signUpBut.addEventListener("click", function (event) {
   }
 
   //   모든 값이 채워지면 양식 제출
-  signUpForm.submit();
+  // signUpForm.submit();
+
+  // const test = signUpForm.submit();
+  // console.log(test);
+
+  const signupObj = {
+    userName: signUpName,
+    userId: signUpUsername,
+    email: signUpEmail,
+    password: signUpPassword,
+    confirmPassword: siginUpConfirmPassword,
+  };
+
+  // [POST] /api/users/signup 요청
+  await fetch(common.API_URL + "/api/users/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(signupObj),
+  });
 });
 
 // 가입양식을 제출하는 함수
@@ -74,13 +101,18 @@ function handleSignUpSubmit(event) {
   console.log(event);
   console.log("handleSignUpSubmit 함수 입니다");
 
-  // 사용자가 입력한 값 변수로 지정
-  const signUpName = document.querySelector(".name").value;
-  const signUpUsername = document.querySelector(".username").value;
-  const signUpEmail = document.querySelector(".email").value;
-  const signUpPassword = document.querySelector(".password").value;
-  const siginUpConfirmPassword =
-    document.querySelector(".confirmPassword").value;
+  // // 사용자가 입력한 값 변수로 지정
+  // const signUpName = document.querySelector(".name").value;
+  // const signUpUsername = document.querySelector(".username").value;
+  // const signUpEmail = document.querySelector(".email").value;
+  // const signUpPassword = document.querySelector(".password").value;
+  // const siginUpConfirmPassword =
+  //   document.querySelector(".confirmPassword").value;
+  signUpName = document.querySelector(".name").value;
+  signUpUsername = document.querySelector(".username").value;
+  signUpEmail = document.querySelector(".email").value;
+  signUpPassword = document.querySelector(".password").value;
+  siginUpConfirmPassword = document.querySelector(".confirmPassword").value;
 
   console.log("입력확인");
   console.log({

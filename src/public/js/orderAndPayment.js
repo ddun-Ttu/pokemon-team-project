@@ -161,9 +161,9 @@ async function checkDeliveryData() {
   const address2 = address2Input.value;
   // const request = requestSelectBox.value;
 
-  // if (!receiver || !phoneNumber || !postalCode || !address2) {
-  //   return alert("배송지 정보를 모두 입력해 주세요.")
-  // };
+  if (!receiver || !phoneNumber || !postalCode || !address2) {
+    return alert("배송지 정보를 모두 입력해 주세요.");
+  }
 }
 
 // * 서버로 보낼 데이터 제작 & 전송.
@@ -178,7 +178,7 @@ async function makeAndSendOrderData() {
   const request = requestSelectBox.value;
 
   const data = {
-    // userId,
+    userId: "지금 user 데이터가 없어서 임시로 써놓음",
     receiver,
     phoneNumber,
     postalCode,
@@ -201,7 +201,7 @@ async function makeAndSendOrderData() {
   // * api(url: '/', method: 'POST')
   const dataJson = JSON.stringify(data);
 
-  const apiUrl = `${common.API_URL}/orders`;
+  const apiUrl = `${common.API_URL}/api/orders`;
 
   const res = await fetch(apiUrl, {
     method: "POST",
@@ -235,6 +235,4 @@ async function makeAndSendOrderData() {
     console.log(res.status);
     alert("주문 실패. 다시 시도해주세요.");
   }
-
-  window.location.replace("./orderComplete.html");
 }
