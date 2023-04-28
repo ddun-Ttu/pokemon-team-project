@@ -179,3 +179,5 @@ async function makeProductList(category) {
     });
   }
 }
+
+// 해당 아이템 클릭시 페이지 넘어가기
