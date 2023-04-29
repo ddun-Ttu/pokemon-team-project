@@ -42,7 +42,6 @@ emailInput.addEventListener("input", function () {
     errorMessage.style.display = "block";
     emailInput.parentNode.insertBefore(errorMessage, emailInput.nextSibling);
   } else {
-    // errorMessage.textContent = '';
     errorMessage.style.display = "none";
   }
 });

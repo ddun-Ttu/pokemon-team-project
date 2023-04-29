@@ -47,6 +47,7 @@ function updateUI() {
       deleteItem(index);
       data.splice(index, 1);
       updateUI();
+      console.log(index);
     });
   });
 }

@@ -6,46 +6,45 @@ const address2Input = document.querySelector("#address2");
 const saveButton = document.querySelector("#saveButton");
 
 // 이벤트
-searchAddressButton.addEventListener('click', searchAddress);
-saveButton.addEventListener('click', doCheckout);
+searchAddressButton.addEventListener("click", searchAddress);
+saveButton.addEventListener("click", doCheckout);
 
 // 이벤트에 사용할 함수
 function searchAddress(e) {
-  e.preventDefault()
-    new daum.Postcode({
-      oncomplete: function (data) {
-        console.log(data);
-        let addr = '';
-        let extraAddr = '';
-  
-  
-        if (data.userSelectedType === 'R') {
-          addr = data.roadAddress;
-        } else {
-          addr = data.jibunAddress;
+  e.preventDefault();
+  new daum.Postcode({
+    oncomplete: function (data) {
+      console.log(data);
+      let addr = "";
+      let extraAddr = "";
+
+      if (data.userSelectedType === "R") {
+        addr = data.roadAddress;
+      } else {
+        addr = data.jibunAddress;
+      }
+
+      if (data.userSelectedType === "R") {
+        if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+          extraAddr += data.bname;
         }
-  
-        if (data.userSelectedType === 'R') {
-          if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-            extraAddr += data.bname;
-          }
-          if (data.buildingName !== '' && data.apartment === 'Y') {
-            extraAddr +=
-              extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
-          }
-          if (extraAddr !== '') {
-            extraAddr = ' (' + extraAddr + ')';
-          }
-        } else {
+        if (data.buildingName !== "" && data.apartment === "Y") {
+          extraAddr +=
+            extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
         }
-  
-        postalCodeInput.value = data.zonecode;
-        address1Input.value = `${addr} ${extraAddr}`;
-        address2Input.placeholder = '상세 주소를 입력해 주세요.';
-        address2Input.focus();
-      },
-    }).open();
-  }
+        if (extraAddr !== "") {
+          extraAddr = " (" + extraAddr + ")";
+        }
+      } else {
+      }
+
+      postalCodeInput.value = data.zonecode;
+      address1Input.value = `${addr} ${extraAddr}`;
+      address2Input.placeholder = "상세 주소를 입력해 주세요.";
+      address2Input.focus();
+    },
+  }).open();
+}
 
 async function doCheckout() {
   // 각 입력값 가져옴
