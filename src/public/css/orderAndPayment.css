@@ -8,8 +8,13 @@
 
 div.gridContainer-whole {
   display: grid;
-  grid-template-columns: auto 900px auto;
+  grid-template-columns: auto 1000px auto;
   grid-template-rows: 80px auto auto auto;
+}
+
+div.gridItem-whole-PageName {
+  grid-column: 2/3;
+  grid-row: 2/3;
 }
 
 /* 주문/결제 페이지 이름 */
@@ -17,7 +22,7 @@ div.gridContainer-whole {
   position: relative;
   font-size: 26px;
   margin-bottom: 30px;
-  top: 100px;
+  top: 50px;
   padding: 50px;
   text-align: center;
   font-weight: 700;
@@ -27,8 +32,9 @@ div.gridContainer-whole {
 /* 배송지 정보 & 결제 정보 */
 
 div.gridItem-whole-deliveryInformationAndpaymentInformation {
-  margin: 20px auto;
-  padding: 20px;
+  width: 80%;
+  margin: 0 auto;
+  /* padding: 20px; */
 
   grid-column: 2/3;
   grid-row: 3/4;

@@ -1,3 +1,7 @@
+// 서버를 붙이니까 카테고리 바의 e.preventDefault가 작동을 안 함.
+// then으로 붙이고.. 함수 하나에 다 때려넣으니까.. 어떻게 돌아가기는 함..
+// 일단 이렇게 두자.
+
 // * 카테고리 목록 생성.
 const cartegoryBar_categoryList_ul = document.querySelector(
   ".cartegoryBar-categoryList-ul"
@@ -5,6 +9,7 @@ const cartegoryBar_categoryList_ul = document.querySelector(
 
 let categoryListArray;
 
+// 서버에서 관리자가 지정한 카테고리 리스트를 가져옴.
 fetch(`${common.API_URL}/api/categories`)
   .then((res) => res.json())
   .then((res) => {
@@ -14,6 +19,7 @@ fetch(`${common.API_URL}/api/categories`)
     console.log(data);
     console.log(dataObj);
 
+    // 전체 카테고리를 맨 앞으로 놓기.
     categoryListArray = ["전체", ...data];
 
     let categoryListLiHTML = "";
@@ -39,11 +45,10 @@ fetch(`${common.API_URL}/api/categories`)
     cartegoryBar_categoryList_ul.innerHTML += categoryListLiHTML;
   })
   .then(() => {
+    // 카테고리 바 버튼에 리스너 부착.
     const allCategoryButton = document.querySelectorAll(
       ".cartegoryBar-categoryList-ul > li > a"
     );
-
-    console.log(allCategoryButton);
 
     let selectedCategory;
 
@@ -56,6 +61,7 @@ fetch(`${common.API_URL}/api/categories`)
     function eachCategoryHandler(e) {
       e.preventDefault();
 
+      // 카테고리 항목 클릭 시 해당 항목 배경색 변경.
       allCategoryButton.forEach((item, index) => {
         item.classList.remove("selected");
       });

@@ -1,23 +1,3 @@
-// * 앞으로/뒤로 가기 등으로 접근하면 안내 문구 출력.
-// window.onpageshow = function(event){
-//   if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
-//     document.write('잘못된 접근입니다!!!');
-//   }
-// };
-
-// // * 새로 고침, 뒤로 가기 등 브라우저 이벤트 방지.
-// window.addEventListener('beforeunload', (event) => {
-//   event.preventDefault();
-//   event.returnValue = '';
-// });
-
-// * 페이지 이동(구매 버튼 클릭이 아닌 다른 방법으로) 시 로컬 스토리지의 order 데이터 삭제.
-// - 이 데이터를 삭제하지 않으면 장바구니에서 넘어와도 오더 데이터가 잡히게 됨.
-// - cart 데이터는 남기기. cart 데이터는 주문 버튼 클릭으로 주문 완료 시에만 주문한 목록 삭제.
-window.addEventListener("unload", () => {
-  localStorage.removeItem("order");
-});
-
 // * paymentInformation
 const productNameAndProductCountArea = document.querySelector(
   ".paymentInformation-NameAndCountList-list-ul"
@@ -32,28 +12,21 @@ const finalPriceArea = document.querySelector(".paymentInformation-finalPrice");
 
 // * 상세 페이지에서 넘어왔는지 장바구니에서 넘어왔는지 구분 작업.
 // - 상세 페이지 출신이면 로컬 스토리지에 'order' 데이터가 존재할 것.
-// - 'order'가 없어도 장바구니에서 넘어온 'cart' 데이터는 존재 있을 것.
+// - 'order'가 없어도 장바구니에서 넘어온 'cart' 데이터가 존재할 것.
 const localStorageCartData = JSON.parse(localStorage.getItem("cart"));
-const localStorageOrderData = JSON.parse(localStorage.getItem("order"));
 
-// 더미데이터
-// localStorage.setItem('order', JSON.stringify(
-//   [{ id: 1,
-//   pokemonName: '이상해씨',
-//   type: '풀',
-//   price: 5000,
-//   quantity: 1,
-//   checked: true }]
-//   ))
+const localStorageOrderData = JSON.parse(localStorage.getItem("order"));
 
 let orderData;
 
+// * 주문/결제 페이지에서 다룰 상품 데이터 판별.
+// - cart(장바구니) or order(바로 구매).
 if (localStorageCartData == null && localStorageOrderData == null) {
   alert("잘못된 접근입니다.");
-  // 허용해선 안 될 방법으로 접근 시 출력될 페이지를 하나 만들어야겠음.
 } else if (localStorageOrderData !== null) {
   orderData = localStorageOrderData;
 } else {
+  // 장바구니에서 체크된 상품으로만 결제 정보 구성.
   orderData = localStorageCartData.filter((item) => {
     return item.checked == true;
   });
@@ -90,6 +63,7 @@ orderData.forEach((item, index) => {
 });
 
 // * 배송지 찾기 버튼 제작.
+// - 마지막 단계에서 클릭 시 지정된 칸으로 들어가질 않음.
 const searchAddressButton = document.querySelector("#searchAddressButton");
 
 searchAddressButton.addEventListener("click", searchAddress);
@@ -157,19 +131,23 @@ async function checkDeliveryData() {
   const receiver = receiverNameInput.value;
   const phoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
-  // const address1 = address1Input.value;
   const address2 = address2Input.value;
-  // const request = requestSelectBox.value;
 
+  // 주소 찾기 버튼이 안 돼서 일단 검사 과정은 생략시켜놓음.
   // if (!receiver || !phoneNumber || !postalCode || !address2) {
-  //   return alert("배송지 정보를 모두 입력해 주세요.")
-  // };
+  //   return alert("배송지 정보를 모두 입력해 주세요.");
+  // }
 }
 
 // * 서버로 보낼 데이터 제작 & 전송.
 async function makeAndSendOrderData() {
   // * 배송지 정보 데이터 제작.
-  // const userId = ???;
+
+  // 로그인 시 로컬 스토리지에 유저 정보를 저장하는 기능은 나중에 구현.
+  // const userId =
+  //   JSON.parse(localStorage.getItem('user')).userId;
+
+  const userId = "유저 정보";
   const receiver = receiverNameInput.value;
   const phoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
@@ -178,7 +156,7 @@ async function makeAndSendOrderData() {
   const request = requestSelectBox.value;
 
   const data = {
-    // userId,
+    userId,
     receiver,
     phoneNumber,
     postalCode,
@@ -187,7 +165,7 @@ async function makeAndSendOrderData() {
     request,
   };
 
-  // * 주문 정보 데이터 & 주문 확인 문구 제작.
+  // * 주문 정보 데이터 제작.
   let orderProductData = [];
 
   orderData.forEach((item) => {
@@ -196,9 +174,9 @@ async function makeAndSendOrderData() {
     orderProductData.push({ _id, quantity });
   });
 
+  // 주문 상품 정보를 배송지 정보에 필드값으로 삽입.
   data.orderProductData = orderProductData;
 
-  // * api(url: '/', method: 'POST')
   const dataJson = JSON.stringify(data);
 
   const apiUrl = `${common.API_URL}/orders`;
@@ -211,9 +189,10 @@ async function makeAndSendOrderData() {
     body: dataJson,
   });
 
-  // * 주문 성공 시.
-  if (res.ok) {
-    // * 주문 완료 데이터 삭제.
+  // * 주문 성공/실패.
+  // if (res.ok) {
+  // 지금 전송 구현이 안 돼서 임시로 true 지정.
+  if (true) {
     if (localStorageOrderData !== null) {
       localStorage.removeItem("order");
     } else {
@@ -227,14 +206,29 @@ async function makeAndSendOrderData() {
       }
     }
 
-    // * 결제 완료 페이지로 이동시키기.
     window.location.replace("./orderComplete.html");
-  }
-  // * 주문 실패 시.
-  else {
+  } else {
     console.log(res.status);
     alert("주문 실패. 다시 시도해주세요.");
   }
-
-  window.location.replace("./orderComplete.html");
 }
+
+// * 페이지 이동(구매 버튼 클릭이 아닌 다른 방법으로) 시 로컬 스토리지의 order 데이터 삭제.
+// - 이 데이터를 삭제하지 않으면 장바구니에서 넘어와도 오더 데이터가 잡히게 됨.
+// - cart 데이터는 남기기. cart 데이터는 주문 버튼 클릭으로 주문 완료 시에만 주문한 목록 삭제.
+window.addEventListener("unload", () => {
+  localStorage.removeItem("order");
+});
+
+// * 앞으로/뒤로 가기 등으로 접근하면 안내 문구 출력.
+// window.onpageshow = function(event){
+//   if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+//     document.write('잘못된 접근입니다!!!');
+//   }
+// };
+
+// // * 새로 고침, 뒤로 가기 등 브라우저 이벤트 방지.
+// window.addEventListener('beforeunload', (event) => {
+//   event.preventDefault();
+//   event.returnValue = '';
+// });
