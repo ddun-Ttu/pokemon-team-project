@@ -1,49 +1,44 @@
-const inCart = document.querySelector(".inCart-productList-ul");
-const paymentInformation = document.querySelector(".paymentInformation");
 const inCartAndpaymentInformationArea = document.querySelector(
   ".inCartAndpaymentInformation"
 );
+const inCart = document.querySelector(".inCart-productList-ul");
+const paymentInformation = document.querySelector(".paymentInformation");
 
 printInCartAndPaymentInformation();
 
+// * 장바구니 상품 정보 & 결제 정보 출력.
 function printInCartAndPaymentInformation() {
+  // 로컬 스토리지에서 장바구니 상품 정보를 꺼내옴.
   let localStorageData = JSON.parse(localStorage.getItem("cart"));
 
+  // 장바구니가 비어 있을 때.
   if (localStorageData == null) {
+    // 메세지 박스 출력.
     inCartAndpaymentInformationArea.innerHTML = `<div class="container-emptyCart"><div class="emptyCart">장바구니가 비었습니다.</div></div>`;
     return;
+    // 장바구니에 상품이 있을 때.
   } else {
-    let resultInCartHTML = "";
+    // 장바구니 상품 리스트 출력.
+    makeInCart();
 
-    makeInCartHTML();
+    // 장바구니 상품에 대한 결제 정보 출력.
+    makePaymentInformation();
 
-    inCart.innerHTML = resultInCartHTML;
-
-    let resultPaymentInformationHTML = "";
-
-    let totalProductCount = 0;
-    let totalProductPrice = 0;
-    let deliveryFee = 0;
-
-    makePaymentInformationHTML();
-
-    paymentInformation.innerHTML = resultPaymentInformationHTML;
-
-    // * inCartHTML 차례대로 배열에 넣기(루프 이용).
-    function makeInCartHTML() {
-      // 현재 로컬스토리지에 데이터가 세팅되어 있는 상황.
-      // 그 데이터 각각과 HTML 템플릿을 합성한 결과물을 배열 안에 모아주면 된다.
-      // 출력 횟수를 줄이는 게 좋으니까 변수에 할당하고 마지막에 innerHTML로 조작.
+    // * 장바구니 상품 리스트 출력 함수.
+    function makeInCart() {
+      let resultInCartHTML = "";
 
       localStorageData.forEach((item, index) => {
         let { _id, pokemonImage, pokemonName, quantity, price, checked } = item;
 
+        // 체크박스 상태 변경을 위한 값 할당.
         if (checked == true) {
           checked = "checked";
         } else {
           checked = "";
         }
 
+        // 장바구니 상품 리스트 템플릿을 가공하여 변수에 쌓음.
         resultInCartHTML += `
           <li class="inCart-productList-li">
             <div class="container-productList-checkbox">
@@ -89,9 +84,18 @@ function printInCartAndPaymentInformation() {
           </li>
           `;
       });
+
+      inCart.innerHTML = resultInCartHTML;
     }
 
-    function makePaymentInformationHTML() {
+    // 장바구니 상품에 대한 결제 정보 출력 함수.
+    function makePaymentInformation() {
+      let resultPaymentInformationHTML = "";
+
+      let totalProductCount = 0;
+      let totalProductPrice = 0;
+      let deliveryFee = 0;
+
       localStorageData.forEach((item) => {
         let { price, quantity, checked } = item;
 
@@ -132,31 +136,43 @@ function printInCartAndPaymentInformation() {
           </div>
           `;
       });
+      paymentInformation.innerHTML = resultPaymentInformationHTML;
     }
   }
 
+  // * 수량 변경 버튼 제작.
   const minusButton = document.querySelectorAll(".minusButton");
   const plusButton = document.querySelectorAll(".plusButton");
 
+  // 마이너스 버튼.
   localStorageData.forEach((item, index) => {
     minusButton[index].addEventListener("click", () => {
       if (item.quantity == 1) {
         alert("수량 설정은 1 이상만 가능합니다.");
       } else {
+        // 클릭 시 상품 데이터의 수량 -1.
         item.quantity--;
       }
       localStorage.setItem("cart", JSON.stringify(localStorageData));
+
+      // 변경된 데이터 반영을 위한 화면 재출력.
       printInCartAndPaymentInformation();
     });
 
+    // 플러스 버튼.
     plusButton[index].addEventListener("click", () => {
+      // 클릭 시 상품 데이터의 수량 +1.
       item.quantity++;
       localStorage.setItem("cart", JSON.stringify(localStorageData));
+
+      // 변경된 데이터 반영을 위한 화면 재출력.
       printInCartAndPaymentInformation();
     });
   });
 
+  // * 체크박스 기능 제작.
   const checkbox = document.querySelectorAll(".productList-checkbox");
+
   const superCheckbox = document.querySelector(
     ".head-selectAllAndcancleAllCheckbox"
   );
@@ -175,16 +191,21 @@ function printInCartAndPaymentInformation() {
       }
     }
 
+    // 체크박스 상태 조정에 따라 결제 정보 편입 상품 판별.
     eachCheckbox.addEventListener("click", () => {
       if (eachCheckbox.checked == false) {
         item.checked = false;
 
+        // 해당 상품의 장바구니 데이터 재설정.
         localStorage.setItem("cart", JSON.stringify(localStorageData));
+
+        // 변경된 데이터 반영을 위한 화면 재출력.
         printInCartAndPaymentInformation();
       } else if (eachCheckbox.checked == true) {
         item.checked = true;
 
         localStorage.setItem("cart", JSON.stringify(localStorageData));
+
         printInCartAndPaymentInformation();
       }
     });
@@ -209,11 +230,14 @@ function printInCartAndPaymentInformation() {
       });
     }
 
+    // 변경된 데이터로 장바구니 데이터 재설정.
     localStorage.setItem("cart", JSON.stringify(localStorageData));
 
+    // 변경된 데이터 반영을 위한 화면 재출력.
     printInCartAndPaymentInformation();
   }
 
+  // * 삭제 버튼 기능 제작.
   const deleteButton = document.querySelectorAll(".productList-deleteButton");
 
   localStorageData.forEach((item, index) => {
@@ -222,6 +246,8 @@ function printInCartAndPaymentInformation() {
     eachDeleteButton.addEventListener("click", (e) => {
       const target = e.target;
 
+      // 마지막 데이터를 삭제할 땐 cart 데이터 저장소 자체를 제거.
+      // 빈 배열이라도 남아 있으면 메세지 박스가 출력되지 않을 테니까.
       if (localStorageData.length == 1) {
         localStorage.removeItem("cart");
       } else {
