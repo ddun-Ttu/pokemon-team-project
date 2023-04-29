@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 등록</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/productRegistration.css" />
+  </head>
+  <body>
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
+    </div>
+
+    <!-- 상품등록 페이지 -->
+    <div class="container-sing-up">
+      <div class="form-div border-sing-up">
+        <form method="POST" enctype="multipart/form-data">
+          <h3>상품 등록</h3>
+          <div>
+            <p>상품명</p>
+            <input
+              id="prodeuct-name"
+              class="form-input-sing-up"
+              placeholder="피카츄"
+              type="text"
+            />
+          </div>
+          <div>
+            <p>번호 - id</p>
+            <input
+              id="inventory"
+              class="form-input-sing-up"
+              placeholder="0"
+              type="number"
+            />
+          </div>
+          <div>
+            <p>카테고리</p>
+            <select id="items" class="items-management-orders" name="items">
+              <option value="전체">전체</option>
+              <option value="전기">전기</option>
+              <option value="풀">풀</option>
+              <option value="물">물</option>
+            </select>
+          </div>
+          <div>
+            <p>가격</p>
+            <input
+              id="price"
+              class="form-input-sing-up"
+              placeholder="10000"
+              type="number"
+            />
+          </div>
+          <!-- <div>
+            <p>설명</p>
+            <textarea
+              id="summary"
+              class="form-input-sing-up"
+              name="message"
+              rows="4"
+              cols="40"
+              type="textarea"
+            ></textarea>
+          </div> -->
+
+          <div class="upload-container">
+            <label for="photo_upload">상품 사진</label>
+            <input
+              type="file"
+              id="photo_upload"
+              name="photo_upload"
+              accept="image/*"
+            />
+            <div>
+              <img src="#" alt="상품 등록 사진" id="preview" />
+            </div>
+          </div>
+          <!-- 2차 구현예정 
+            <div>
+              <p>검색 키워드</p>
+              <input class="form-input-sing-up search" placeholder="펫" type="text">
+              <button class="search-btn">추가하기</button>
+            </div>
+          -->
+          <!-- [POST] 포켓몬(상품) 생성 API 요청 -->
+          <button id="but-sing-up" class="but-sing-up">상품등록하기</button>
+          <a href="/admins/pokemons"> &#60; 상품관리 조회</a>
+        </form>
+      </div>
+    </div>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/common.js"></script>
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/productRegistration.js"></script>
+  </body>
+</html>

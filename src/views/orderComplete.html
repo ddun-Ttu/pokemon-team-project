@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주문 완료 페이지</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/orderComplete.css" />
+  </head>
+  <body>
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
+    </div>
+
+    <div class="gridContainer-whole">
+      <div class="gridItem-whole-PageName">
+        <!-- [시작] 그리드: 페이지 이름 -->
+        <div class="container-pageName">
+          <div class="pageName">
+            <div class="container-pageName-name-sub">
+              <span class="pageName-name-sub">장바구니 > 주문/결제 >&nbsp</span>
+            </div>
+            <div class="container-pageName-name">
+              <span class="pageName-name"> 주문 완료 </span>
+            </div>
+          </div>
+        </div>
+        <!-- [끝] 그리드: 페이지 이름 -->
+
+        <!-- [시작] 그리드: 주문완료 박스 -->
+        <div class="gridItem-whole-orderCompleteMessageBox">
+          <div class="container-orderCompleteMessageBox">
+            <div class="orderCompleteMessageBox">
+              <div class="container-orderCompleteMessageBox-subject">
+                <div class="orderCompleteMessageBox-subject">
+                  주문이 완료되었습니다.
+                </div>
+              </div>
+              <div class="container-orderCompleteMessageBox-button">
+                <div class="container-button-button1">
+                  <a href="/users/mypage/orders">
+                    <button class="button-button1">주문 내역 보기</button>
+                  </a>
+                </div>
+                <div class="container-button-button2">
+                  <a href="/pokemons">
+                    <button class="button-button2">쇼핑 계속 하기</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- [끝] 그리드: 주문완료 박스 -->
+
+        <!-- [시작] 그리드: 푸터 -->
+        <div class="gridItem-whole-footer">
+          <div class="container-footer">
+            <footer></footer>
+          </div>
+        </div>
+        <!-- [끝] 그리드: 푸터 -->
+      </div>
+    </div>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/orderComplete.js"></script>
+  </body>
+</html>

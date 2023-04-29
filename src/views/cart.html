@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장바구니</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/cart.css" />
+  </head>
+  <body>
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
+    </div>
+
+    <div class="gridContainer-whole">
+      <div class="gridItem-whole-PageName">
+        <div class="container-pageName">
+          <div class="pageName">
+            <div class="container-pageName-name">
+              <span class="pageName-name">장바구니</span>
+            </div>
+            <div class="container-pageName-name-sub">
+              <span class="pageName-name-sub"
+                >&nbsp> 주문/결제 > 주문 완료
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gridItem-whole-inCartAndpaymentInformation">
+        <div class="container-inCartAndpaymentInformation">
+          <div class="inCartAndpaymentInformation">
+            <div class="container-inCartAndpaymentInformation-inCart">
+              <div class="inCartAndpaymentInformation-inCart">
+                <div class="container-inCart-head">
+                  <div class="inCart-head">
+                    <div class="container-head-selectAllAndcancleAllCheckbox">
+                      <input
+                        class="head-selectAllAndcancleAllCheckbox"
+                        type="checkbox"
+                      />
+                    </div>
+                    <div class="container-head-productInformation">
+                      <div class="head-productInformation">상품 정보</div>
+                    </div>
+                    <div class="container-head-productPrice">
+                      <div class="head-productPrice">상품 금액</div>
+                    </div>
+                    <div class="container-head-deleteAllButton">
+                      <button class="head-deleteAllButton">전체 삭제</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container-inCart-productList">
+                  <div class="inCart-productList">
+                    <ul class="inCart-productList-ul">
+                      <!-- inCart 영역. js로 삽입 -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-paymentInformation">
+              <div class="paymentInformation">
+                <!-- paymentInformation 영역. js로 삽입 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gridItem-whole-footer">
+        <div class="container-footer">
+          <footer></footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/cart.js"></script>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+/* ready to css */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+div {
+  /* border: 1px solid; */
+}
+
+/* 레이아웃 */
+
+div.gridContainer-whole {
+  display: grid;
+  grid-template-columns: auto 900px auto;
+  grid-template-rows: 80px auto auto auto;
+}
+
+/* 네비게이션 바 */
+
+div.main-container {
+  grid-column: 1/4;
+  grid-row: 1/2;
+}
+
+/* 주문 페이지 이름 */
+
+div.gridItem-whole-PageName {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+div.container-pageName {
+  margin: 2% auto 4% auto;
+}
+
+div.pageName {
+  display: flex;
+}
+
+.container-pageName-name {
+  display: flex;
+
+  align-items: center;
+}
+
+span.pageName-name {
+  font-size: 150%;
+  font-weight: bold;
+}
+
+div.container-pageName-name-sub {
+  display: flex;
+
+  align-items: center;
+}
+
+span.container-pageName-name-sub {
+}
+
+/* 주문 완료 메세지 박스 */
+
+div.gridItem-whole-orderCompleteMessageBox {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+
+div.container-orderCompleteMessageBox {
+  width: 40%;
+
+  border: solid 1px;
+
+  margin: 0 auto;
+}
+
+div.orderCompleteMessageBox {
+  display: flex;
+  flex-direction: column;
+}
+
+div.container-orderCompleteMessageBox-subject {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+div.container-orderCompleteMessageBox-subject {
+  font-weight: bold;
+}
+
+div.container-orderCompleteMessageBox-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+div.container-orderCompleteMessageBox-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px 0 20px 0;
+}
+
+div.container-button-button1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-right: 2%;
+}
+
+button#button-button1 {
+  cursor: pointer;
+}
+
+div.container-button-button2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 2%;
+}
+
+button#button-button2 {
+  cursor: pointer;
+}
+
+/* 푸터 */
+
+div.gridItem-whole-footer {
+  grid-column: 1/4;
+  grid-row: 4/5;
+}
+
+div.container-footer {
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+}
