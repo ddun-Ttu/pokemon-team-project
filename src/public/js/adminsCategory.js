@@ -57,7 +57,7 @@ async function getData() {
   data = await response.json();
   updataUI();
   console.log(response);
-  // console.log("성공!!");
+  console.log("성공!!");
 }
 
 getData();

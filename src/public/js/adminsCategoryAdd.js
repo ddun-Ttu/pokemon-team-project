@@ -20,8 +20,8 @@ button.addEventListener("click", async function (e) {
     },
     body: JSON.stringify(categoryName),
   });
-  // console.log(categoryName);
-  // console.log(categoryId);
+  console.log(categoryName);
+  console.log(categoryId);
 
   // 주소에서 카테고리 id값 추출
   const currUrl = window.location.href.split("/");
@@ -57,33 +57,3 @@ button.addEventListener("click", async function (e) {
     // body: formData,
   });
 });
-
-//틀렸던 이유 찾자
-// const button = document.querySelector("#categories-but");
-// const categoriesName = document.querySelector("#categories-name");
-// const explanation = document.querySelector("#explanation");
-
-// //
-// button.addEventListener("click", async function (e) {
-//   e.preventDefault();
-//   const categoriesNameInput = categoriesName.value;
-//   // const explanationInput = explanation.value;
-
-//   const existingCategoryObjStr = localStorage.getItem("categoryObj");
-//   const categoryName = JSON.parse(existingCategoryObjStr);
-
-//   const updatedCategoryObjStr = JSON.stringify(categoryName);
-//   localStorage.setItem("categoryObj", updatedCategoryObjStr);
-
-//   categoriesName.value = "";
-
-//   // [POST] /api/categories 요청
-//   await fetch(common.API_URL + "/api/categories/", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(categoryName),
-//   });
-//   console.log(categoryName);
-// });

@@ -71,12 +71,6 @@ signUpBut.addEventListener("click", async function (event) {
     }
   }
 
-  //   모든 값이 채워지면 양식 제출
-  // signUpForm.submit();
-
-  // const test = signUpForm.submit();
-  // console.log(test);
-
   const signupObj = {
     userName: signUpName,
     userId: signUpUsername,

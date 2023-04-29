@@ -100,12 +100,6 @@ RegisterProduct.addEventListener("click", async (e) => {
   inputCh2.value = "전체";
   inputCh3.value = "";
   inputCh6.value = "";
-  // existingCategoryObj.push(categoryObj);
-
-  // 위에서 담은 상수를 JSON 후 setitem으로 담기
-  // const updatedCategoryObjStr = JSON.stringify(existingCategoryObj);
-  // const updatedCategoryObjStr = JSON.stringify(categoryObj);
-  // localStorage.setItem("registratObj", updatedCategoryObjStr);
 
   // multer 전송위한 form 데이터 설정용
   const formData = new FormData();
@@ -119,8 +113,6 @@ RegisterProduct.addEventListener("click", async (e) => {
   for (let key of formData.keys()) {
     console.log(key, ":", formData.get(key));
   }
-
-  // console.log(categoryObj);
 
   // [POST] /api/pokemons 요청
   await fetch(common.API_URL + "/api/pokemons", {
