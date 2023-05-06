@@ -1,33 +1,33 @@
 // * paymentInformation
 const productNameAndProductCountArea = document.querySelector(
-  ".paymentInformation-NameAndCountList-list-ul"
+  '.paymentInformation-NameAndCountList-list-ul',
 );
 const productTotalPriceArea = document.querySelector(
-  ".paymentInformation-productTotalPrice"
+  '.paymentInformation-productTotalPrice',
 );
 const deliveryFeeArea = document.querySelector(
-  ".paymentInformation-deliveryFee-deliveryFee"
+  '.paymentInformation-deliveryFee-deliveryFee',
 );
-const finalPriceArea = document.querySelector(".paymentInformation-finalPrice");
+const finalPriceArea = document.querySelector('.paymentInformation-finalPrice');
 
 // * 상세 페이지에서 넘어왔는지 장바구니에서 넘어왔는지 구분 작업.
 // - 상세 페이지 출신이면 로컬 스토리지에 'order' 데이터가 존재할 것.
 // - 'order'가 없어도 장바구니에서 넘어온 'cart' 데이터가 존재할 것.
-const localStorageCartData = JSON.parse(localStorage.getItem("cart"));
+const localStorageCartData = JSON.parse(localStorage.getItem('cart'));
 
-const localStorageOrderData = JSON.parse(localStorage.getItem("order"));
+const localStorageOrderData = JSON.parse(localStorage.getItem('order'));
 
 let orderData;
 
 // * 주문/결제 페이지에서 다룰 상품 데이터 판별.
 // - cart(장바구니) or order(바로 구매).
 if (localStorageCartData == null && localStorageOrderData == null) {
-  alert("잘못된 접근입니다.");
+  alert('잘못된 접근입니다.');
 } else if (localStorageOrderData !== null) {
   orderData = localStorageOrderData;
 } else {
   // 장바구니에서 체크된 상품으로만 결제 정보 구성.
-  orderData = localStorageCartData.filter((item) => {
+  orderData = localStorageCartData.filter(item => {
     return item.checked == true;
   });
 }
@@ -36,7 +36,7 @@ let dataProductTotalPrice;
 let dataDeliveryFee;
 let dataFinalPrice;
 
-let productListHTML = "";
+let productListHTML = '';
 let productTotalPrice = 0;
 let deliveryFee = 0;
 
@@ -64,58 +64,58 @@ orderData.forEach((item, index) => {
 
 // * 배송지 찾기 버튼 제작.
 // - 마지막 단계에서 클릭 시 지정된 칸으로 들어가질 않음.
-const searchAddressButton = document.querySelector("#searchAddressButton");
+const searchAddressButton = document.querySelector('#searchAddressButton');
 
-searchAddressButton.addEventListener("click", searchAddress);
+searchAddressButton.addEventListener('click', searchAddress);
 
 function searchAddress() {
   new daum.Postcode({
     oncomplete: function (data) {
-      let addr = "";
-      let extraAddr = "";
+      let addr = '';
+      let extraAddr = '';
 
-      if (data.userSelectedType === "R") {
+      if (data.userSelectedType === 'R') {
         addr = data.roadAddress;
       } else {
         addr = data.jibunAddress;
       }
 
-      if (data.userSelectedType === "R") {
-        if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+      if (data.userSelectedType === 'R') {
+        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
           extraAddr += data.bname;
         }
-        if (data.buildingName !== "" && data.apartment === "Y") {
+        if (data.buildingName !== '' && data.apartment === 'Y') {
           extraAddr +=
-            extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
+            extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
         }
-        if (extraAddr !== "") {
-          extraAddr = " (" + extraAddr + ")";
+        if (extraAddr !== '') {
+          extraAddr = ' (' + extraAddr + ')';
         }
       } else {
       }
 
       postalCodeInput.value = data.zonecode;
       address1Input.value = `${addr} ${extraAddr}`;
-      address2Input.placeholder = "상세 주소를 입력해 주세요.";
+      address2Input.placeholder = '상세 주소를 입력해 주세요.';
       address2Input.focus();
     },
   }).open();
 }
 
 // * 구매하기 버튼 클릭 시 배송지 & 주문 상품 데이터 서버로 전송.
-const receiverNameInput = document.querySelector("#receiverName");
-const receiverPhoneNumberInput = document.querySelector("#receiverPhoneNumber");
-const postalCodeInput = document.querySelector("#postalCode");
-const address1Input = document.querySelector("#address1");
-const address2Input = document.querySelector("#address2");
-const requestSelectBox = document.querySelector("#requestSelectBox");
+const receiverNameInput = document.querySelector('#receiverName');
+const receiverPhoneNumberInput = document.querySelector('#receiverPhoneNumber');
+const postalCodeInput = document.querySelector('#postalCode');
+const address1Input = document.querySelector('#address1');
+const address2Input = document.querySelector('#address2');
+const requestSelectBox = document.querySelector('#requestSelectBox');
 
-const orderButton = document.querySelector("#orderButton");
+const orderButton = document.querySelector('#orderButton');
 
-orderButton.addEventListener("click", orderButtonHandler);
+orderButton.addEventListener('click', orderButtonHandler);
 
 function orderButtonHandler() {
-  const result = confirm("주문을 진행합니다.");
+  const result = confirm('주문을 진행합니다.');
 
   if (result) {
     // 입력받은 배송지 정보 체크.
@@ -147,7 +147,7 @@ async function makeAndSendOrderData() {
   // const userId =
   //   JSON.parse(localStorage.getItem('user')).userId;
 
-  const userId = "유저 정보";
+  const userId = '유저 정보';
   const receiver = receiverNameInput.value;
   const phoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
@@ -168,7 +168,7 @@ async function makeAndSendOrderData() {
   // * 주문 정보 데이터 제작.
   let orderProductData = [];
 
-  orderData.forEach((item) => {
+  orderData.forEach(item => {
     const { _id, quantity } = item;
 
     orderProductData.push({ _id, quantity });
@@ -182,9 +182,9 @@ async function makeAndSendOrderData() {
   const apiUrl = `${common.API_URL}/orders`;
 
   const res = await fetch(apiUrl, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: dataJson,
   });
@@ -194,30 +194,30 @@ async function makeAndSendOrderData() {
   // 지금 전송 구현이 안 돼서 임시로 true 지정.
   if (true) {
     if (localStorageOrderData !== null) {
-      localStorage.removeItem("order");
+      localStorage.removeItem('order');
     } else {
-      const checkedFalseCartData = localStorageCartData.filter((item) => {
+      const checkedFalseCartData = localStorageCartData.filter(item => {
         return item.checked == false;
       });
       if (checkedFalseCartData.length == 0) {
-        localStorage.removeItem("cart");
+        localStorage.removeItem('cart');
       } else {
-        localStorage.setItem("cart", JSON.stringify(checkedFalseCartData));
+        localStorage.setItem('cart', JSON.stringify(checkedFalseCartData));
       }
     }
 
-    window.location.replace("./orderComplete.html");
+    window.location.replace('./orderComplete.html');
   } else {
     console.log(res.status);
-    alert("주문 실패. 다시 시도해주세요.");
+    alert('주문 실패. 다시 시도해주세요.');
   }
 }
 
 // * 페이지 이동(구매 버튼 클릭이 아닌 다른 방법으로) 시 로컬 스토리지의 order 데이터 삭제.
 // - 이 데이터를 삭제하지 않으면 장바구니에서 넘어와도 오더 데이터가 잡히게 됨.
 // - cart 데이터는 남기기. cart 데이터는 주문 버튼 클릭으로 주문 완료 시에만 주문한 목록 삭제.
-window.addEventListener("unload", () => {
-  localStorage.removeItem("order");
+window.addEventListener('unload', () => {
+  localStorage.removeItem('order');
 });
 
 // * 앞으로/뒤로 가기 등으로 접근하면 안내 문구 출력.

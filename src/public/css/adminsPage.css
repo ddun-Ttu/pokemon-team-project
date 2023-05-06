@@ -1,4 +1,3 @@
-
 .contents-management-page > h3 {
   position: relative;
   font-size: 26px;
@@ -11,7 +10,7 @@
 .flex-management-page {
   padding: 100px;
   display: flex;
-  flex-wrap : wrap;
+  flex-wrap: wrap;
 }
 .item-management-page {
   width: 32%;

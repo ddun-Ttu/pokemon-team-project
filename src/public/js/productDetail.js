@@ -1,7 +1,7 @@
-const detail = document.querySelector(".detail");
-const putInCartButton = document.querySelector(".description-cart");
-const orderNowButton = document.querySelector(".description-order");
-const countInput = document.querySelector("#count");
+const detail = document.querySelector('.detail');
+const putInCartButton = document.querySelector('.description-cart');
+const orderNowButton = document.querySelector('.description-order');
+const countInput = document.querySelector('#count');
 const pathname = window.location.pathname;
 makeDetail();
 
@@ -18,19 +18,19 @@ async function makeDetail() {
   let typeColor;
 
   switch (pokemonType) {
-    case "물":
-      typeColor = "rgb(41, 146, 255)";
+    case '물':
+      typeColor = 'rgb(41, 146, 255)';
       break;
-    case "전기":
-      typeColor = "rgb(255, 219, 0)";
+    case '전기':
+      typeColor = 'rgb(255, 219, 0)';
       break;
-    case "풀":
-      typeColor = "green";
+    case '풀':
+      typeColor = 'green';
       break;
   }
 
-  const detailImage = document.querySelector(".container-detail-image");
-  const detailDescriptionOne = document.querySelector(".one");
+  const detailImage = document.querySelector('.container-detail-image');
+  const detailDescriptionOne = document.querySelector('.one');
 
   detailImage.innerHTML = `
 <div class="detail-image">
@@ -57,12 +57,12 @@ async function makeDetail() {
 </div>
 `;
 
-  putInCartButton.addEventListener("click", putInCartButtonHandler);
+  putInCartButton.addEventListener('click', putInCartButtonHandler);
 
-  orderNowButton.addEventListener("click", orderNowButtonHandler);
+  orderNowButton.addEventListener('click', orderNowButtonHandler);
 
   function putInCartButtonHandler() {
-    let alreadyInCartData = JSON.parse(localStorage.getItem("cart"));
+    let alreadyInCartData = JSON.parse(localStorage.getItem('cart'));
 
     const count = Number(countInput.options[countInput.selectedIndex].value);
 
@@ -82,10 +82,10 @@ async function makeDetail() {
       alreadyInCartData = [];
       alreadyInCartData.push(data);
 
-      localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+      localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
     } else {
       const findedIndex = alreadyInCartData.findIndex(
-        (item) => item.pokemonName == pokemonName
+        item => item.pokemonName == pokemonName,
       );
 
       if (alreadyInCartData !== null && findedIndex == -1) {
@@ -94,10 +94,10 @@ async function makeDetail() {
 
         alreadyInCartData.push(data);
 
-        localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+        localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
       } else {
         alreadyInCartData[findedIndex].quantity += count;
-        localStorage.setItem("cart", JSON.stringify(alreadyInCartData));
+        localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
       }
     }
   }
@@ -115,8 +115,8 @@ async function makeDetail() {
       },
     ];
 
-    localStorage.setItem("order", JSON.stringify(data));
+    localStorage.setItem('order', JSON.stringify(data));
 
-    window.location = "/orders";
+    window.location = '/orders';
   }
 }

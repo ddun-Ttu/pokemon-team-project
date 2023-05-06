@@ -14,7 +14,7 @@
 }
 
 .form-login {
-    width: 400px;
+  width: 400px;
 }
 
 .input-login > input {
@@ -46,19 +46,18 @@
   color: #ababab;
   padding: 30px;
 }
-.p-login > p >span {
-    padding: 3px;
+.p-login > p > span {
+  padding: 3px;
 }
 
 .serve-login {
-    margin-top: 40px;
- 
+  margin-top: 40px;
 }
 
 .contents-login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
 }

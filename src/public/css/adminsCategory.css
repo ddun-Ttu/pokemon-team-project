@@ -10,17 +10,18 @@ table {
   width: 100%;
 }
 
-th, td {
+th,
+td {
   text-align: center;
   padding: 20px;
 }
 
 th {
-  background-color: #ffe8ae;;
+  background-color: #ffe8ae;
 }
 
 tbody tr:nth-child(even) {
-  background-color: #fff3d6;;
+  background-color: #fff3d6;
 }
 
 /* tbody tr:hover {
@@ -59,7 +60,6 @@ tbody tr:nth-child(even) {
 /* 버튼 */
 .div-mypage {
   padding: 10px;
-
 }
 
 .flex-mypage {
@@ -73,7 +73,6 @@ tbody tr:nth-child(even) {
 .button-admins-cotegories {
   padding: 15px;
   margin: auto;
-  
 }
 
 .items-management-orders {
@@ -85,5 +84,3 @@ tbody tr:nth-child(even) {
   cursor: pointer;
   background-color: #ffecbc;
 }
-
-

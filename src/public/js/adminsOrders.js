@@ -37,14 +37,14 @@
 //   },
 // ];
 
-const orderCount = document.querySelector("#order-count");
-const prepareCount = document.querySelector("#prepare-count");
-const deliveryCount = document.querySelector("#delivery-count");
-const completeCount = document.querySelector("#complete-count");
+const orderCount = document.querySelector('#order-count');
+const prepareCount = document.querySelector('#prepare-count');
+const deliveryCount = document.querySelector('#delivery-count');
+const completeCount = document.querySelector('#complete-count');
 
 // 로컬에 저장하기
-localStorage.setItem("orderDummy", JSON.stringify(dummyData));
-const dummyStr = localStorage.getItem("orderDummy");
+localStorage.setItem('orderDummy', JSON.stringify(dummyData));
+const dummyStr = localStorage.getItem('orderDummy');
 const updatedDummyObjStr = JSON.parse(dummyStr);
 // console.log(updatedDummyObjStr);
 
@@ -52,13 +52,13 @@ const updatedDummyObjStr = JSON.parse(dummyStr);
 if (updatedDummyObjStr) {
   const orderHtml = updatedDummyObjStr
     .map((obj, index) => {
-      let itemValue = "";
-      if (obj.item === "상품준비중") {
-        itemValue = "상품준비중";
-      } else if (obj.item === "상품배송중") {
-        itemValue = "상품배송중";
-      } else if (obj.item === "배송완료") {
-        itemValue = "배송완료";
+      let itemValue = '';
+      if (obj.item === '상품준비중') {
+        itemValue = '상품준비중';
+      } else if (obj.item === '상품배송중') {
+        itemValue = '상품배송중';
+      } else if (obj.item === '배송완료') {
+        itemValue = '배송완료';
       }
 
       return `
@@ -76,12 +76,12 @@ if (updatedDummyObjStr) {
     </tr>
     `;
     })
-    .join("");
+    .join('');
 
-  const listOrder = document.querySelector("#list-orders");
+  const listOrder = document.querySelector('#list-orders');
   listOrder.innerHTML = orderHtml;
 
-  const count = updatedDummyObjStr.map((obj) => {
+  const count = updatedDummyObjStr.map(obj => {
     const total = {
       prepareCount: 0,
       deliveryCount: 0,
@@ -89,14 +89,14 @@ if (updatedDummyObjStr) {
     };
 
     // 상태관리 수 체크
-    if (obj.item === "상품준비중") {
+    if (obj.item === '상품준비중') {
       total.prepareCount += 1;
       console.log(total.prepareCount);
       prepareCount.innerHTML = total.prepareCount;
-    } else if (obj.item === "상품배송중") {
+    } else if (obj.item === '상품배송중') {
       total.deliveryCount += 1;
       deliveryCount.innerHTML = total.deliveryCount;
-    } else if (obj.item === "배송완료") {
+    } else if (obj.item === '배송완료') {
       total.completeCount += 1;
       completeCount.innerHTML = total.completeCount;
     }
@@ -111,9 +111,9 @@ if (dummyLength > 0) {
 }
 
 // 삭제
-const deleteBtns = document.querySelectorAll(".delete-btn");
-deleteBtns.forEach((btn) => {
-  btn.addEventListener("click", function (e) {
+const deleteBtns = document.querySelectorAll('.delete-btn');
+deleteBtns.forEach(btn => {
+  btn.addEventListener('click', function (e) {
     e.preventDefault();
 
     const index = parseInt(btn.dataset.index);
@@ -122,17 +122,17 @@ deleteBtns.forEach((btn) => {
     // 해당 인덱스 삭제
     dummyData.splice(index, 1);
     const dummyObjStr = JSON.stringify(dummyData);
-    localStorage.setItem("orderDummy", dummyObjStr);
+    localStorage.setItem('orderDummy', dummyObjStr);
 
-    btn.closest("tr").remove();
+    btn.closest('tr').remove();
   });
 });
 
 // 셀렉터 로컬에 저장하기
-const itemSelect = document.querySelector("#items");
+const itemSelect = document.querySelector('#items');
 
-itemSelect.addEventListener("change", function () {
+itemSelect.addEventListener('change', function () {
   const selectValue = itemSelect.value;
   console.log(selectValue);
-  localStorage.setItem("selectItem", selectValue);
+  localStorage.setItem('selectItem', selectValue);
 });

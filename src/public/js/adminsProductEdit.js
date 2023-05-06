@@ -1,32 +1,32 @@
-const RegisterProduct = document.querySelector("#but-sing-up");
-const photoUpload = document.getElementById("photo-upload");
-const preview = document.getElementById("preview");
+const RegisterProduct = document.querySelector('#but-sing-up');
+const photoUpload = document.getElementById('photo-upload');
+const preview = document.getElementById('preview');
 
 // 입력 필드
-const inputCh1 = document.querySelector("#prodeuct-name"); // 상품명
-const inputCh2 = document.querySelector("#items"); // 카테고리
-const inputCh3 = document.querySelector("#inventory"); // 설명
+const inputCh1 = document.querySelector('#prodeuct-name'); // 상품명
+const inputCh2 = document.querySelector('#items'); // 카테고리
+const inputCh3 = document.querySelector('#inventory'); // 설명
 // const inputCh4 = document.querySelector("#detailed-description"); // 자세한설명
-const inputCh5 = document.querySelector("#inventory"); // 번호
-const inputCh6 = document.querySelector("#price"); // 가격
-const photo = document.querySelector("#photo-upload"); // 사진
+const inputCh5 = document.querySelector('#inventory'); // 번호
+const inputCh6 = document.querySelector('#price'); // 가격
+const photo = document.querySelector('#photo-upload'); // 사진
 
 // 주소에서 포켓몬 id값 추출
-const currUrl = window.location.href.split("/");
+const currUrl = window.location.href.split('/');
 currUrl.pop();
 const pokemonId = currUrl.pop();
 console.log(pokemonId);
 
 // GET 요청을 통해 기존 정보 업데이트
 async function updateInfo() {
-  console.log("Get 요청 시작");
+  console.log('Get 요청 시작');
   let id = pokemonId; // Objectid값
-  console.log("id:", id);
+  console.log('id:', id);
   let testobj = { _id: id };
-  console.log("obj:", testobj);
+  console.log('obj:', testobj);
   console.log(JSON.stringify(testobj));
-  const response = await fetch(common.API_URL + "/api/pokemons/" + id, {
-    method: "GET",
+  const response = await fetch(common.API_URL + '/api/pokemons/' + id, {
+    method: 'GET',
   });
 
   // 기존 정보로 업데이트
@@ -48,11 +48,11 @@ async function updateInfo() {
 updateInfo();
 
 // 사진 등록
-photoUpload.addEventListener("change", function () {
+photoUpload.addEventListener('change', function () {
   const file = this.files[0];
   const reader = new FileReader();
 
-  reader.addEventListener("load", function () {
+  reader.addEventListener('load', function () {
     preview.src = reader.result;
   });
 
@@ -74,8 +74,8 @@ async function checkInput(ev) {
   console.log(inputCh6.value);
 
   // 카테고리 확인
-  const select = document.getElementById("items");
-  select.addEventListener("change", function () {
+  const select = document.getElementById('items');
+  select.addEventListener('change', function () {
     const selectedValue = select.value;
     console.log(selectedValue);
   });
@@ -94,16 +94,16 @@ async function checkInput(ev) {
 
   // multer 전송위한 form 데이터 설정용
   const formData = new FormData();
-  formData.append("pokemonName", inputCh1.value);
-  formData.append("pokemonType", inputCh2.value);
-  formData.append("detailInfo", inputCh3.value);
-  formData.append("price", inputCh6.value);
-  formData.append("pokemonImage", photoInput);
+  formData.append('pokemonName', inputCh1.value);
+  formData.append('pokemonType', inputCh2.value);
+  formData.append('detailInfo', inputCh3.value);
+  formData.append('price', inputCh6.value);
+  formData.append('pokemonImage', photoInput);
 
   // [PUT] /api/pokemons/{pokemonId} 요청
   const id = pokemonId;
-  await fetch(common.API_URL + "/api/pokemons/" + id, {
-    method: "PUT",
+  await fetch(common.API_URL + '/api/pokemons/' + id, {
+    method: 'PUT',
     headers: {
       // "Content-Type": "application/json",
       // "Content-Type": "multipart/form-data",
@@ -115,4 +115,4 @@ async function checkInput(ev) {
   });
 }
 
-RegisterProduct.addEventListener("click", checkInput);
+RegisterProduct.addEventListener('click', checkInput);

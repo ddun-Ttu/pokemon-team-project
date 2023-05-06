@@ -1,10 +1,10 @@
 // api delete
 async function deleteItem(index) {
   const item = data[index];
-  const response = await fetch(common.API_URL + "/api/pokemons/" + item._id, {
-    method: "DELETE",
+  const response = await fetch(common.API_URL + '/api/pokemons/' + item._id, {
+    method: 'DELETE',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(item),
   });
@@ -14,7 +14,7 @@ async function deleteItem(index) {
 
 // 데이터 추가
 function updateUI() {
-  let adminsProductHtml = "";
+  let adminsProductHtml = '';
   if (data) {
     adminsProductHtml = data
       .map((obj, index) => {
@@ -33,15 +33,15 @@ function updateUI() {
           </tr>
         `;
       })
-      .join("");
+      .join('');
   }
-  const listProduct = document.querySelector("#list-orders");
+  const listProduct = document.querySelector('#list-orders');
   listProduct.innerHTML = adminsProductHtml;
 
   // 클릭하면 해당 인덱스 값을 찾아서 삭제
-  const deleteBtns = document.querySelectorAll(".delete-btn");
-  deleteBtns.forEach((btn) => {
-    btn.addEventListener("click", function (e) {
+  const deleteBtns = document.querySelectorAll('.delete-btn');
+  deleteBtns.forEach(btn => {
+    btn.addEventListener('click', function (e) {
       e.preventDefault();
       const index = parseInt(btn.dataset.index);
       deleteItem(index);
@@ -56,8 +56,8 @@ let data = [];
 
 //api get
 async function getData() {
-  const response = await fetch(common.API_URL + "/api/pokemons", {
-    method: "GET",
+  const response = await fetch(common.API_URL + '/api/pokemons', {
+    method: 'GET',
   });
   data = await response.json();
   updateUI();
@@ -67,10 +67,10 @@ async function getData() {
 getData();
 
 // 클릭하면 해당 포켓몬의 ID값을 추출하여 페이지 이동
-const editBtns = document.querySelectorAll(".btn-my-orders");
-editBtns.forEach((btn) => {
-  btn.addEventListener("click", function (e) {
-    const pokemonId = btn.getAttribute("href").split("/")[3];
-    window.location.href = "/admins/pokemons/" + pokemonId + "/edit";
+const editBtns = document.querySelectorAll('.btn-my-orders');
+editBtns.forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    const pokemonId = btn.getAttribute('href').split('/')[3];
+    window.location.href = '/admins/pokemons/' + pokemonId + '/edit';
   });
 });

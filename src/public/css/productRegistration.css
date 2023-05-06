@@ -1,92 +1,90 @@
 .border-sing-up {
-    border: 1px solid #dedede;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(49, 49, 49, 0.1);
-
+  border: 1px solid #dedede;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(49, 49, 49, 0.1);
 }
 .form-div > form > h3 {
-    text-align: center;
-    padding: 20px;
-    font-size: 26px;
-    font-weight: 700;
-    color: #FFC737;
+  text-align: center;
+  padding: 20px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffc737;
 }
 .form-div > form > div > p {
-    padding: 8px;
-    font-weight: 500;
-    color: #262626;
+  padding: 8px;
+  font-weight: 500;
+  color: #262626;
 }
 .form-div > form > div {
-    margin: 24px;
+  margin: 24px;
 }
 .form-input-sing-up {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #dedede;
-    border-radius: 5px;
-    
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dedede;
+  border-radius: 5px;
 }
 .but-sing-up {
-    width: 90%;
-    padding: 16px;
-    display: block;
-    margin:  40px auto;
-    border: none;
-    border-radius: 5px;
-    font-size: 20px;
-    font-weight: 600;
-    background-color: #FFC737;
-    color: white;
-    cursor: pointer;
+  width: 90%;
+  padding: 16px;
+  display: block;
+  margin: 40px auto;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #ffc737;
+  color: white;
+  cursor: pointer;
 }
 
 .items-management-orders {
-    border: none;
-    width: 100%;
-    height: 46px;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 3px solid #ffecbc;
-  }
-  
-  .upload-container {
-    margin-top: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 500;
-    color: #262626;
-  }
-  
-  input[type="file"] {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: 14px;
-    color: #555;
-  }
+  border: none;
+  width: 100%;
+  height: 46px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 3px solid #ffecbc;
+}
 
-  .search {
-    width: 80%;
-  }
+.upload-container {
+  margin-top: 20px;
+}
 
-  .search-btn {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #FFC737;
-    color: white;
-    cursor: pointer;
-  }
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #262626;
+}
 
-  /* 이미지 */
-  #preview {
-    width: 100%;
-  }
+input[type='file'] {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #555;
+}
+
+.search {
+  width: 80%;
+}
+
+.search-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #ffc737;
+  color: white;
+  cursor: pointer;
+}
+
+/* 이미지 */
+#preview {
+  width: 100%;
+}

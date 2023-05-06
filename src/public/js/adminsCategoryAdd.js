@@ -1,22 +1,22 @@
-const button = document.querySelector("#categories-but");
-const categoriesName = document.querySelector("#categories-name");
-const explanation = document.querySelector("#explanation");
+const button = document.querySelector('#categories-but');
+const categoriesName = document.querySelector('#categories-name');
+const explanation = document.querySelector('#explanation');
 
-button.addEventListener("click", async function (e) {
+button.addEventListener('click', async function (e) {
   e.preventDefault();
 
   const categoryName = { categoryName: categoriesName.value };
 
   const updatedCategoryObjStr = JSON.stringify(categoryName);
-  localStorage.setItem("categoryObj", updatedCategoryObjStr);
+  localStorage.setItem('categoryObj', updatedCategoryObjStr);
 
-  categoriesName.value = "";
+  categoriesName.value = '';
 
   // [POST] /api/categories 요청
-  await fetch(common.API_URL + "/api/categories/", {
-    method: "POST",
+  await fetch(common.API_URL + '/api/categories/', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(categoryName),
   });
@@ -24,7 +24,7 @@ button.addEventListener("click", async function (e) {
   console.log(categoryId);
 
   // 주소에서 카테고리 id값 추출
-  const currUrl = window.location.href.split("/");
+  const currUrl = window.location.href.split('/');
   currUrl.pop();
   const categoryId = currUrl.pop();
   console.log(currUrl);
@@ -32,12 +32,12 @@ button.addEventListener("click", async function (e) {
   // GET 요청을 통해 기존 정보 업데이트
   async function updateInfo() {
     let id = categoryId; // Objectid값
-    console.log("id:", id);
+    console.log('id:', id);
     let testobj = { _id: id };
-    console.log("obj:", testobj);
+    console.log('obj:', testobj);
     console.log(JSON.stringify(testobj));
-    const response = await fetch(common.API_URL + "/api/categories/", {
-      method: "GET",
+    const response = await fetch(common.API_URL + '/api/categories/', {
+      method: 'GET',
     });
   }
 
@@ -45,10 +45,10 @@ button.addEventListener("click", async function (e) {
 
   // [PUT] /api/category/{categoryId} 요청
   const id = categoryId;
-  await fetch(common.API_URL + "/api/categories/" + id, {
-    method: "PUT",
+  await fetch(common.API_URL + '/api/categories/' + id, {
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       // "Content-Type": "multipart/form-data",
       // "Content-Type":
       //   "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
