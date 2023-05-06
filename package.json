@@ -4,7 +4,7 @@
   "description": "sw4-team14-webproj1",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node src/index.js"
+    "dev": "nodemon --exec babel-node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "@babel/core": "^7.21.4",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.21.4",
+    "nodemon": "^2.0.22",
     "prettier": "2.8.8"
   }
 }
