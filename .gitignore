@@ -1,4 +1,5 @@
 /node_modules
 
+/src/public/js/common/config.js
 .env
 .DS_Store

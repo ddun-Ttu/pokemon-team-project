@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Daum 주소 API 사용하기 위한 파일 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <title>회원정보 확인</title>
+    <link rel="stylesheet" href="/css/common/reset.css" />
+    <link rel="stylesheet" href="/css/common/index.css" />
+    <link rel="stylesheet" href="/css/usersMyConfirm.css" />
+  </head>
+
+  <body>
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
+    </div>
+
+    <!-- 회원정보 관리 - 사용자 확인 페이지 -->
+    <div class="container container-user-acc">
+      <div class="form-div border-user-acc">
+        <form>
+          <h3>회원 확인</h3>
+
+          <div>
+            <p>비밀번호</p>
+            <input
+              id="account-password"
+              class="form-input-user-acc"
+              placeholder="8자리 이상 입력해주세요"
+              type="password"
+            />
+            <p class="error-M block" id="password">8자리 이상 입력해주세요</p>
+          </div>
+          <div>
+            <p>비밀번호 확인</p>
+            <input
+              id="account-confirmPassword"
+              class="form-input-user-acc"
+              type="password"
+            />
+            <p class="error-M block" id="confirmPassword">
+              비밀번호가 다릅니다
+            </p>
+          </div>
+
+          <a class="link-a" href="/users/mypage/edit">
+            <button id="saveButton" class="but-user-acc">확인하기</button>
+          </a>
+        </form>
+      </div>
+    </div>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/usersMyConfirm.js"></script>
+  </body>
+</html>
