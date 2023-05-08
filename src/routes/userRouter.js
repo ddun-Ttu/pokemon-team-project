@@ -6,49 +6,49 @@ const userRouter = express.Router();
 
 // 회원가입 페이지
 userRouter.get('/signup', (req, res) => {
-  const PAGE_NAME = 'signUp';
+  const PAGE_NAME = 'usersSignup';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 로그인 페이지
 userRouter.get('/login', (req, res) => {
-  const PAGE_NAME = 'login';
+  const PAGE_NAME = 'usersLogin';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
-// 개인 페이지
+// 사용자 페이지
 userRouter.get('/mypage', (req, res) => {
-  const PAGE_NAME = 'myPage';
+  const PAGE_NAME = 'usersMy';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 사용자 확인 페이지
 userRouter.get('/mypage/confirm', (req, res) => {
-  const PAGE_NAME = 'userConfirmationPage';
+  const PAGE_NAME = 'usersMyConfirm';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 사용자 정보 수정 페이지
 userRouter.get('/mypage/edit', (req, res) => {
-  const PAGE_NAME = 'userAccount';
+  const PAGE_NAME = 'usersMyEdit';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 사용자 주문 목록 조회 페이지
 userRouter.get('/mypage/orders', (req, res) => {
-  const PAGE_NAME = 'orderStatus';
+  const PAGE_NAME = 'usersMyOrders';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 사용자 주문 수정 페이지
 userRouter.get('/mypage/orders/:orderId/edit', (req, res) => {
-  const PAGE_NAME = 'userEditOrder';
+  const PAGE_NAME = 'usersMyOrdersEdit';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
