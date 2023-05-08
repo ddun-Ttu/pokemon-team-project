@@ -12,7 +12,7 @@ div.container-fullScreen {
   width: 100vw;
   height: 100vh;
 
-  background-image: url('../../img/main.png');
+  background-image: url('/imgs/main.png');
   background-size: cover;
   background-position: center;
 
