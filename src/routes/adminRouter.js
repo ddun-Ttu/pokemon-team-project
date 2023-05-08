@@ -6,33 +6,33 @@ const adminRouter = express.Router();
 
 // 관리자 페이지
 adminRouter.get('/', (req, res) => {
-  const PAGE_NAME = 'adminsPage';
+  const PAGE_NAME = 'admins';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
-// 등록된 포켓몬(상품) 목록 조회 및 관리 페이지
-adminRouter.get('/pokemons', (req, res) => {
-  const PAGE_NAME = 'adminsProduct';
+// 상품 목록 조회 및 관리 페이지
+adminRouter.get('/products', (req, res) => {
+  const PAGE_NAME = 'adminsProducts';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
-// 새 포켓몬(상품) 추가 페이지
-adminRouter.get('/pokemons/add', (req, res) => {
-  const PAGE_NAME = 'productRegistration';
+// 상품 추가 페이지
+adminRouter.get('/products/add', (req, res) => {
+  const PAGE_NAME = 'adminsProductsAdd';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
-// 선택한 포켓몬(상품) 내용 수정 페이지
-adminRouter.get('/pokemons/:pokemonId/edit', (req, res) => {
-  const PAGE_NAME = 'adminsProductEdit';
+// 상품 수정 페이지
+adminRouter.get('/products/:productId/edit', (req, res) => {
+  const PAGE_NAME = 'adminsProductsEdit';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
-// 등록된 주문 목록 조회 및 관리 페이지
+// 주문 목록 조회 및 관리 페이지
 adminRouter.get('/orders', (req, res) => {
   const PAGE_NAME = 'adminsOrders';
 
@@ -41,21 +41,21 @@ adminRouter.get('/orders', (req, res) => {
 
 // 카테고리 목록 조회 및 관리 페이지
 adminRouter.get('/categories', (req, res) => {
-  const PAGE_NAME = 'adminsCategory';
+  const PAGE_NAME = 'adminsCategories';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 카테고리 추가 페이지
 adminRouter.get('/categories/add', (req, res) => {
-  const PAGE_NAME = 'adminsCategoryAdd';
+  const PAGE_NAME = 'adminsCategoriesAdd';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 카테고리 수정 페이지
 adminRouter.get('/categories/:categoryId/edit', (req, res) => {
-  const PAGE_NAME = 'adminsEditCategory';
+  const PAGE_NAME = 'adminsCategoriesEdit';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
