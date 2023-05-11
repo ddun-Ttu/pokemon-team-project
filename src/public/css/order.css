@@ -38,6 +38,7 @@ div.gridItem-whole-deliveryInformationAndpaymentInformation {
 
   grid-column: 2/3;
   grid-row: 3/4;
+  /* border: solid; */
 }
 
 div.deliveryInformationAndpaymentInformation {
@@ -285,13 +286,14 @@ button.paymentInformation-paymentButton {
 /* 푸터 */
 
 div.gridItem-whole-footer {
-  grid-column: 1/4;
+  grid-column: 2/3;
   grid-row: 4/5;
 }
 
 div.container-footer {
-  display: flex;
-  justify-content: center;
+  /* border: solid; */
+  /* display: flex; */
+  /* justify-content: center; */
 }
 
 /* input */
@@ -315,4 +317,108 @@ div.container-footer {
   background-color: #595959;
   color: white;
   cursor: pointer;
+}
+
+/* test */
+
+td,
+tr,
+td {
+  /* border: 1px solid; */
+}
+
+.test-container div {
+  /* border: 1px solid; */
+}
+
+.test-container {
+  /* border: solid 1px black; */
+
+  width: 80%;
+
+  margin: 0 auto;
+}
+
+.test-container-deliveryAndOrder {
+  margin: 0 auto;
+}
+
+.test-deliveryAndOrder {
+  display: flex;
+}
+
+.test-container-delivery {
+  width: 60%;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+}
+
+.test-delivery {
+  width: 90%;
+
+  /* border: 1px solid; */
+}
+
+.test-delivery th {
+  width: 20%;
+
+  text-align: left;
+}
+
+.test-delivery td {
+  width: 80%;
+}
+
+.test-delivery input {
+  width: 100%;
+}
+
+.test-container-order {
+  width: 40%;
+
+  height: auto;
+
+  margin: 0 auto;
+}
+
+.test-order {
+  width: 90%;
+
+  /* border: 1px solid; */
+
+  margin: 0 auto;
+}
+
+.test-order tr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.test-order th {
+  width: 40%;
+
+  text-align: left;
+}
+
+.test-order td {
+  width: 60%;
+
+  text-align: right;
+}
+
+.test-container-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+.test-button {
+}
+
+caption {
+  margin: 20px 0;
 }
