@@ -1,3 +1,83 @@
+const dummy = {
+  categoryNameData: [
+    { main: '포켓몬', sub: ['물', '불', '풀', '전기'] },
+    { main: '몬스터볼' },
+    { main: '사료' },
+    { main: '진화의 돌' },
+    { main: '악세서리' },
+    { main: '인형' },
+  ],
+  productData: [
+    {
+      _id: 1,
+      img: 'url',
+      name: '꼬부기',
+      price: 1000,
+      categoryName: '포켓몬',
+      description: '긍지 높은 포켓몬',
+      stock: 20,
+    },
+    {
+      _id: 2,
+      img: 'url',
+      name: '메타몽',
+      price: 1000,
+      categoryName: '포켓몬',
+      description: '긍지 높은 포켓몬',
+      stock: 20,
+    },
+    {
+      _id: 3,
+      img: 'url',
+      name: '이상해씨',
+      price: 1000,
+      categoryName: '포켓몬',
+      description: '긍지 높은 포켓몬',
+      stock: 20,
+    },
+    {
+      _id: 4,
+      img: 'url',
+      name: '피카츄',
+      price: 1000,
+      categoryName: '포켓몬',
+      stock: 0,
+    },
+    {
+      _id: 5,
+      img: 'url',
+      name: '몬스터볼',
+      price: 1000,
+      categoryName: '몬스터볼',
+      stock: 20,
+    },
+    {
+      _id: 6,
+      img: 'url',
+      name: '메타몽',
+      price: 1000,
+      categoryName: '포켓몬',
+      stock: 0,
+    },
+    {
+      _id: 7,
+      img: 'url',
+      name: '몬스터볼',
+      price: 1000,
+      categoryName: '몬스터볼',
+      stock: 20,
+    },
+    {
+      _id: 8,
+      img: 'url',
+      name: '피카츄',
+      price: 1000,
+      categoryName: '포켓몬',
+      stock: 20,
+    },
+  ],
+};
+
 // * paymentInformation
 const productNameAndProductCountArea = document.querySelector(
   '.paymentInformation-NameAndCountList-list-ul',
@@ -9,6 +89,8 @@ const deliveryFeeArea = document.querySelector(
   '.paymentInformation-deliveryFee-deliveryFee',
 );
 const finalPriceArea = document.querySelector('.paymentInformation-finalPrice');
+
+const searchAddressButton = document.querySelector('#searchAddressButton');
 
 // * 상세 페이지에서 넘어왔는지 장바구니에서 넘어왔는지 구분 작업.
 // - 상세 페이지 출신이면 로컬 스토리지에 'order' 데이터가 존재할 것.
@@ -41,11 +123,11 @@ let productTotalPrice = 0;
 let deliveryFee = 0;
 
 orderData.forEach((item, index) => {
-  let { pokemonName, quantity, price } = item;
+  let { name, quantity, price } = item;
 
   productListHTML += `
     <li>
-        <div>${pokemonName} / ${quantity}개</div>
+        <div>${name} / ${quantity}개</div>
     </li>
     `;
 
@@ -64,40 +146,86 @@ orderData.forEach((item, index) => {
 
 // * 배송지 찾기 버튼 제작.
 // - 마지막 단계에서 클릭 시 지정된 칸으로 들어가질 않음.
-const searchAddressButton = document.querySelector('#searchAddressButton');
-
 searchAddressButton.addEventListener('click', searchAddress);
 
-function searchAddress() {
+function searchAddress(e) {
+  e.preventDefault();
+  // new daum.Postcode({
+  //   oncomplete: function (data) {
+  //     let addr = '';
+  //     let extraAddr = '';
+
+  //     if (data.userSelectedType === 'R') {
+  //       addr = data.roadAddress;
+  //     } else {
+  //       addr = data.jibunAddress;
+  //     }
+
+  //     if (data.userSelectedType === 'R') {
+  //       if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+  //         extraAddr += data.bname;
+  //       }
+  //       if (data.buildingName !== '' && data.apartment === 'Y') {
+  //         extraAddr +=
+  //           extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+  //       }
+  //       if (extraAddr !== '') {
+  //         extraAddr = ' (' + extraAddr + ')';
+  //       }
+  //     } else {
+  //     }
+
+  //     postalCodeInput.value = data.zonecode;
+  //     address1Input.value = `${addr} ${extraAddr}`;
+  //     address2Input.placeholder = '상세 주소를 입력해 주세요.';
+  //     address2Input.focus();
+  //   },
+  // }).open();
   new daum.Postcode({
     oncomplete: function (data) {
-      let addr = '';
-      let extraAddr = '';
+      // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+      // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+      // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+      var addr = ''; // 주소 변수
+      var extraAddr = ''; // 참고항목 변수
+
+      //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
       if (data.userSelectedType === 'R') {
+        // 사용자가 도로명 주소를 선택했을 경우
         addr = data.roadAddress;
       } else {
+        // 사용자가 지번 주소를 선택했을 경우(J)
         addr = data.jibunAddress;
       }
 
+      // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
       if (data.userSelectedType === 'R') {
+        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
         if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
           extraAddr += data.bname;
         }
+        // 건물명이 있고, 공동주택일 경우 추가한다.
         if (data.buildingName !== '' && data.apartment === 'Y') {
           extraAddr +=
             extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
         }
+        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
         if (extraAddr !== '') {
           extraAddr = ' (' + extraAddr + ')';
         }
+        // 조합된 참고항목을 해당 필드에 넣는다.
+        document.getElementById('ddd').value = extraAddr;
       } else {
+        document.getElementById('ddd').value = '';
       }
 
-      postalCodeInput.value = data.zonecode;
-      address1Input.value = `${addr} ${extraAddr}`;
-      address2Input.placeholder = '상세 주소를 입력해 주세요.';
-      address2Input.focus();
+      // 우편번호와 주소 정보를 해당 필드에 넣는다.
+      document.getElementById('postalCode').value = data.zonecode;
+      document.getElementById('address1').value = addr;
+      // 커서를 상세주소 필드로 이동한다.
+      document.getElementById('address2').focus();
     },
   }).open();
 }
@@ -177,17 +305,17 @@ async function makeAndSendOrderData() {
   // 주문 상품 정보를 배송지 정보에 필드값으로 삽입.
   data.orderProductData = orderProductData;
 
-  const dataJson = JSON.stringify(data);
+  // const dataJson = JSON.stringify(data);
 
-  const apiUrl = `${common.API_URL}/orders`;
+  // const apiUrl = `${common.API_URL}/orders`;
 
-  const res = await fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: dataJson,
-  });
+  // const res = await fetch(apiUrl, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: dataJson,
+  // });
 
   // * 주문 성공/실패.
   // if (res.ok) {

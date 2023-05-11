@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Daum 주소 API 사용하기 위한 파일 -->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>주문 및 결제 페이지</title>
     <link rel="stylesheet" href="/css/common/reset.css" />
     <link rel="stylesheet" href="/css/common/index.css" />
@@ -19,9 +17,7 @@
 
       <!-- [시작] 그리드: 페이지 이름 -->
       <div class="gridItem-whole-PageName">
-        <div class="container-pageName">
-          <h3>주문 결제</h3>
-        </div>
+        <div class="container-pageName">주문 결제</div>
       </div>
       <!-- [끝] 그리드: 페이지 이름 -->
 
@@ -78,7 +74,7 @@
                             class="input-payment"
                             type="text"
                             id="postalCode"
-                            placeholder="주소찾기를 클릭해 주세요."
+                            placeholder="postalCode주소찾기를 클릭해 주세요."
                             readonly
                           />
                           <button
@@ -91,7 +87,7 @@
                         <div class="container-form-address-input2">
                           <input
                             id="address1"
-                            placeholder=""
+                            placeholder="address1"
                             autocomplete="on"
                             readonly
                             class="input-payment"
@@ -102,7 +98,7 @@
                           <input
                             id="address2"
                             type="text"
-                            placeholder=""
+                            placeholder="address2"
                             autocomplete="on"
                             class="input-payment"
                             type="text"
@@ -217,7 +213,9 @@
     </div>
 
     <!-- JS 파일 -->
-    <script src="/js/common/config.js"></script>
+    <!-- Daum 주소 API 사용하기 위한 파일 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- <script src="/js/common/config.js"></script> -->
     <script src="/js/common/navBar.js"></script>
     <script src="/js/order.js"></script>
   </body>
