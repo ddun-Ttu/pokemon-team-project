@@ -73,19 +73,20 @@ div.container-detail-description {
 }
 
 div.one {
+  width: 100%;
   height: 70%;
 
   display: flex;
 }
 
 div.detail-description {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 
   padding: 5% 0;
 }
-
 div.container-description-nameAndType {
   display: flex;
   align-items: center;
@@ -102,7 +103,7 @@ div.description-name {
 }
 
 div.container-description-type {
-  width: 15%;
+  width: 100px;
 
   display: flex;
   align-items: center;
@@ -111,7 +112,7 @@ div.container-description-type {
 }
 
 div.description-type {
-  /* width: 80%; */
+  width: 100px;
 
   background-color: gainsboro;
   color: white;
