@@ -76,7 +76,7 @@ function handleSignUpSubmit(event) {
 
   // 사용자가 입력한 값 변수로 지정
   const signUpName = document.querySelector('.name').value;
-  const signUpUsername = document.querySelector('.username').value;
+  const signUpNickname = document.querySelector('.nickname').value;
   const signUpEmail = document.querySelector('.email').value;
   const signUpPassword = document.querySelector('.password').value;
   const siginUpConfirmPassword =
@@ -85,7 +85,7 @@ function handleSignUpSubmit(event) {
   console.log('입력확인');
   console.log({
     signUpName,
-    signUpUsername,
+    signUpNickname,
     signUpEmail,
     signUpPassword,
     siginUpConfirmPassword,
