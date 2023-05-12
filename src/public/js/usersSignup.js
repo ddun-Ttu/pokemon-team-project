@@ -4,7 +4,7 @@ const password = document.querySelector('#password');
 const confirmPassword = document.querySelector('#confirmPassword');
 
 let signUpName = document.querySelector('.name').value;
-let signUpUsername = document.querySelector('.username').value;
+let signUpNickname = document.querySelector('.nickname').value;
 let signUpEmail = document.querySelector('.email').value;
 let signUpPassword = document.querySelector('.password').value;
 let siginUpConfirmPassword = document.querySelector('.confirmPassword').value;
@@ -73,8 +73,8 @@ signUpBut.addEventListener('click', async function (event) {
   }
 
   const signupObj = {
-    userName: signUpName,
-    userId: signUpUsername,
+    username: signUpName,
+    nickname: signUpNickname,
     email: signUpEmail,
     password: signUpPassword,
     confirmPassword: siginUpConfirmPassword,
@@ -104,7 +104,7 @@ function handleSignUpSubmit(event) {
   // const siginUpConfirmPassword =
   //   document.querySelector(".confirmPassword").value;
   signUpName = document.querySelector('.name').value;
-  signUpUsername = document.querySelector('.username').value;
+  signUpNickname = document.querySelector('.nickname').value;
   signUpEmail = document.querySelector('.email').value;
   signUpPassword = document.querySelector('.password').value;
   siginUpConfirmPassword = document.querySelector('.confirmPassword').value;
@@ -112,7 +112,7 @@ function handleSignUpSubmit(event) {
   console.log('입력확인');
   console.log({
     signUpName,
-    signUpUsername,
+    signUpNickname,
     signUpEmail,
     signUpPassword,
     siginUpConfirmPassword,
