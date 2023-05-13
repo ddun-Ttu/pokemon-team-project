@@ -281,3 +281,7 @@ div.container-footer {
 .selected {
   background-color: gainsboro;
 }
+
+.hidden {
+  display: none;
+}

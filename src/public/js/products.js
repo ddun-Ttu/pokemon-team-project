@@ -42,7 +42,7 @@ function createCategoryListHTML(categoryNameData) {
   categoryNameData.forEach(item => {
     categoryListHTML += `<li class=${
       item === '전체' ? 'selected' : null
-    } data-id=${item}>${item}</li>`;
+    } data-id='${item}'>${item}</li>`;
   });
 
   return categoryListHTML;
@@ -91,7 +91,8 @@ function makeProductListByCategoryName(categoryName) {
   getProductDataByCategoryName(categoryName)
     .then(res => createProductListHTML(res))
     .then(res => insertProductListHTML(res))
-    .then(() => addEventListenerToAddCartButton());
+    .then(() => addEventListenerToAddCartButton())
+    .then(() => makePagination());
 }
 
 async function getProductDataByCategoryName(categoryName) {
@@ -182,7 +183,7 @@ function addProudctToCart(e) {
   const productData = { _id, name, price };
   const productDataForCart = setProductDataForCart(productData);
 
-  if (!isCart(cartData)) {
+  if (!isCart()) {
     createCartStorage(productDataForCart);
     return;
   }
@@ -210,7 +211,8 @@ function getCartData() {
   return cartData;
 }
 
-function isCart(cartData) {
+function isCart() {
+  const cartData = JSON.parse(localStorage.getItem('cart'));
   if (cartData === null) {
     return false;
   }
@@ -232,4 +234,45 @@ function setProductDataForCart(productData) {
   const productDataForCart = { _id, name, price, quantity, checked };
 
   return productDataForCart;
+}
+
+// function makePagination() {
+//   const container_paginationButton = document.querySelector(
+//     '.container-paginationButton',
+//   );
+//   const targetData = document.querySelectorAll('')
+// }
+
+// container - paginationButton;
+
+function makePagination() {
+  const container = document.querySelector('.container-paginationButton');
+  const lists = document.querySelectorAll('.productListByCategory-list-li');
+
+  const amountData = lists.length;
+  const amountDataPerPage = 10;
+  const amountPage = Math.floor(amountData / amountDataPerPage) + 1;
+
+  for (i = 0; i < amountPage; i++) {
+    const button = document.createElement('button');
+    button.textContent = i + 1;
+    button.dataset.id = i;
+    button.addEventListener('click', e => handler(e));
+
+    container.insertAdjacentElement('beforeend', button);
+  }
+
+  function handler(e) {
+    const id = Number(e.target.dataset.id);
+
+    console.log(id, id * amountDataPerPage, (id + 1) * amountDataPerPage);
+
+    lists.forEach((item, index) => {
+      item.style.display = 'none';
+    });
+
+    for (i = id * amountDataPerPage; i < (id + 1) * amountDataPerPage; i++) {
+      lists[i].style.display = '';
+    }
+  }
 }
