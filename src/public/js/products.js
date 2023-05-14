@@ -236,34 +236,41 @@ function setProductDataForCart(productData) {
   return productDataForCart;
 }
 
-// function makePagination() {
-//   const container_paginationButton = document.querySelector(
-//     '.container-paginationButton',
-//   );
-//   const targetData = document.querySelectorAll('')
-// }
-
-// container - paginationButton;
-
 function makePagination() {
-  const container = document.querySelector('.container-paginationButton');
-  const lists = document.querySelectorAll('.productListByCategory-list-li');
+  createPaginationButton();
 
-  const amountData = lists.length;
-  const amountDataPerPage = 10;
-  const amountPage = Math.floor(amountData / amountDataPerPage) + 1;
+  function createPaginationButton() {
+    const elementToInsertPaginationButton = document.querySelector(
+      '.container-paginationButton',
+    );
+    const dataToPaginate = document.querySelectorAll(
+      '.productListByCategory-list-li',
+    );
 
-  for (i = 0; i < amountPage; i++) {
-    const button = document.createElement('button');
-    button.textContent = i + 1;
-    button.dataset.id = i;
-    button.addEventListener('click', e => handler(e));
+    const amountDataToPaginate = dataToPaginate.length;
+    const amountDataPerPage = 10;
+    const amountPaginationButton = Math.ceil(
+      amountDataToPaginate / amountDataPerPage,
+    );
 
-    container.insertAdjacentElement('beforeend', button);
+    for (i = 1; i <= amountPaginationButton; i++) {
+      const eachButton = document.createElement('button');
+
+      elementToInsertPaginationButton.textContent = '';
+
+      eachButton.textContent = i;
+      eachButton.dataset.id = i;
+      eachButton.addEventListener('click', e => paginate(e));
+
+      elementToInsertPaginationButton.insertAdjacentElement(
+        'beforebegin',
+        eachButton,
+      );
+    }
   }
 
-  function handler(e) {
-    const id = Number(e.target.dataset.id);
+  function paginate(e) {
+    const buttonNumber = Number(e.target.dataset.id);
 
     console.log(id, id * amountDataPerPage, (id + 1) * amountDataPerPage);
 
@@ -276,3 +283,39 @@ function makePagination() {
     }
   }
 }
+
+// function makePagination() {
+
+//   const container = document.querySelector('.container-paginationButton');
+//   const lists = document.querySelectorAll('.productListByCategory-list-li');
+
+//   const amountData = lists.length;
+//   const amountDataPerPage = 10;
+//   const amountPage = Math.ceil(amountData / amountDataPerPage);
+
+//   container.textContent = '';
+
+//   for (i = 0; i < amountPage; i++) {
+
+//     const button = document.createElement('button');
+//     button.textContent = i + 1;
+//     button.dataset.id = i;
+//     button.addEventListener('click', e => handler(e));
+
+//     container.insertAdjacentElement('beforebegin', button);
+//   }
+
+//   function handler(e) {
+//     const id = Number(e.target.dataset.id);
+
+//     console.log(id, id * amountDataPerPage, (id + 1) * amountDataPerPage);
+
+//     lists.forEach((item, index) => {
+//       item.style.display = 'none';
+//     });
+
+//     for (i = id * amountDataPerPage; i < (id + 1) * amountDataPerPage; i++) {
+//       lists[i].style.display = '';
+//     }
+//   }
+// }
