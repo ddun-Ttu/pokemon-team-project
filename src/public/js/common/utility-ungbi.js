@@ -1,18 +1,33 @@
 const Utility = {
   /**
-   * @param {querySelector-selector} csslector_elementToInsertPaginationButton
-   * : pagination button 삽입 컨테이너 요소 지정에 사용.
-   * : pagination button click event 감지를 위한 부모 요소 지정에 사용.
-   * ! querySelector/All의 () 안에 들어갈 형태로 입력.
-   *  - 예) '.productListByCategory-list-ul'
-   * @param {querySelector-selector} cssSelector_dataToPaginate
+   * @param {'querySelector-selector'} csslector_elementToInsertPaginationButton
+   * : pagination-button 삽입 컨테이너 요소 지정에 사용.
+   * : pagination-button click event 감지를 위한 부모 요소 지정에 사용.
+   * ! querySelector/All의 () 안에 들어가는 형식으로 입력.
+   * - 예) ('.container-paginationButton')
+   *
+   * @param {'querySelector-selector'} cssSelector_dataToPaginate
    * : pagination 대상 데이터 요소들 지정에 사용.
-   * ! querySelector/All의 () 안에 들어갈 형태로 입력.
+   * ! querySelector/All의 () 안에 들어가는 형식으로 입력.
+   * - 예) ('.productListByCategory-list-li')
+   *
    * @param {number} number_amoutDataPerPage
-   * :
-   * @param {*} className_ForSelectedPaginationButton
-   * @param {*} className_ForUnselectedDataToPaginate
-   * @param {*} number_defaultPaginationButton
+   * : 한 페이지당 표시될 데이터 요소 개수 설정.
+   * - 예) (10)
+   *
+   * @param {'class-name'} className_ForSelectedPaginationButton
+   * : 클릭된 pagination-button에 부여될 class 설정에 사용.
+   * ! '클래스명' 형식으로 입력.
+   * - 예) ('pagination-button-selected')
+   *
+   * @param {'class-name'} className_ForUnselectedDataToPaginate
+   * : pagination 대상 데이터 중 감춰질 요소들에 부여될 class 설정에 사용.
+   * ! '클래스명' 형식으로 입력.
+   * - 예) ('data-to-pagenate-hidden')
+   *
+   * * @param {number} number_defaultPageNumber
+   * : 첫 화면에서 보여질 페이지 번호 기본값 설정에 사용.
+   * - 예) 1
    */
   makePagination(
     cssSelector_elementToInsertPaginationButton,
@@ -20,8 +35,14 @@ const Utility = {
     number_amoutDataPerPage,
     className_ForSelectedPaginationButton,
     className_ForUnselectedDataToPaginate,
-    number_defaultPaginationButton,
+    number_defaultPageNumber,
   ) {
+    createPaginationButton();
+
+    addEventListenerToPaginationButton();
+
+    setDefaultPage(number_defaultPageNumber);
+
     const elementToInsertPaginationButton = document.querySelector(
       cssSelector_elementToInsertPaginationButton,
     );
@@ -32,18 +53,6 @@ const Utility = {
     const amountDataPerPage = number_amoutDataPerPage;
 
     const amountPaginationButton = Math.ceil(amountData / amountDataPerPage);
-
-    createPaginationButton();
-
-    addEventListenerToPaginationButton();
-
-    addAndRemoveClasstoApplyCssToSelectedPaginationButton(
-      number_defaultPaginationButton,
-    );
-
-    addAndRemoveClassToApplyCssToUnselectedDataToPagenate(
-      number_defaultPaginationButton,
-    );
 
     function createPaginationButton() {
       elementToInsertPaginationButton.textContent = '';
@@ -108,8 +117,31 @@ const Utility = {
         );
       }
     }
+
+    function setDefaultPage(number_defaultPageNumber) {
+      addAndRemoveClasstoApplyCssToSelectedPaginationButton(
+        number_defaultPageNumber,
+      );
+      addAndRemoveClassToApplyCssToUnselectedDataToPagenate(
+        number_defaultPageNumber,
+      );
+    }
   },
 
+  /**
+   * 요소에 '장바구니에 추가'
+   * @param {'querySelector-selector'} cssSelector_parentElementOfTargetElement
+   * : '장바구니에 추가' 버튼으로 만들 요소들이 모두 담긴 상위 요소 지정에 사용.
+   * ! 이 파라미터 입력 시 '장바구니에 추가' 버튼으로 만들 요소들을 모두 포함하는 상위 요소에만 event listener가 부착됨.
+   * ! '장바구니에 추가' 버튼으로 만들 각각의 요소들에 event listener를 부착하고 싶다면 비워둘 것.
+   * ! querySelector/All의 () 안에 들어가는 형식으로 입력.
+   * - 예) ('.productListByCategory-list-ul')
+   *
+   * @param {'querySelector-selector'} cssSelector_targetElement
+   * : '장바구니에 추가' 버튼으로 만들 요소들 지정에 사용.
+   * ! querySelector/All의 () 안에 들어가는 형식으로 입력.
+   * - 예) ('.pagination-ToHidden-unselectedData')
+   */
   makeElementBecomeAddToCartButton(
     cssSelector_parentElementOfTargetElement,
     cssSelector_targetElement,
