@@ -86,7 +86,7 @@ const dummy = {
   ],
 };
 
-let productData = dummy.productData;
+// let productData = dummy.productData;
 
 const _id = pathname.split('/')[2];
 
