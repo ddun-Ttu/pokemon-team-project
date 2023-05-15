@@ -1,5 +1,7 @@
 const Utility = {
   /**
+   * 페이지네이션 구현 함수
+   *
    * @param {'querySelector-selector'} csslector_elementToInsertPaginationButton
    * : pagination-button 삽입 컨테이너 요소 지정에 사용.
    * : pagination-button click event 감지를 위한 부모 요소 지정에 사용.
@@ -37,12 +39,6 @@ const Utility = {
     className_ForUnselectedDataToPaginate,
     number_defaultPageNumber,
   ) {
-    createPaginationButton();
-
-    addEventListenerToPaginationButton();
-
-    setDefaultPage(number_defaultPageNumber);
-
     const elementToInsertPaginationButton = document.querySelector(
       cssSelector_elementToInsertPaginationButton,
     );
@@ -51,8 +47,13 @@ const Utility = {
     );
     const amountData = dataToPaginate.length;
     const amountDataPerPage = number_amoutDataPerPage;
-
     const amountPaginationButton = Math.ceil(amountData / amountDataPerPage);
+
+    createPaginationButton();
+
+    addEventListenerToPaginationButton();
+
+    setDefaultPage(number_defaultPageNumber);
 
     function createPaginationButton() {
       elementToInsertPaginationButton.textContent = '';
@@ -73,6 +74,11 @@ const Utility = {
 
     function addEventListenerToPaginationButton() {
       elementToInsertPaginationButton.addEventListener('click', e => {
+        // 상위 요소 영역 중 버튼 외의 영역 클릭 시 핸들러 작동 방지
+        if (e.target === e.currentTarget) {
+          return;
+        }
+
         const selectedPaginationButtonNumber = Number(e.target.dataset.id);
         const buttonNumber = Number(e.target.dataset.id);
 
@@ -129,40 +135,26 @@ const Utility = {
   },
 
   /**
-   * 요소에 '장바구니에 추가'
-   * @param {'querySelector-selector'} cssSelector_parentElementOfTargetElement
-   * : '장바구니에 추가' 버튼으로 만들 요소들이 모두 담긴 상위 요소 지정에 사용.
-   * ! 이 파라미터 입력 시 '장바구니에 추가' 버튼으로 만들 요소들을 모두 포함하는 상위 요소에만 event listener가 부착됨.
-   * ! '장바구니에 추가' 버튼으로 만들 각각의 요소들에 event listener를 부착하고 싶다면 비워둘 것.
-   * ! querySelector/All의 () 안에 들어가는 형식으로 입력.
-   * - 예) ('.productListByCategory-list-ul')
+   * 특정 요소를 '장바구니 추가' 버튼으로 만드는 함수.
+   * - 이 쇼핑몰이 아니면 사용 불가. 범용성 X.
+   *  - 클릭되는 요소에 dataset 속성을 사용하여 localStorage cart에 필요한 특정 데이터들을 반환받기 때문.
+   *    - 상품 데이터를 넘겨받기 위한 방법(dataset)이 하드 코딩으로 설정되어 있음.
+   *    - 넘겨받을 상품 데이터 항목도 하드코딩으로 설정되어 있음.
+   *    - 즉, 이걸 다른 데서도 사용하려면 데이터 반환 방법과 반환될 데이터 항목을 똑같이 설정해야 한다는 제약이 걸림.
    *
    * @param {'querySelector-selector'} cssSelector_targetElement
    * : '장바구니에 추가' 버튼으로 만들 요소들 지정에 사용.
    * ! querySelector/All의 () 안에 들어가는 형식으로 입력.
    * - 예) ('.pagination-ToHidden-unselectedData')
    */
-  makeElementBecomeAddToCartButton(
-    cssSelector_parentElementOfTargetElement,
-    cssSelector_targetElement,
-  ) {
+  makeElementBecomeAddToCartButton(cssSelector_targetElement) {
+    const targetElement = document.querySelectorAll(cssSelector_targetElement);
+
     getTargetElement();
 
     function getTargetElement() {
-      if (!!cssSelector_parentElementOfTargetElement) {
-        const parentElementOfTargetElement = document.querySelector(
-          cssSelector_parentElementOfTargetElement,
-        );
-
-        addEventListenerToElement(parentElementOfTargetElement);
-
-        return;
-      }
-
-      const targetElement = document.querySelectorAll(
-        cssSelector_targetElement,
-      );
-
+      // '장바구니 추가' 버튼으로 만들 요소가 한 개일 때
+      // -> 요소 선택 메서드를 querySelector로 설정.
       if (targetElement.length === 1) {
         targetElement = document.querySelector(cssSelector_targetElement);
 
@@ -171,6 +163,8 @@ const Utility = {
         return;
       }
 
+      // '장바구니 추가' 버튼으로 만들 요소가 여러 개일 때
+      // -> 요소 선택 메서드를 querySelectorAll로 설정.
       targetElement.forEach(item => {
         const eachTargetElement = item;
 

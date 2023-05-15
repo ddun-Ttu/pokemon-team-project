@@ -45,6 +45,9 @@ function makeCategoryList() {
   function createCategoryListHTML(categoryNameData) {
     let categoryListHTML = '';
 
+    // categoryList의 버튼 역할을 하는 li 요소에 data-id="해당-categoryName" 설정.
+    // - categoryList의 특정 categoryName 클릭 시 해당 categoryName을 반환받기 위함.
+    // - 반환받은 categoryName은 makeProductListByCategoryName(categoryName) 함수에 파라미터로 넘어감.
     categoryNameData.forEach(item => {
       categoryListHTML += `<li class=${
         item === '전체' ? 'selected' : null
@@ -60,6 +63,11 @@ function makeCategoryList() {
 
   function addEventListenerToCategoryList() {
     categoryList_ul.addEventListener('click', e => {
+      // 상위 요소의 나머지 영역 클릭 시 핸들러 작동 방지
+      if (e.target === e.currentTarget) {
+        return;
+      }
+
       const target = e.target;
       const categoryName = e.target.dataset.id;
 
@@ -73,6 +81,9 @@ function makeCategoryList() {
     const categoryListButton = document.querySelectorAll(
       '.cartegoryBar-categoryList-ul > li',
     );
+
+    // categoryList 각 항목 클릭 시 해당 요소에만 'selected' class 설정.
+    // - 선택된 항목 강조.
     categoryListButton.forEach(item => {
       item.classList.remove('selected');
     });
@@ -88,7 +99,6 @@ function makeProductListByCategoryName(categoryName) {
     .then(res => insertProductListHTML(res))
     .then(() =>
       Utility.makeElementBecomeAddToCartButton(
-        '.productListByCategory-list-ul',
         '.productListByCategory-list-like-button',
       ),
     )
