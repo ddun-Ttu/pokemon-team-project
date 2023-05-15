@@ -10,61 +10,30 @@
     <link rel="stylesheet" href="/css/usersMyOrders.css" />
   </head>
   <body>
-    <!-- 네비게이션 바 -->
-    <div class="main-container">
-      <nav class="main-nav-container"><!--common/navBar.js--></nav>
-    </div>
-
-    <!-- 주문조회  -->
-    <div class="container">
-      <div class="contents-mypage">
-        <h3>주문조회</h3>
-        <div class="table-my-orders">
-          <table>
-            <thead>
-              <tr>
-                <th>날짜</th>
-                <th>주문 정보</th>
-                <th>상태</th>
-                <th>내용</th>
-                <th>신청</th>
-              </tr>
-            </thead>
-            <!-- 
-              내 주문 목록들 출력 *JS
-              수정 - 해당 주문 수정 페이지로 이동(배송 전 상태만 가능)
-              취소 - [DELETE] 주문 삭제 API 요청
-            -->
-            <tbody>
-              <tr>
-                <td>2023-04-20</td>
-                <td>피카츄/ 1마리</td>
-                <td>상품 준비중</td>
-                <td><button class="btn-my-orders">수정하기</button></td>
-                <td><button class="btn-my-orders">주문 취소</button></td>
-              </tr>
-              <tr>
-                <td>2023-04-20</td>
-                <td>피카츄/ 1마리</td>
-                <td>배송중</td>
-                <td><button class="btn-my-orders">수정하기</button></td>
-                <td><button class="btn-my-orders">주문 취소</button></td>
-              </tr>
-
-              <tr>
-                <td>2023-04-20</td>
-                <td>피카츄/ 1마리</td>
-                <td>취소</td>
-                <td><button class="btn-my-orders">수정하기</button></td>
-                <td><button class="btn-my-orders">주문 취소</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <header>
+      <!-- 네비게이션 바 -->
+      <div class="main-container">
+        <nav class="main-nav-container"><!--common/navBar.js--></nav>
       </div>
-    </div>
-
+    </header>
+    <main>
+      <h1>주문조회</h1>
+      <table id="table">
+        <thead id="thead" class="table-my-orders">
+          <tr>
+            <th>주문 일자</th>
+            <th>주문 정보</th>
+            <th>주문 상태</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+    </main>
+    <footer></footer>
     <!-- JS 파일 -->
+    <script src="/js/common/config.js"></script>
     <script src="/js/common/navBar.js"></script>
+    <script src="/js/usersMyOrders.js"></script>
   </body>
 </html>
