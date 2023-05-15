@@ -65,10 +65,10 @@ function makeProductDetail() {
   }
 
   function makeDetailDescriptionOneHTML(productData) {
-    const { name, categoryName, price, description, stock } = productData;
+    const { _id, name, categoryName, price, description, stock } = productData;
 
     const detailDescriptionOneHTML = `
-    <div class="detail-description">
+    <div class="detail-description" data-id='${_id}' data-name='${name}' data-price='${price}'>
       <div class="container-description-nameAndType">
         <div class="container-description-name">
           <div class="description-name">${name}</div>
@@ -104,50 +104,36 @@ function makeProductDetail() {
     );
   }
 
+  addEventListenerToAddProductToCartButton();
   function addEventListenerToAddProductToCartButton() {
     const addProductToCartButton = document.querySelector('.description-cart');
+    console.log(addProductToCartButton);
 
     addProductToCartButton.addEventListener('click', addProductToCart);
   }
 
   function addProductToCart() {
+    let cartData = getCartData();
 
-    function addEventListenerToElement(element) {
-      element.addEventListener('click', e => {
-        let { _id, name, price } = e.target.dataset;
-        _id = Number(_id);
+    const hiddenDataForCart = document.querySelector('.detail-description');
 
-        addProudctToCart(_id, name, price);
-      });
+    const _id = hiddenDataForCart.dataset.id;
+    const name = hiddenDataForCart.dataset.name;
+    const price = Number(hiddenDataForCart.dataset.price);
+
+    const productData = { _id, name, price };
+    const productDataForCart = convertProductDataForCart(productData);
+
+    if (!isCart()) {
+      createCartStorage(productDataForCart);
+
+      return;
     }
 
-    function addProudctToCart(_id, name, price) {
-      let cartData = getCartData();
+    const alreadyInCartDataIndex = cartData.findIndex(item => item._id === _id);
 
-      const productData = { _id, name, price };
-      const productDataForCart = convertProductDataForCart(productData);
-
-      if (!isCart()) {
-        createCartStorage(productDataForCart);
-
-        return;
-      }
-
-      const alreadyInCartDataIndex = cartData.findIndex(
-        item => item._id === _id,
-      );
-
-      if (alreadyInCartDataIndex === -1) {
-        cartData.push(productDataForCart);
-
-        const updatedCartData = cartData;
-
-        setCartStorage(updatedCartData);
-
-        return;
-      }
-
-      cartData[alreadyInCartDataIndex].quantity++;
+    if (alreadyInCartDataIndex === -1) {
+      cartData.push(productDataForCart);
 
       const updatedCartData = cartData;
 
@@ -156,38 +142,44 @@ function makeProductDetail() {
       return;
     }
 
-    function getCartData() {
-      let cartData = JSON.parse(localStorage.getItem('cart'));
+    cartData[alreadyInCartDataIndex].quantity++;
 
-      return cartData;
-    }
+    const updatedCartData = cartData;
 
-    function convertProductDataForCart(productData) {
-      const { _id, name, price, quantity = 1, checked = true } = productData;
+    setCartStorage(updatedCartData);
 
-      const productDataForCart = { _id, name, price, quantity, checked };
-
-      return productDataForCart;
-    }
-
-    function isCart() {
-      const cartData = JSON.parse(localStorage.getItem('cart'));
-      if (cartData === null) {
-        return false;
-      }
-
-      return true;
-    }
-
-    function createCartStorage(firstProductDataForCart) {
-      localStorage.setItem('cart', JSON.stringify([firstProductDataForCart]));
-    }
-
-    function setCartStorage(productDataForCart) {
-      localStorage.setItem('cart', JSON.stringify(productDataForCart));
-    }
+    return;
   }
-  
+
+  function getCartData() {
+    let cartData = JSON.parse(localStorage.getItem('cart'));
+
+    return cartData;
+  }
+
+  function convertProductDataForCart(productData) {
+    const { _id, name, price, quantity = 1, checked = true } = productData;
+
+    const productDataForCart = { _id, name, price, quantity, checked };
+
+    return productDataForCart;
+  }
+
+  function isCart() {
+    const cartData = JSON.parse(localStorage.getItem('cart'));
+    if (cartData === null) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function createCartStorage(firstProductDataForCart) {
+    localStorage.setItem('cart', JSON.stringify([firstProductDataForCart]));
+  }
+
+  function setCartStorage(productDataForCart) {
+    localStorage.setItem('cart', JSON.stringify(productDataForCart));
   }
 }
 
