@@ -14,16 +14,19 @@ async function handleClick(e) {
   const data = JSON.stringify(category);
 
   // [POST] /api/categories -> 새 카테고리 생성 요청
-  const responseData = await fetch(API_URL + '/api/categories', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: data,
-  })
-    .then(response => response.json())
-    .then(data => data);
-  console.log(responseData);
+  try {
+    const response = await fetch(API_URL + '/api/categories', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: data,
+    });
+    const json = await response.json();
+    console.log(json);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 button.addEventListener('click', handleClick);
