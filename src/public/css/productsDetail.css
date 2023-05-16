@@ -47,10 +47,12 @@ div.detail {
 div.container-detail-image {
   width: 50%;
   /* margin-right: 5%; */
+  display: flex;
+  justify-content: center;
 }
 
 div.detail-image {
-  width: 80%;
+  width: 70%;
 
   display: flex;
   justify-content: center;
@@ -70,10 +72,11 @@ div.container-detail-description {
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 div.one {
-  width: 100%;
+  width: 80%;
   height: 70%;
 
   display: flex;
@@ -98,7 +101,7 @@ div.container-description-name {
 }
 
 div.description-name {
-  font-size: 250%;
+  font-size: 200%;
   font-weight: bold;
 }
 
@@ -136,7 +139,7 @@ div.container-description-price {
 }
 
 div.description-price {
-  font-size: 200%;
+  font-size: 150%;
   font-weight: bold;
 }
 
@@ -146,24 +149,23 @@ div.container-description-description {
 }
 
 div.description-description {
-  font-size: 110%;
+  font-size: 100%;
   line-height: 120%;
 }
 
 div.two {
-  width: 100%;
+  width: 80%;
   height: 15%;
 }
 
 div.three {
+  width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 div.container-countInput {
-  width: 20%;
-
   display: flex;
 }
 

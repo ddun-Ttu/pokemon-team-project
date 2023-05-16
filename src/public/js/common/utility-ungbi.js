@@ -179,11 +179,11 @@ const Utility = {
         let { _id, name, price } = e.target.dataset;
         _id = Number(_id);
 
-        addProudctToCart(_id, name, price);
+        addProductToCart(_id, name, price);
       });
     }
 
-    function addProudctToCart(_id, name, price) {
+    function addProductToCart(_id, name, price) {
       let cartData = getCartData();
 
       const productData = { _id, name, price };
