@@ -1,8 +1,3 @@
-// const detail = document.querySelector('.detail');
-// const putInCartButton = document.querySelector('.description-cart');
-// const orderNowButton = document.querySelector('.description-order');
-// const countInput = document.querySelector('#count');
-
 makeProductDetail();
 
 function makeProductDetail() {
@@ -20,7 +15,8 @@ function makeProductDetail() {
       insertDetailImageHTML(res1);
       insertDetailDescriptionOneHTML(res2);
     })
-    .then(() => {});
+    .then(() => addEventListenerToAddProductToCartButton())
+    .then(() => addEventListenerToOrderProductNowButton());
 
   function getProduct_id() {
     const pathname = window.location.pathname;
@@ -47,7 +43,7 @@ function makeProductDetail() {
       );
 
       const data = dummy.getSelectedProductData('_id', _id);
-      console.log(data);
+
       return data;
     }
   }
@@ -74,7 +70,7 @@ function makeProductDetail() {
           <div class="description-name">${name}</div>
         </div>
         <div class="container-description-type">
-          <div class="description-type" style="display: 'none'">${categoryName}</div>
+          <div class="description-type" style="display: none">${categoryName}</div>
         </div>
       </div>
       <div class="container-description-price">
@@ -104,25 +100,31 @@ function makeProductDetail() {
     );
   }
 
-  addEventListenerToAddProductToCartButton();
   function addEventListenerToAddProductToCartButton() {
     const addProductToCartButton = document.querySelector('.description-cart');
-    console.log(addProductToCartButton);
 
     addProductToCartButton.addEventListener('click', addProductToCart);
   }
 
+  function addEventListenerToOrderProductNowButton() {
+    const orderProductNowButton = document.querySelector('.description-order');
+
+    orderProductNowButton.addEventListener('click', orderProductNow);
+  }
+
   function addProductToCart() {
-    let cartData = getCartData();
-
     const hiddenDataForCart = document.querySelector('.detail-description');
-
+    const countInput = document.querySelector('#count');
     const _id = hiddenDataForCart.dataset.id;
     const name = hiddenDataForCart.dataset.name;
     const price = Number(hiddenDataForCart.dataset.price);
+    const quantity = Number(countInput.options[countInput.selectedIndex].value);
 
-    const productData = { _id, name, price };
+    const productData = { _id, name, price, quantity };
+
     const productDataForCart = convertProductDataForCart(productData);
+
+    let cartData = getCartData();
 
     if (!isCart()) {
       createCartStorage(productDataForCart);
@@ -142,7 +144,7 @@ function makeProductDetail() {
       return;
     }
 
-    cartData[alreadyInCartDataIndex].quantity++;
+    cartData[alreadyInCartDataIndex].quantity += quantity;
 
     const updatedCartData = cartData;
 
@@ -181,130 +183,23 @@ function makeProductDetail() {
   function setCartStorage(productDataForCart) {
     localStorage.setItem('cart', JSON.stringify(productDataForCart));
   }
-}
 
-// let productData = dummy.productData;
+  function orderProductNow() {
+    const hiddenDataForCart = document.querySelector('.detail-description');
+    const countInput = document.querySelector('#count');
+    const _id = hiddenDataForCart.dataset.id;
+    const name = hiddenDataForCart.dataset.name;
+    const price = Number(hiddenDataForCart.dataset.price);
+    const quantity = Number(countInput.options[countInput.selectedIndex].value);
 
-const _id = pathname.split('/')[2];
+    const productDataForOrderNow = { _id, name, price, quantity };
 
-const findedItem = productData.find(item => item._id === Number(_id));
-
-const data = findedItem;
-
-let { img, name, categoryName, price, description, stock } = data;
-
-makeDetail();
-
-async function makeDetail() {
-  // const res = await fetch(`${common.API_URL}/api${pathname}`);
-  // let data = await res.json();
-
-  // pricetoLocaleString = Number(price).toLocaleString();
-
-  let typeColor;
-
-  switch (categoryName) {
-    case '물':
-      typeColor = 'rgb(41, 146, 255)';
-      break;
-    case '전기':
-      typeColor = 'rgb(255, 219, 0)';
-      break;
-    case '풀':
-      typeColor = 'green';
-      break;
-  }
-
-  const detailImage = document.querySelector('.container-detail-image');
-  const detailDescriptionOne = document.querySelector('.one');
-
-  const detailImageHTML = detailImage.insertAdjacentHTML(
-    'beforeend',
-    detailImageHTML,
-  );
-
-  const detailDescriptionOneHTML = `
-    <div class="detail-description">
-      <div class="container-description-nameAndType">
-        <div class="container-description-name">
-          <div class="description-name">${name}</div>
-        </div>
-        <div class="container-description-type">
-          <div class="description-type" style="background-color: ${typeColor}">${categoryName}</div>
-        </div>
-      </div>
-      <div class="container-description-price">
-        <div class="description-price">${price.toLocaleString()}원</div>
-      </div>
-      <div class="container-description-description">
-        <div class="description-description">${description}</div>
-      </div>
-    </div>
-    `;
-
-  detailDescriptionOne.insertAdjacentHTML(
-    'beforeend',
-    detailDescriptionOneHTML,
-  );
-
-  putInCartButton.addEventListener('click', putInCartButtonHandler);
-
-  orderNowButton.addEventListener('click', orderNowButtonHandler);
-
-  function putInCartButtonHandler() {
-    let alreadyInCartData = JSON.parse(localStorage.getItem('cart'));
-
-    const count = Number(countInput.options[countInput.selectedIndex].value);
-
-    let data = {
-      _id,
-      name,
-      price,
-    };
-
-    if (alreadyInCartData == null) {
-      // data 객체에 더해줄 필드.
-      data.quantity = count;
-      data.checked = true;
-
-      // data 객체에서 빼줄 필드.
-
-      alreadyInCartData = [];
-      alreadyInCartData.push(data);
-
-      localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
-    } else {
-      const findedIndex = alreadyInCartData.findIndex(item => item._id == _id);
-
-      if (alreadyInCartData !== null && findedIndex == -1) {
-        data.quantity = count;
-        data.checked = true;
-
-        alreadyInCartData.push(data);
-
-        localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
-      } else {
-        alreadyInCartData[findedIndex].quantity += count;
-        localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
-      }
-    }
-  }
-
-  function orderNowButtonHandler() {
-    const count = Number(countInput.options[countInput.selectedIndex].value);
-    let quantity = count;
-
-    let data = [
-      {
-        _id,
-        name,
-        price,
-        quantity,
-      },
-    ];
-
-    localStorage.setItem('order', JSON.stringify(data));
+    setOrderStorage(productDataForOrderNow);
 
     window.location = '/order';
+  }
+
+  function setOrderStorage(productDataForOrderNow) {
+    localStorage.setItem('order', JSON.stringify([productDataForOrderNow]));
   }
 }
