@@ -18,7 +18,11 @@
       <!-- [시작] 그리드: 페이지 이름 -->
       <div class="gridItem-whole-PageName">
         <div class="container-pageName">
-          <h3>주문 결제</h3>
+          <div class="pageName">
+            <span class="pageName-sub">장바구니&nbsp></span>
+            <span class="pageName-main">&nbsp주문/결제&nbsp</span>
+            <span class="pageName-sub">>&nbsp주문 완료</span>
+          </div>
         </div>
       </div>
       <!-- [끝] 그리드: 페이지 이름 -->
@@ -31,17 +35,16 @@
             <div class="container-deliveryInformation">
               <div class="deliveryInformation">
                 <div class="container-deliveryInformation-subject">
-                  <div class="deliveryInformation-subject">
-                    <h4>배송지 정보</h4>
-                  </div>
+                  <div class="deliveryInformation-subject">배송지 정보</div>
                 </div>
-
                 <div class="container-deliveryInformation-form">
-                  <form>
-                    <div class="container-form-name">
+                  <form class="grid-container deliveryInformation-form">
+                    <div class="grid-item form-name-label">
                       <div class="container-form-name-label">
                         <label for="receiverName">이름</label>
                       </div>
+                    </div>
+                    <div class="grid-item form-name-input">
                       <div class="container-form-name-input">
                         <input
                           id="receiverName"
@@ -52,10 +55,12 @@
                         />
                       </div>
                     </div>
-                    <div class="container-form-phoneNumber">
+                    <div class="grid-item form-phoneNumber-label">
                       <div class="container-form-phoneNumber-label">
                         <label for="receiverPhoneNumber">연락처</label>
                       </div>
+                    </div>
+                    <div class="grid-item form-phoneNumber-input">
                       <div class="container-form-phoneNumber-input">
                         <input
                           class="input-payment"
@@ -66,17 +71,20 @@
                         />
                       </div>
                     </div>
-                    <div class="container-form-address">
+                    <div class="grid-item form-address-label">
                       <div class="container-form-address-label">
-                        <label for="address2">주소</label>
+                        <label for="postalCode">주소</label>
                       </div>
-                      <div class="container-form-address-input">
+                    </div>
+                    <div class="grid-item form-address-input1">
+                      <div class="container-form-address">
                         <div class="container-form-address-input1">
                           <input
                             class="input-payment"
                             type="text"
                             id="postalCode"
-                            placeholder="postalCode주소찾기를 클릭해 주세요."
+                            placeholder="우편 번호"
+                            disabled
                             readonly
                           />
                           <button
@@ -86,33 +94,39 @@
                             주소 찾기
                           </button>
                         </div>
-                        <div class="container-form-address-input2">
-                          <input
-                            id="address1"
-                            placeholder="address1"
-                            autocomplete="on"
-                            readonly
-                            class="input-payment"
-                            type="text"
-                          />
-                        </div>
-                        <div class="container-form-address-input3">
-                          <input
-                            id="address2"
-                            type="text"
-                            placeholder="address2"
-                            autocomplete="on"
-                            class="input-payment"
-                            type="text"
-                          />
-                        </div>
                       </div>
                     </div>
-                    <div class="container-form-customerRequest">
-                      <div class="container-form-customerRequest-label">
+                    <div class="grid-item form-address-input2">
+                      <div class="container-form-address-input2">
+                        <input
+                          id="address1"
+                          type="text"
+                          placeholder="주소"
+                          disabled
+                          class="input-payment"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div class="grid-item form-address-input3">
+                      <div class="container-form-address-input3">
+                        <input
+                          id="address2"
+                          type="text"
+                          placeholder="상세 주소"
+                          autocomplete="on"
+                          class="input-payment"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div class="grid-item form-request-label">
+                      <div class="container-form-request-label">
                         <label for="requestSelectBox">요청 사항</label>
                       </div>
-                      <div class="container-form-customerRequest-input">
+                    </div>
+                    <div class="grid-item form-request-input">
+                      <div class="container-form-request-input">
                         <input
                           id="requestSelectBox"
                           class="input-payment"
@@ -134,6 +148,25 @@
                     <h4>결제 정보</h4>
                   </div>
                 </div>
+                <!-- <div class="container-paymentInformation-content">
+                  <div class="grid-container paymentInformation-content">
+                    <div class="grid-item content-productInformation-name">
+                      <div class="container-content-productInformation-name">
+                        <div class="content-productInformation-name">
+
+                        </div>
+                      </div>
+                      </div>
+                      <div class="grid-item content-productInformation-data">
+                        <div class="container-content-productInformation-data">
+                          <div class="content-productInformation-data"></div>
+                        </div>
+                      </div>
+                        
+                      </div>
+                    </div>
+                  </div> -->
+
                 <div class="container-paymentInformation-NameAndCountList">
                   <div
                     class="container-paymentInformation-NameAndCount-subject"
@@ -207,94 +240,8 @@
 
       <!-- [시작] 그리드: 푸터 -->
       <div class="gridItem-whole-footer">
-        <!-- <div class="container-footer">
+        <div class="container-footer">
           <footer></footer>
-        </div> -->
-        <div class="test-container">
-          <div class="test-container-deliveryAndOrder">
-            <div class="test-deliveryAndOrder">
-              <div class="test-container-delivery">
-                <div style="border: solid 1px black; width: 100%">
-                  <table class="test-delivery" style="margin: 0 auto">
-                    <caption>
-                      배송지 정보
-                    </caption>
-                    <thead></thead>
-                    <tbody>
-                      <tr>
-                        <th>이름</th>
-                        <td><input type="text" /></td>
-                      </tr>
-                      <tr>
-                        <th>연락처</th>
-                        <td><input type="text" /></td>
-                      </tr>
-                      <tr>
-                        <th>주소</th>
-                        <td style="width: 100%; display: flex">
-                          <div style="width: 70%"><input type="text" /></div>
-                          <div style="width: 30%">
-                            <button style="width: 100%">주소 찾기</button>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th></th>
-                        <td><input type="text" /></td>
-                      </tr>
-                      <tr>
-                        <th></th>
-                        <td><input type="text" /></td>
-                      </tr>
-                      <tr>
-                        <th>요청 사항</th>
-                        <td>
-                          <input type="text" />
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="test-container-order">
-                <div style="border: 1px solid">
-                  <table class="test-order">
-                    <caption>
-                      결제 정보
-                    </caption>
-                    <thead></thead>
-                    <tbody>
-                      <tr>
-                        <th>상품 정보</th>
-                        <td>
-                          <div>꼬부기 / 1개</div>
-                          <div>피카츄 / 2개</div>
-                          <div>이상해씨 / 2개</div>
-                          <div>메타몽 / 2개</div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>상품 총액</th>
-                        <td><div>23,000원</div></td>
-                      </tr>
-                      <tr>
-                        <th>배송비</th>
-                        <td><div>5,000원</div></td>
-                      </tr>
-                      <tr>
-                        <th>총 결제 금액</th>
-                        <td><div>28,000원</div></td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <div class="test-container-button">
-                    <button class="test-button">구매하기</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <!-- [끝] 그리드: 푸터 -->
@@ -303,6 +250,7 @@
     <!-- JS 파일 -->
     <!-- Daum 주소 API 사용하기 위한 파일 -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/common/dummy.js"></script>
     <script src="/js/common/config.js"></script>
     <script src="/js/common/navBar.js"></script>
     <script src="/js/order.js"></script>
