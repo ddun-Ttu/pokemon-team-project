@@ -1,72 +1,55 @@
-// api delete
-async function deleteItem(index) {
-  const item = data[index];
-  const response = await fetch(common.API_URL + '/api/categories/' + item._id, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(item),
-  });
-  console.log(item._id);
-  // const result = await response.json();
+const tbody = document.getElementsByTagName('tbody')[0];
+
+const API_URL = config.apiHost;
+let categories = [];
+
+/** 화면 초기화 */
+async function init() {
+  await getCategories();
+  drawTable();
 }
 
-const localCategory = localStorage.getItem('categoryObj');
-// const categoryObj = JSON.parse(localCategory);
-
-// 카테고리 목록 추가
-function updataUI() {
-  if (data) {
-    const categoryHtml = data
-      .map(
-        (obj, index) => `
-      <tr>
-        <td></td>
-        <td>${obj.categoryName}</td>
-        <td><a href="/api/categories/${obj._id}"><button id="edit" class="btn-my-orders">수정</button></a></td>
-        <td><button class="btn-my-orders delete-btn" data-index="${index}">삭제</button></td>
-      </tr>
-    `,
-      )
-      .join('');
-
-    const listCategory = document.querySelector('#list-category');
-    listCategory.innerHTML = categoryHtml;
-
-    // 삭제버튼 누르면 요소 삭제
-    const deleteBtns = document.querySelectorAll('.delete-btn');
-    deleteBtns.forEach(btn => {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        const index = parseInt(btn.dataset.index);
-        deleteItem(index);
-        data.splice(index, 1);
-        updataUI();
-      });
-    });
-  }
-}
-let data = [];
-
-//api get
-async function getData() {
-  const response = await fetch(common.API_URL + '/api/categories/', {
+/** 카테고리 목록 불러오기 */
+async function getCategories() {
+  // [GET] /api/categories -> 카테고리 조회 요청
+  const response = await fetch(API_URL + '/api/categories', {
     method: 'GET',
   });
-  data = await response.json();
-  updataUI();
-  console.log(response);
-  console.log('성공!!');
+  json = await response.json();
+  console.log({
+    ok: response.ok,
+    statusCodes: response.status,
+    length: json.length,
+  });
+  categories = [...json];
 }
 
-getData();
+/** 카테고리 표 그리기 */
+function drawTable() {
+  if (!categories.length) return;
 
-// 클릭하면 해당 포켓몬의 ID값을 추출하여 페이지 이동
-const editBtns = document.querySelectorAll('.btn-my-orders');
-editBtns.forEach(btn => {
-  btn.addEventListener('click', function (e) {
-    const categoryId = btn.getAttribute('href').split('/')[3];
-    window.location.href = '/api/categories/' + categoryId + '/edit';
+  categories.forEach((category, index) => {
+    const row = document.createElement('tr');
+    const template = `
+        <td>
+          ${category.name}
+        </td>
+        <td>
+          ${category.description}
+        </td>
+        <td>
+          <a href="${window.location.href}${category._id}/edit">
+            <button id="edit" class="btn-my-orders">수정</button>
+          </a>
+        </td>
+        <td>
+          <button class="btn-my-orders delete-btn" data-index="${index}">삭제</button>
+        </td>
+      `;
+
+    row.innerHTML = template;
+    tbody.appendChild(row);
   });
-});
+}
+
+init();
