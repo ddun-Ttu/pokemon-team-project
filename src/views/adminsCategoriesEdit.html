@@ -32,10 +32,10 @@
                       placeholder="카테고리 명"
                     />
                     <input
-                      id="explanation"
+                      id="categories-desc"
                       type="text"
-                      class="password"
-                      placeholder="한 줄 설명"
+                      placeholder="설명"
+                      name="categoryDesc"
                     />
                   </div>
 
@@ -48,6 +48,11 @@
                   </p>
                 </div>
               </form>
+
+              <div class="back-page-div">
+                <a href="/admins/categories">
+                  <div class="back-page-but">&larr; 이전페이지</div>
+                </a>
             </div>
           </div>
         </div>
@@ -55,6 +60,7 @@
     </div>
 
     <!-- JS 파일 -->
+    <script src="/js/common/config.js"></script>
     <script src="/js/common/navBar.js"></script>
     <script src="/js/adminsCategoriesEdit.js"></script>
   </body>
