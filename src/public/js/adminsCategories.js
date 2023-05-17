@@ -45,7 +45,7 @@ function drawTable() {
     ${category.description}
     </td>
     <td>
-    <a href="${window.location.href + category._id}/edit">
+    <a href="/admins/categories/${category._id}/edit">
     <button id="edit" class="btn-my-orders">수정</button>
     </a>
     </td>
