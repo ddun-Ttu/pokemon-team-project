@@ -274,6 +274,6 @@ function printInCartAndPaymentInformation() {
   goOrderButton.addEventListener('click', goOrderButtonHandler);
 
   async function goOrderButtonHandler() {
-    window.location.href = '/orders';
+    window.location.href = '/order';
   }
 }
