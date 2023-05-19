@@ -1,142 +1,76 @@
-const detail = document.querySelector('.detail');
-const putInCartButton = document.querySelector('.description-cart');
-const orderNowButton = document.querySelector('.description-order');
-const countInput = document.querySelector('#count');
-const pathname = window.location.pathname;
+makeProductDetail();
 
-// 더미 데이터)
+function makeProductDetail() {
+  const _id = Number(getProduct_id());
+  const url = makeUrlToGetProductData(_id);
 
-const dummy = {
-  categoryNameData: [
-    { main: '포켓몬', sub: ['물', '불', '풀', '전기'] },
-    { main: '몬스터볼' },
-    { main: '사료' },
-    { main: '진화의 돌' },
-    { main: '악세서리' },
-    { main: '인형' },
-  ],
-  productData: [
-    {
-      _id: 1,
-      img: 'url',
-      name: '꼬부기',
-      price: 1000,
-      categoryName: '포켓몬',
-      description: '긍지 높은 포켓몬',
-      stock: 20,
-    },
-    {
-      _id: 2,
-      img: 'url',
-      name: '메타몽',
-      price: 1000,
-      categoryName: '포켓몬',
-      description: '긍지 높은 포켓몬',
-      stock: 20,
-    },
-    {
-      _id: 3,
-      img: 'url',
-      name: '이상해씨',
-      price: 1000,
-      categoryName: '포켓몬',
-      description: '긍지 높은 포켓몬',
-      stock: 20,
-    },
-    {
-      _id: 4,
-      img: 'url',
-      name: '피카츄',
-      price: 1000,
-      categoryName: '포켓몬',
-      stock: 0,
-    },
-    {
-      _id: 5,
-      img: 'url',
-      name: '몬스터볼',
-      price: 1000,
-      categoryName: '몬스터볼',
-      stock: 20,
-    },
-    {
-      _id: 6,
-      img: 'url',
-      name: '메타몽',
-      price: 1000,
-      categoryName: '포켓몬',
-      stock: 0,
-    },
-    {
-      _id: 7,
-      img: 'url',
-      name: '몬스터볼',
-      price: 1000,
-      categoryName: '몬스터볼',
-      stock: 20,
-    },
-    {
-      _id: 8,
-      img: 'url',
-      name: '피카츄',
-      price: 1000,
-      categoryName: '포켓몬',
-      stock: 20,
-    },
-  ],
-};
+  getProductData(url)
+    .then(([res]) => {
+      const res1 = makeDatailImageHTML(res);
+      const res2 = makeDetailDescriptionOneHTML(res);
 
-let productData = dummy.productData;
+      return [res1, res2];
+    })
+    .then(([res1, res2]) => {
+      insertDetailImageHTML(res1);
+      insertDetailDescriptionOneHTML(res2);
+    })
+    .then(() => addEventListenerToAddProductToCartButton())
+    .then(() => addEventListenerToOrderProductNowButton());
 
-const _id = pathname.split('/')[2];
+  function getProduct_id() {
+    const pathname = window.location.pathname;
+    const _id = pathname.split('/')[2];
 
-const findedItem = productData.find(item => item._id === Number(_id));
-
-const data = findedItem;
-
-let { img, name, categoryName, price, description, stock } = data;
-
-makeDetail();
-
-async function makeDetail() {
-  // const res = await fetch(`${common.API_URL}/api${pathname}`);
-  // let data = await res.json();
-
-  // pricetoLocaleString = Number(price).toLocaleString();
-
-  let typeColor;
-
-  switch (categoryName) {
-    case '물':
-      typeColor = 'rgb(41, 146, 255)';
-      break;
-    case '전기':
-      typeColor = 'rgb(255, 219, 0)';
-      break;
-    case '풀':
-      typeColor = 'green';
-      break;
+    return _id;
   }
 
-  const detailImage = document.querySelector('.container-detail-image');
-  const detailDescriptionOne = document.querySelector('.one');
+  function makeUrlToGetProductData(product_id) {
+    const url = `http://api/products/${product_id}`;
 
-  const detailImageHTML = `
+    return url;
+  }
+
+  async function getProductData(url) {
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      return data;
+    } catch (error) {
+      console.log(
+        `error! at getProductData(). data is replaced dummy data.\n${error}`,
+      );
+
+      const data = dummy.getSelectedProductData('_id', _id);
+
+      return data;
+    }
+  }
+
+  function makeDatailImageHTML(productData) {
+    let { img } = productData;
+
+    const detailImageHTML = `
     <div class="detail-image">
       <img class="detail-image-img" src=${img} onerror="this.onerror=null; this.src='/imgs/모래두지.png';" alt=""></img>
     </div>
     `;
 
-  detailImage.insertAdjacentHTML('beforeend', detailImageHTML);
+    return detailImageHTML;
+  }
 
-  const detailDescriptionOneHTML = `
-    <div class="detail-description">
+  function makeDetailDescriptionOneHTML(productData) {
+    const { _id, name, categoryName, price, description, stock } = productData;
+
+    const detailDescriptionOneHTML = `
+    <div class="detail-description" data-id='${_id}' data-name='${name}' data-price='${price}'>
       <div class="container-description-nameAndType">
         <div class="container-description-name">
           <div class="description-name">${name}</div>
         </div>
         <div class="container-description-type">
-          <div class="description-type" style="background-color: ${typeColor}">${categoryName}</div>
+          <div class="description-type" style="display: none">${categoryName}</div>
         </div>
       </div>
       <div class="container-description-price">
@@ -148,69 +82,124 @@ async function makeDetail() {
     </div>
     `;
 
-  detailDescriptionOne.insertAdjacentHTML(
-    'beforeend',
-    detailDescriptionOneHTML,
-  );
-
-  putInCartButton.addEventListener('click', putInCartButtonHandler);
-
-  orderNowButton.addEventListener('click', orderNowButtonHandler);
-
-  function putInCartButtonHandler() {
-    let alreadyInCartData = JSON.parse(localStorage.getItem('cart'));
-
-    const count = Number(countInput.options[countInput.selectedIndex].value);
-
-    let data = {
-      _id,
-      name,
-      price,
-    };
-
-    if (alreadyInCartData == null) {
-      // data 객체에 더해줄 필드.
-      data.quantity = count;
-      data.checked = true;
-
-      // data 객체에서 빼줄 필드.
-
-      alreadyInCartData = [];
-      alreadyInCartData.push(data);
-
-      localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
-    } else {
-      const findedIndex = alreadyInCartData.findIndex(item => item._id == _id);
-
-      if (alreadyInCartData !== null && findedIndex == -1) {
-        data.quantity = count;
-        data.checked = true;
-
-        alreadyInCartData.push(data);
-
-        localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
-      } else {
-        alreadyInCartData[findedIndex].quantity += count;
-        localStorage.setItem('cart', JSON.stringify(alreadyInCartData));
-      }
-    }
+    return detailDescriptionOneHTML;
   }
 
-  function orderNowButtonHandler() {
-    const count = Number(countInput.options[countInput.selectedIndex].value);
-    let quantity = count;
+  function insertDetailImageHTML(detailImageHTML) {
+    const detailImage = document.querySelector('.container-detail-image');
 
-    let data = [
-      {
-        _id,
-        name,
-        price,
-        quantity,
-      },
-    ];
+    detailImage.insertAdjacentHTML('beforeend', detailImageHTML);
+  }
 
-    localStorage.setItem('order', JSON.stringify(data));
+  function insertDetailDescriptionOneHTML(detailDescriptionOneHTML) {
+    const detailDescriptionOne = document.querySelector('.one');
+
+    detailDescriptionOne.insertAdjacentHTML(
+      'beforeend',
+      detailDescriptionOneHTML,
+    );
+  }
+
+  function addEventListenerToAddProductToCartButton() {
+    const addProductToCartButton = document.querySelector('.description-cart');
+
+    addProductToCartButton.addEventListener('click', addProductToCart);
+  }
+
+  function addEventListenerToOrderProductNowButton() {
+    const orderProductNowButton = document.querySelector('.description-order');
+
+    orderProductNowButton.addEventListener('click', orderProductNow);
+  }
+
+  function addProductToCart() {
+    const hiddenDataForCart = document.querySelector('.detail-description');
+    const countInput = document.querySelector('#count');
+    const _id = hiddenDataForCart.dataset.id;
+    const name = hiddenDataForCart.dataset.name;
+    const price = Number(hiddenDataForCart.dataset.price);
+    const quantity = Number(countInput.options[countInput.selectedIndex].value);
+
+    const productData = { _id, name, price, quantity };
+
+    const productDataForCart = convertProductDataForCart(productData);
+
+    let cartData = getCartData();
+
+    if (!isCart()) {
+      createCartStorage(productDataForCart);
+
+      return;
+    }
+
+    const alreadyInCartDataIndex = cartData.findIndex(item => item._id === _id);
+
+    if (alreadyInCartDataIndex === -1) {
+      cartData.push(productDataForCart);
+
+      const updatedCartData = cartData;
+
+      setCartStorage(updatedCartData);
+
+      return;
+    }
+
+    cartData[alreadyInCartDataIndex].quantity += quantity;
+
+    const updatedCartData = cartData;
+
+    setCartStorage(updatedCartData);
+
+    return;
+  }
+
+  function getCartData() {
+    let cartData = JSON.parse(localStorage.getItem('cart'));
+
+    return cartData;
+  }
+
+  function convertProductDataForCart(productData) {
+    const { _id, name, price, quantity = 1, checked = true } = productData;
+
+    const productDataForCart = { _id, name, price, quantity, checked };
+
+    return productDataForCart;
+  }
+
+  function isCart() {
+    const cartData = JSON.parse(localStorage.getItem('cart'));
+    if (cartData === null) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function createCartStorage(firstProductDataForCart) {
+    localStorage.setItem('cart', JSON.stringify([firstProductDataForCart]));
+  }
+
+  function setCartStorage(productDataForCart) {
+    localStorage.setItem('cart', JSON.stringify(productDataForCart));
+  }
+
+  function orderProductNow() {
+    const hiddenDataForCart = document.querySelector('.detail-description');
+    const countInput = document.querySelector('#count');
+    const _id = hiddenDataForCart.dataset.id;
+    const name = hiddenDataForCart.dataset.name;
+    const price = Number(hiddenDataForCart.dataset.price);
+    const quantity = Number(countInput.options[countInput.selectedIndex].value);
+
+    const productDataForOrderNow = { _id, name, price, quantity };
+
+    setOrderStorage(productDataForOrderNow);
 
     window.location = '/order';
+  }
+
+  function setOrderStorage(productDataForOrderNow) {
+    localStorage.setItem('order', JSON.stringify([productDataForOrderNow]));
   }
 }

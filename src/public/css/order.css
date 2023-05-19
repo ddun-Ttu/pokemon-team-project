@@ -8,7 +8,7 @@
 
 div.gridContainer-whole {
   display: grid;
-  grid-template-columns: auto 1000px auto;
+  grid-template-columns: auto 900px auto;
   grid-template-rows: 80px auto auto auto;
 }
 
@@ -17,28 +17,33 @@ div.gridItem-whole-PageName {
   grid-row: 2/3;
 }
 
-/* 주문/결제 페이지 이름 */
-.container-pageName > h3 {
-  position: relative;
-  font-size: 26px;
-  margin-bottom: 30px;
-  top: 50px;
-  padding: 50px;
-  text-align: center;
-  font-weight: 700;
-  color: #ffc737;
+.container-pageName {
+  margin-top: 20px;
+}
+
+.pageName {
+  display: flex;
+  align-items: center;
+}
+
+.pageName-main {
+  font-size: 130%;
+  font-weight: bold;
+}
+
+.pageName-sub {
+  font-size: 100%;
 }
 
 /* 배송지 정보 & 결제 정보 */
 
 div.gridItem-whole-deliveryInformationAndpaymentInformation {
-  width: 80%;
-  margin: 0 auto;
-  /* padding: 20px; */
-
   grid-column: 2/3;
   grid-row: 3/4;
-  /* border: solid; */
+}
+
+.container-deliveryInformationAndpaymentInformation {
+  margin-top: 100px;
 }
 
 div.deliveryInformationAndpaymentInformation {
@@ -50,135 +55,121 @@ div.deliveryInformationAndpaymentInformation {
 div.container-deliveryInformation {
   width: 60%;
 
-  padding: 20px;
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto auto auto;
-
-  /* display: flex;
-  flex-direction: column;
-  - 나중에 세로를 늘려줄 수도 있으니까,, 그리드가 낫지 않을까!?!?
-  - 이런 상황마다 리스트 테이블 플렉스 그리드 뭘 써야 할지 판단이 안 선다!!!  */
+  display: flex;
+  justify-content: center;
 }
 
 div.deliveryInformation {
-  border: 1px solid #f0f0f0;
-  box-shadow: 5px 5px 3px 0.5 #595959;
-  padding: 40px;
+  width: 90%;
+  padding: 20px;
+
+  border: 1px solid;
 }
 
 div.container-deliveryInformation-subject {
   display: flex;
+  justify-content: center;
   align-content: center;
-  margin-bottom: 3%;
+
+  margin-bottom: 20px;
 }
+
 .deliveryInformation-subject {
   text-align: center;
-  width: 100%;
-}
-.deliveryInformation-subject > h4 {
-  font-size: 20px;
-  top: 100px;
-  padding: 20px 0 20px 0;
-  text-align: center;
-  font-weight: 500;
 }
 
-div.container-form-name {
-  display: flex;
+.container-deliveryInformation-form {
 }
 
-div.container-form-name-label {
-  width: 20%;
+.grid-container.deliveryInformation-form {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: auto auto auto auto auto auto;
 }
 
-div.container-form-name-input > input {
-  width: 100%;
+.grid-item {
+  margin-top: 5px;
 }
 
-div.container-form-name-input {
-  width: 80%;
+.grid-item.form-name-label {
+  grid-column: 1/2;
+  grid-row: 1/2;
 }
 
-div.container-form-phoneNumber {
-  display: flex;
+.grid-item.form-name-input {
+  grid-column: 2/3;
+  grid-row: 1/2;
 }
 
-div.container-form-phoneNumber-label {
-  width: 20%;
-}
-
-div.container-form-phoneNumber-input {
-  width: 80%;
-}
-
-div.container-form-phoneNumber-input > input {
+.container-form-name-input > input {
   width: 100%;
 }
 
-div.container-form-address {
-  display: flex;
+.grid-item.form-phoneNumber-label {
+  grid-column: 1/2;
+  grid-row: 2/3;
 }
 
-div.container-form-address-label {
-  width: 20%;
+.grid-item.form-phoneNumber-input {
+  grid-column: 2/3;
+  grid-row: 2/3;
 }
 
-div.container-form-address-input {
-  width: 80%;
-}
-
-div.container-form-address-input1 {
-  display: flex;
-
-  align-items: center;
-}
-
-div.container-form-address-input1 > input {
-  width: 70%;
-}
-
-div.container-form-address-input1 > button {
-  width: 30%;
-}
-
-div.container-form-address-input2 {
-  display: flex;
-
-  align-items: center;
-}
-
-div.container-form-address-input2 > input {
+.container-form-phoneNumber-input > input {
   width: 100%;
 }
 
-div.container-form-address-input3 {
-  display: flex;
-
-  align-items: center;
+.grid-item.form-address-label {
+  grid-column: 1/2;
+  grid-row: 3/4;
 }
 
-div.container-form-address-input3 > input {
+.grid-item.form-address-input1 {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+
+.container-form-address-input1 {
+  display: flex;
+}
+
+.container-form-address-input1 > input {
+  flex-grow: 1;
+}
+
+.container-form-address-input1 > button {
+  margin-left: 5px;
+}
+
+.grid-item.form-address-input2 {
+  grid-column: 2/3;
+  grid-row: 4/5;
+}
+
+.container-form-address-input2 > input {
   width: 100%;
 }
 
-div.container-form-customerRequest {
-  display: flex;
-
-  align-items: center;
+.grid-item.form-address-input3 {
+  grid-column: 2/3;
+  grid-row: 5/6;
 }
 
-div.container-form-customerRequest-label {
-  width: 20%;
+.container-form-address-input3 > input {
+  width: 100%;
 }
 
-div.container-form-customerRequest-input {
-  width: 80%;
+.grid-item.form-request-label {
+  grid-column: 1/2;
+  grid-row: 6/7;
 }
 
-div.container-form-customerRequest-input > input {
+.grid-item.form-request-input {
+  grid-column: 2/3;
+  grid-row: 6/7;
+}
+
+.container-form-request-input > input {
   width: 100%;
 }
 
@@ -187,31 +178,42 @@ div.container-form-customerRequest-input > input {
 div.container-paymentInformation {
   width: 40%;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paymentInformation {
+  width: 90%;
+
   padding: 20px;
-  margin: 0 auto;
+
+  border: 1px solid;
 
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto auto auto auto;
 }
 
-div.paymentInformation {
-  background-color: #fff7e3;
-  padding: 20px;
+.paymentInformation > div {
+  margin-top: 5px;
 }
 
-.paymentInformation-subject > h4 {
-  font-size: 20px;
-  top: 100px;
-  padding: 20px 0 20px 0;
-  text-align: center;
-  font-weight: 500;
-}
+/* .grid-container.paymentInformation {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto auto auto;
+} */
 
-div.container-paymentInformation-subject {
+.container-paymentInformation-subject {
   display: flex;
+  justify-content: center;
+  align-items: center;
 
-  margin-bottom: 3%;
+  margin-bottom: 20px;
+}
+
+.paymentInformation-subject {
 }
 
 div.container-paymentInformation-NameAndCountList {
@@ -269,7 +271,7 @@ div.container-paymentInformation-paymentButton {
   align-items: center;
 }
 
-button.paymentInformation-paymentButton {
+/* button.paymentInformation-paymentButton {
   width: 90%;
   padding: 16px;
   display: block;
@@ -281,7 +283,7 @@ button.paymentInformation-paymentButton {
   background-color: #ffc737;
   color: white;
   cursor: pointer;
-}
+} */
 
 /* 푸터 */
 
@@ -298,16 +300,16 @@ div.container-footer {
 
 /* input */
 
-.input-payment {
+/* .input-payment {
   width: 100%;
   padding: 10px;
   border: 1px solid #dedede;
   border-radius: 5px;
-}
+} */
 
 /* 버튼 */
 
-.addressFindButton {
+/* .addressFindButton {
   width: 80px;
   padding: 10px;
   margin-left: 5px;
@@ -317,7 +319,7 @@ div.container-footer {
   background-color: #595959;
   color: white;
   cursor: pointer;
-}
+} */
 
 /* test */
 

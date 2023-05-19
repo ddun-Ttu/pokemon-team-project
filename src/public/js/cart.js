@@ -29,7 +29,7 @@ function printInCartAndPaymentInformation() {
       let resultInCartHTML = '';
 
       localStorageData.forEach((item, index) => {
-        let { _id, pokemonImage, pokemonName, quantity, price, checked } = item;
+        let { _id, img, name, quantity, price, checked } = item;
 
         // 체크박스 상태 변경을 위한 값 할당.
         if (checked == true) {
@@ -45,11 +45,11 @@ function printInCartAndPaymentInformation() {
               <input class="productList-checkbox" type="checkbox" ${checked}>
             </div>
             <div class="container-productList-productIamge">
-            <a href='/pokemons/${_id}' class="img"><img class="productList-productIamge" src=${pokemonImage} onerror="this.onerror=null; this.src='../img/피카츄.png';" alt=""></a>
+            <a href='/pokemons/${_id}' class="img"><img class="productList-productIamge" src=${img} onerror="this.onerror=null; this.src='/imgs/모래두지.png';" alt=""></a>
             </div>
             <div class="container-productList-productNameAndCountHandle">
               <div class="container-productList-productName">
-              <div class="productList-productName">${pokemonName}</div>
+              <div class="productList-productName">${name}</div>
               </div>
               <div class="container-productList-countHandle">
                 <div>
@@ -274,6 +274,6 @@ function printInCartAndPaymentInformation() {
   goOrderButton.addEventListener('click', goOrderButtonHandler);
 
   async function goOrderButtonHandler() {
-    window.location.href = '/orders';
+    window.location.href = '/order';
   }
 }
