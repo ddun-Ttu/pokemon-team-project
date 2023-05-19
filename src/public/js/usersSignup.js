@@ -80,17 +80,25 @@ signUpBut.addEventListener('click', async function (event) {
     confirmPassword: siginUpConfirmPassword,
   };
 
+  console.log(signupObj);
+
   // [POST] /api/users/signup 요청
-  await fetch(common.API_URL + '/api/users/signup', {
+  await fetch(API_URL + '/api/users/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(signupObj),
   });
+
+  // 회원가입 성공 시 로그인 페이지로 이동
+  let urlArr = window.location.href.split('/');
+  urlArr.pop();
+  urlArr.push('login');
+  window.location.href = urlArr.join('/');
 });
 
-// 가입양식을 제출하는 함수
+// 가입양식을 제출 확인하는 함수
 function handleSignUpSubmit(event) {
   event.preventDefault(); // submitting 막기
   console.log(event);
@@ -98,7 +106,7 @@ function handleSignUpSubmit(event) {
 
   // // 사용자가 입력한 값 변수로 지정
   // const signUpName = document.querySelector(".name").value;
-  // const signUpUsername = document.querySelector(".username").value;
+  // const signUpNickname = document.querySelector(".nickname").value;
   // const signUpEmail = document.querySelector(".email").value;
   // const signUpPassword = document.querySelector(".password").value;
   // const siginUpConfirmPassword =

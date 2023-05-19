@@ -11,12 +11,13 @@ fetch('/views/common/navBar.html')
     function navLogOutHandler(e) {
       e.preventDefault();
 
+      localStorage.removeItem('userId');
       localStorage.removeItem('token');
       localStorage.removeItem('isAdmin');
 
       alert('로그아웃되었습니다.');
 
-      window.location.replace('./mainHome.html');
+      window.location.replace('./home.html');
     }
   })
   .then(() => {

@@ -22,13 +22,18 @@
     <div class="container container-user-acc">
       <div class="form-div border-user-acc">
         <form>
-          <h3>배송지정보 수정</h3>
+          <h3>배송지 정보 수정</h3>
 
           <div>
-            <p>이름</p>
-            <input class="" placeholder="한지우" type="text" />
+            <p>받는 사람</p>
+            <input id="receiver" class="" placeholder="한지우" type="text" />
             <p>연락처</p>
-            <input class="" placeholder="01012345678" type="text" />
+            <input
+              id="phone-number"
+              class=""
+              placeholder="01012345678"
+              type="text"
+            />
 
             <p>주소</p>
             <div class="flex">
@@ -70,6 +75,7 @@
     </div>
 
     <!-- JS 파일 -->
+    <script src="/js/common/config.js"></script>
     <script src="/js/common/navBar.js"></script>
     <script src="/js/usersMyOrdersEdit.js"></script>
   </body>

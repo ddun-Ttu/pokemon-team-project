@@ -22,30 +22,23 @@
     <div class="container container-user-acc">
       <div class="form-div border-user-acc">
         <form id="sign-up-form">
-          <h3>회원정보 관리(수정)</h3>
+          <h3>회원정보 관리</h3>
           <div>
             <p>이름</p>
-            <input
-              class="form-input-sing-up name"
-              placeholder="홍길동"
-              type="text"
-            />
+            <div id="username"></div>
           </div>
           <div>
             <p>닉네임</p>
             <input
-              class="form-input-sing-up nickname"
-              placeholder="abcd123"
+              id="nickname"
+              class="form-input-user-acc nickname"
+              placeholder="닉네임을 입력하세요."
               type="text"
             />
           </div>
           <div>
             <p>이메일</p>
-            <input
-              class="form-input-sing-up email"
-              placeholder="abcd123@gmail.com"
-              type="email"
-            />
+            <div id="email"></div>
           </div>
           <div>
             <p>비밀번호</p>
@@ -76,6 +69,7 @@
     </div>
 
     <!-- JS 파일 -->
+    <script src="/js/common/config.js"></script>
     <script src="/js/common/navBar.js"></script>
     <script src="/js/usersMyEdit.js"></script>
   </body>

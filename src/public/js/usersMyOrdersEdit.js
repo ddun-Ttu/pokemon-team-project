@@ -1,15 +1,53 @@
-const receiverPhoneNumberInput = document.querySelector('#receiverPhoneNumber');
-const postalCodeInput = document.querySelector('#postalCode');
+const receiverInputElm = document.querySelector('#receiver');
+const phoneNumberInputElm = document.querySelector('#phone-number');
+const postalCodeInputElm = document.querySelector('#postalCode');
+const address1InputElm = document.querySelector('#address1');
+const address2InputElm = document.querySelector('#address2');
+
+const token = localStorage.getItem('token');
+
+let urlArr = window.location.href.split('/');
+urlArr.pop();
+const orderId = urlArr.pop();
+
+// 기존 정보 불러오기
+window.onload = async function (e) {
+  e.preventDefault();
+
+  await fetch(API_URL + `/api/orders/${orderId}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      orderData = data;
+    });
+
+  const receiver = orderData.receiver;
+  const phoneNumber = orderData.phoneNumber;
+  const postalcode = orderData.postalCode;
+  const address1 = orderData.address1;
+  const address2 = orderData.address2;
+
+  receiverInputElm.placeholder = receiver;
+  phoneNumberInputElm.placeholder = phoneNumber;
+  postalCodeInputElm.placeholder = postalcode;
+  address1InputElm.placeholder = address1;
+  address2InputElm.placeholder = address2;
+};
+
 const searchAddressButton = document.querySelector('#searchAddressButton');
-const address1Input = document.querySelector('#address1');
-const address2Input = document.querySelector('#address2');
 const saveButton = document.querySelector('#saveButton');
 
-// 이벤트
 searchAddressButton.addEventListener('click', searchAddress);
-saveButton.addEventListener('click', doCheckout);
+saveButton.addEventListener('click', modifyDeliveryInfo);
 
-// 이벤트에 사용할 함수
+// 주소 찾기
 function searchAddress(e) {
   e.preventDefault();
   new daum.Postcode({
@@ -38,52 +76,57 @@ function searchAddress(e) {
       } else {
       }
 
-      postalCodeInput.value = data.zonecode;
-      address1Input.value = `${addr} ${extraAddr}`;
-      address2Input.placeholder = '상세 주소를 입력해 주세요.';
-      address2Input.focus();
+      postalCodeInputElm.value = data.zonecode;
+      address1InputElm.value = `${addr} ${extraAddr}`;
+      address2InputElm.placeholder = '상세 주소를 입력해 주세요.';
+      address2InputElm.focus();
     },
   }).open();
 }
 
-async function doCheckout() {
-  // 각 입력값 가져옴
-  const receiverPhoneNumber = receiverPhoneNumberInput.value;
-  const postalCode = postalCodeInput.value;
-  const address1 = address1Input.value;
-  const address2 = address2Input.value;
+// 배송지 정보 수정
+async function modifyDeliveryInfo(e) {
+  e.preventDefault();
 
-  // 입력이 안 되어 있을 시
-  if (!receiverPhoneNumber || !postalCode || !address2) {
-    return alert('배송지 정보를 모두 입력해주세요');
+  let updatedData = {};
+
+  if (receiverInputElm.value) {
+    updatedData['receiver'] = receiverInputElm.value;
+  } else if (phoneNumberInputElm.value) {
+    updatedData['phoneNumber'] = phoneNumberInputElm.value;
+  } else if (postalCodeInputElm.value) {
+    updatedData['postalCode'] = postalCodeInputElm.value;
+  } else if (address1InputElm.value) {
+    updatedData['address1'] = address1InputElm.value;
+  } else if (address2InputElm.value) {
+    updatedData['address2'] = address2InputElm.value;
+  } else if (updatedData === {}) {
+    alert('수정된 항목이 없습니다.');
+    window.location.replace(`/users/mypage/${orderId}/edit`);
   }
 
-  //객체
-
-  const data = {
-    receiverPhoneNumber,
-    postalCode,
-    address1,
-    address2,
-  };
-
-  // json 만듦
-
-  const dataJson = JSON.stringify(data);
-  const apiUrl = `https://${window.location.hostname}:8190/api/order`;
-
   // post 요청
-  const res = await fetch(apiUrl, {
-    method: 'POST',
+  await fetch(API_URL + `/api/orders/${orderId}`, {
+    method: 'PUT',
     headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    body: dataJson,
-  });
+    body: JSON.stringify(updatedData),
+  })
+    .then(res => res.json())
+    .then(data => {
+      resultData = data;
+    });
 
-  if (res.status === 201) {
-    alert('저장되었습니다');
+  const result = resultData.ok;
+
+  if (!result || result === false) {
+    alert('배송지 정보 수정에 실패하였습니다. 다시 양식을 제출해주세요.');
+    window.location.replace(`/users/mypage/orders/${orderId}/edit`);
   } else {
-    alert('저장 실패');
+    alert('배송지 정보가 수정되었습니다.');
+    window.location.replace(`/users/mypage/orders/${orderId}/edit`);
   }
 }
