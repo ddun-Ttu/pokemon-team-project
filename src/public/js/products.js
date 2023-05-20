@@ -1,4 +1,4 @@
-import { Utility } from './common/utility-ungbi.js';
+import { Utility } from './common/utility.js';
 
 // print_categoryList
 makeCategoryList();
