@@ -23,19 +23,89 @@ window.onload = async function (e) {
 const paintOrderListTable = orderData => {
   for (let i = 0; i < orderData.length; i++) {
     const row = `
-    <tr>
-    <td>${orderData[i].createdAt.split('T')[0]}</td>
-    <td>${orderData[i].productData[0].productId} / ${
+    <tr data-order-id = "${orderData[i]._id}" >
+      <td>${orderData[i].createdAt.split('T')[0]}</td>
+      <td>${orderData[i].productData[0].productId} / ${
       orderData[i].productData[0].quantity
     } 마리(개)</td>
-    <td>${orderData[i].productData[0].totalPrice}</td>
-    <td>${orderData[i].orderState}</td>
-    <td><button>주문 취소</button></td>
+      <td>${orderData[i].productData[0].totalPrice}</td>
+      <td>
+        <select id="status" name="orderState" onchange="saveOrderState(this)">
+          <option value="" selected disabled>${orderData[i].orderState}</option>
+          <option value="입금대기중">입금대기중</option>
+          <option value="결제완료">결제완료</option>
+          <option value="상품준비중">상품준비중</option>
+          <option value="배송중">배송중</option>
+          <option value="배송완료">배송완료</option>
+          <option value="구매확정">구매확정</option>
+          <option value="주문취소">주문취소</option>
+        </select>
+      </td>
+      <td><button onclick="deleteOrder(this)">삭제</button></td>
     </tr>
     `;
 
+    console.log(orderData[i]._id);
     const orderList = document.getElementById('orderList');
     orderList.innerHTML += row;
+  }
+};
+
+const saveOrderState = async selectElement => {
+  const updatedOrderState = { orderState: selectElement.value };
+  console.log(updatedOrderState);
+
+  const orderId = selectElement.closest('tr').dataset.orderId;
+  console.log(orderId);
+
+  await fetch(API_URL + `/api/orders/${orderId}`, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedOrderState),
+  })
+    .then(res => res.json())
+    .then(data => {
+      resultData = data;
+      console.log(resultData);
+    });
+
+  if (!resultData || resultData[0] === false) {
+    alert('주문 상태 수정에 실패하였습니다.');
+    window.location.replace('/admins/orders');
+  } else {
+    alert('주문 상태 수정이 완료되었습니다.');
+    window.location.replace('/admins/orders');
+  }
+};
+
+const deleteOrder = async buttonElement => {
+  const orderId = buttonElement.closest('tr').dataset.orderId;
+  console.log(orderId);
+
+  await fetch(API_URL + `/api/orders/${orderId}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.json())
+    .then(data => {
+      resultData = data;
+      console.log(resultData);
+    });
+
+  if (!resultData || resultData[0] === false) {
+    alert('주문 삭제에 실패하였습니다.');
+    // window.location.replace('/admins/orders');
+  } else {
+    alert('주문이 삭제되었습니다.');
+    // window.location.replace('/admins/orders');
   }
 };
 
