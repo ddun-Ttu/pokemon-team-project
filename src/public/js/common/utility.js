@@ -94,6 +94,7 @@ const Utility = {
       selectedPaginationButtonNumber,
     ) {
       const paginationButton = document.querySelectorAll('.paginationButton');
+
       const selectedPaginationButton =
         paginationButton[selectedPaginationButtonNumber - 1];
 

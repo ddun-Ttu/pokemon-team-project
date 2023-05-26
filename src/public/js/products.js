@@ -31,7 +31,7 @@ function makeCategoryList() {
     try {
       console.log(API_URL + `/api/categories`);
       const res = await fetch(API_URL + `/api/categories`, { method: 'GET' });
-      const data = await data.json();
+      const data = await res.json();
 
       return data;
     } catch (error) {
@@ -56,7 +56,7 @@ function makeCategoryList() {
     categoryNameData.forEach(item => {
       categoryListHTML += `<li class=${
         item === '전체' ? 'selected' : null
-      } data-id='${item}'>${item}</li>`;
+      } data-id='${item.name}'>${item.name}</li>`;
     });
 
     return categoryListHTML;
