@@ -1,3 +1,5 @@
+const API_URL = config.apiHost;
+
 makeProductDetail();
 
 function makeProductDetail() {
@@ -26,7 +28,7 @@ function makeProductDetail() {
   }
 
   function makeUrlToGetProductData(product_id) {
-    const url = `http://api/products/${product_id}`;
+    const url = API_URL + `/api/products/${product_id}`;
 
     return url;
   }
@@ -53,7 +55,9 @@ function makeProductDetail() {
 
     const detailImageHTML = `
     <div class="detail-image">
-      <img class="detail-image-img" src=${img} onerror="this.onerror=null; this.src='/imgs/모래두지.png';" alt=""></img>
+      <img class="detail-image-img" src=${
+        API_URL + img
+      } onerror="this.onerror=null; this.src='/imgs/모래두지.png';" alt=""></img>
     </div>
     `;
 
