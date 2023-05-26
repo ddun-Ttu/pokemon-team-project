@@ -7,7 +7,12 @@ let products = [];
 async function init() {
   await getProducts();
 
+  // 표 그린 후 삭제버튼 추가
   drawTable();
+  deleteBtns = document.querySelectorAll('.delete-btn');
+  for (let i = 0; i < deleteBtns.length; i++) {
+    deleteBtns[i].addEventListener('click', deleteProduct);
+  }
 }
 
 /** 상품 목록 불러오기 */
@@ -17,7 +22,6 @@ async function getProducts() {
   });
   const json = await response.json();
   products = [...json];
-  console.log(products);
 }
 
 /** 상품 표 그리기 */
@@ -51,6 +55,20 @@ function drawTable() {
     row.innerHTML = template;
     tbody.appendChild(row);
   });
+}
+
+/** 상품 삭제 */
+async function deleteProduct(e) {
+  const btn = e.target;
+  const productId = btn.dataset.id;
+
+  // [DELETE] /api/products -> 상품 삭제 요청
+  const response = await fetch(API_URL + '/api/products/' + productId, {
+    method: 'DELETE',
+  });
+  const json = await response.json();
+
+  window.location.reload();
 }
 
 init();
