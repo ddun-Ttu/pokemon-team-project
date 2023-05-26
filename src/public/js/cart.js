@@ -1,3 +1,5 @@
+const API_URL = config.apiHost;
+
 const inCartAndpaymentInformationArea = document.querySelector(
   '.inCartAndpaymentInformation',
 );
@@ -68,6 +70,7 @@ function printInCartAndPaymentInformation() {
 
     cartData.forEach(item => {
       let { _id, img, name, quantity, price, checked } = item;
+      console.log(item);
 
       // 체크박스 상태 변경을 위한 값 할당.
       if (checked == true) {
@@ -83,7 +86,9 @@ function printInCartAndPaymentInformation() {
               <input class="productList-checkbox" type="checkbox" ${checked}>
             </div>
             <div class="container-productList-productIamge">
-            <a href='/products/${_id}' class="img"><img class="productList-productIamge" src=${img} onerror="this.onerror=null; this.src='/imgs/모래두지.png';" alt=""></a>
+            <a href='/products/${_id}' class="img"><img class="productList-productIamge" src=${
+        API_URL + img
+      } onerror="this.onerror=null; this.src='/imgs/모래두지.png';" alt=""></a>
             </div>
             <div class="container-productList-productNameAndCountHandle">
               <div class="container-productList-productName">

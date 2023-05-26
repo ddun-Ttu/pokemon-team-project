@@ -3,11 +3,11 @@ const API_URL = config.apiHost;
 makeProductDetail();
 
 function makeProductDetail() {
-  const _id = Number(getProduct_id());
+  const _id = getProduct_id();
   const url = makeUrlToGetProductData(_id);
 
   getProductData(url)
-    .then(([res]) => {
+    .then(res => {
       const res1 = makeDatailImageHTML(res);
       const res2 = makeDetailDescriptionOneHTML(res);
 
@@ -22,6 +22,7 @@ function makeProductDetail() {
 
   function getProduct_id() {
     const pathname = window.location.pathname;
+
     const _id = pathname.split('/')[2];
 
     return _id;
@@ -35,8 +36,10 @@ function makeProductDetail() {
 
   async function getProductData(url) {
     try {
+      console.log(url);
       const res = await fetch(url);
       const data = await res.json();
+      console.log(data);
 
       return data;
     } catch (error) {
