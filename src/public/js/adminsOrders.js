@@ -102,10 +102,10 @@ const deleteOrder = async buttonElement => {
 
   if (!resultData || resultData[0] === false) {
     alert('주문 삭제에 실패하였습니다.');
-    // window.location.replace('/admins/orders');
+    window.location.replace('/admins/orders');
   } else {
     alert('주문이 삭제되었습니다.');
-    // window.location.replace('/admins/orders');
+    window.location.replace('/admins/orders');
   }
 };
 
