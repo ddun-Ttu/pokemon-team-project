@@ -1,5 +1,7 @@
 import { Utility } from './common/utility.js';
 
+const API_URL = config.apiHost;
+
 // print_categoryList
 makeCategoryList();
 
@@ -25,7 +27,7 @@ function makeCategoryList() {
 
   async function getCategoryNameData() {
     try {
-      const res = await fetch('url');
+      const res = await fetch(API_URL + `/api/categories`, { method: 'GET' });
       const data = await data.json();
 
       return data;
@@ -117,8 +119,9 @@ function makeProductListByCategoryName(categoryName) {
     try {
       const res = await fetch(
         categoryName === '전체'
-          ? `/products`
-          : `/products?category=${categoryName}`,
+          ? API_URL + `/api/products`
+          : API_URL + `/api/products?category=${categoryName}`,
+        { method: 'GET' },
       );
 
       const data = await res.json();
