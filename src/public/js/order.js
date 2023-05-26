@@ -165,9 +165,9 @@ function addEventListenerToOrderButton() {
     const postalCode = postalCodeInput.value;
     const address2 = address2Input.value;
 
-    // if (!receiver || !phoneNumber || !postalCode || !address2) {
-    //   throw '배송지 정보를 모두 입력해주세요';
-    // }
+    if (!receiver || !phoneNumber || !postalCode || !address2) {
+      throw '배송지 정보를 모두 입력해주세요';
+    }
     return;
   }
 
@@ -183,7 +183,7 @@ function addEventListenerToOrderButton() {
   }
 
   function makeDeliveryData() {
-    const userId = '유저 정보';
+    const userId = JSON.parse(localStorage.getItem('userId'));
     const receiver = receiverNameInput.value;
     const phoneNumber = receiverPhoneNumberInput.value;
     const postalCode = postalCodeInput.value;
@@ -222,17 +222,17 @@ function addEventListenerToOrderButton() {
   }
 
   async function sendOrderDataToServer(orderData) {
-    // const dataJson = JSON.stringify(orderData);
+    const dataJson = JSON.stringify(orderData);
 
-    // const url = `${common.API_URL}/order`;
+    const url = `${common.API_URL}/order`;
 
-    // const res = await fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: dataJson,
-    // });
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: dataJson,
+    });
 
     const localStorageOrderData = JSON.parse(localStorage.getItem('order'));
     const localStorageCartData = JSON.parse(localStorage.getItem('cart'));
