@@ -148,7 +148,9 @@ function makeProductListByCategoryName(categoryName) {
         <li class="productListByCategory-list-li">
           <a href="/products/${_id}">
             <div class="container-productListByCategory-list-image">
-              <img class="productListByCategory-list-image" src=${img} onerror="this.onerror=null; this.src='/imgs/모래두지.png';" alt=""></img>
+              <img class="productListByCategory-list-image" src=${
+                API_URL + img
+              } onerror="this.onerror=null; this.src='/imgs/모래두지.png';" alt=""></img>
             </div>
             <div class="container-productListByCategory-list-description">
               <div img="container-productListByCategory-list-description-name">
