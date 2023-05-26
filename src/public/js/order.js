@@ -1,3 +1,5 @@
+const API_URL = config.apiHost;
+
 makePaymentInformation();
 addEventListenerToSearchAddressButton();
 addEventListenerToOrderButton();
@@ -222,9 +224,10 @@ function addEventListenerToOrderButton() {
   }
 
   async function sendOrderDataToServer(orderData) {
+    console.log(orderData);
     const dataJson = JSON.stringify(orderData);
 
-    const url = `${common.API_URL}/order`;
+    const url = API_URL + `/api/order`;
 
     const res = await fetch(url, {
       method: 'POST',
