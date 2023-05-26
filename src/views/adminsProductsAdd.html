@@ -23,30 +23,33 @@
           <div>
             <p>상품명</p>
             <input
-              id="prodeuct-name"
+              id="product-name"
               class="form-input-sing-up"
               placeholder="피카츄"
               type="text"
-            />
-          </div>
-          <div>
-            <p>번호 - id</p>
-            <input
-              id="inventory"
-              class="form-input-sing-up"
-              placeholder="0"
-              type="number"
+              required
             />
           </div>
           <div>
             <p>카테고리</p>
-            <select id="items" class="items-management-orders" name="items">
-              <option value="전체">전체</option>
-              <option value="전기">전기</option>
-              <option value="풀">풀</option>
-              <option value="물">물</option>
+            <!--
+            <select
+              id="categories"
+              class="items-management-orders"
+              name="items"
+            >
+                <option value="포켓몬">포켓몬</option>
+                <option value="몬스터볼">몬스터볼</option> 
             </select>
+            -->
+            <input
+              id="categories"
+              class="items-management-orders"
+              name="items"
+              required
+            />
           </div>
+
           <div>
             <p>가격</p>
             <input
@@ -54,19 +57,33 @@
               class="form-input-sing-up"
               placeholder="10000"
               type="number"
+              required
             />
           </div>
-          <!-- <div>
+
+          <div>
+            <p>재고</p>
+            <input
+              id="stock"
+              class="form-input-sing-up"
+              placeholder="24"
+              type="number"
+              required
+            />
+          </div>
+
+          <div>
             <p>설명</p>
             <textarea
-              id="summary"
+              id="description"
               class="form-input-sing-up"
               name="message"
               rows="4"
               cols="40"
               type="textarea"
-            ></textarea>
-          </div> -->
+            >
+            </textarea>
+          </div>
 
           <div class="upload-container">
             <label for="photo_upload">상품 사진</label>
@@ -80,16 +97,10 @@
               <img src="#" alt="상품 등록 사진" id="preview" />
             </div>
           </div>
-          <!-- 2차 구현예정 
-            <div>
-              <p>검색 키워드</p>
-              <input class="form-input-sing-up search" placeholder="펫" type="text">
-              <button class="search-btn">추가하기</button>
-            </div>
-          -->
+
           <!-- [POST] 포켓몬(상품) 생성 API 요청 -->
           <button id="but-sing-up" class="but-sing-up">상품등록하기</button>
-          <a href="/admins/pokemons"> &#60; 상품관리 조회</a>
+          <a href="/admins/products"> &larr; 상품 관리페이지</a>
         </form>
       </div>
     </div>
