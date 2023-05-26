@@ -2,6 +2,8 @@ import { Utility } from './common/utility.js';
 
 const API_URL = config.apiHost;
 
+console.log('API_URL', API_URL);
+
 // print_categoryList
 makeCategoryList();
 
@@ -27,6 +29,7 @@ function makeCategoryList() {
 
   async function getCategoryNameData() {
     try {
+      console.log(API_URL + `/api/categories`);
       const res = await fetch(API_URL + `/api/categories`, { method: 'GET' });
       const data = await data.json();
 
@@ -165,7 +168,7 @@ function makeProductListByCategoryName(categoryName) {
             </div>
           </a>
           <div class="container-productListByCategory-list-description-like">
-            <button class="productListByCategory-list-like-button" data-_id=${_id} data-name=${name} data-price=${price}>장바구니에 추가</button>
+            <button class="productListByCategory-list-like-button" data-_id=${_id} data-name=${name} data-price=${price} data-img=${img}>장바구니에 추가</button>
           </div>
         </li>
         `;

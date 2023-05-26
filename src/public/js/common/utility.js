@@ -176,17 +176,18 @@ const Utility = {
 
     function addEventListenerToElement(element) {
       element.addEventListener('click', e => {
-        let { _id, name, price } = e.target.dataset;
-        _id = Number(_id);
+        let { _id, name, price, img } = e.target.dataset;
+        console.log(img);
 
-        addProductToCart(_id, name, price);
+        addProductToCart(_id, name, price, img);
       });
     }
 
-    function addProductToCart(_id, name, price) {
+    function addProductToCart(_id, name, price, img) {
       let cartData = getCartData();
 
-      const productData = { _id, name, price };
+      const productData = { _id, name, price, img };
+      console.log(img);
       const productDataForCart = convertProductDataForCart(productData);
 
       if (!isCart()) {
@@ -225,9 +226,16 @@ const Utility = {
     }
 
     function convertProductDataForCart(productData) {
-      const { _id, name, price, quantity = 1, checked = true } = productData;
+      const {
+        _id,
+        name,
+        price,
+        img,
+        quantity = 1,
+        checked = true,
+      } = productData;
 
-      const productDataForCart = { _id, name, price, quantity, checked };
+      const productDataForCart = { _id, name, price, img, quantity, checked };
 
       return productDataForCart;
     }

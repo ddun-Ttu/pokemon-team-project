@@ -34,6 +34,17 @@ function makePaymentInformation() {
     data.forEach((item, index) => {
       const { _id, name, quantity, price } = item;
 
+      console.log(
+        '_id',
+        _id,
+        'name',
+        name,
+        'quantity',
+        quantity,
+        'price',
+        price,
+      );
+
       productListHTML += `
         <li data-_id="${_id}" data-quantity="${quantity}">
             <div>${name} / ${quantity}개</div>
@@ -131,7 +142,6 @@ function addEventListenerToSearchAddressButton() {
 
         // 우편번호와 주소 정보를 해당 필드에 넣는다.
         document.getElementById('postalCode').value = data.zonecode;
-        console.log(extraAddr);
         document.getElementById('address1').value = `${addr} ${extraAddr}`;
         // 커서를 상세주소 필드로 이동한다.
         document.getElementById('address2').focus();
@@ -224,7 +234,7 @@ function addEventListenerToOrderButton() {
   }
 
   async function sendOrderDataToServer(orderData) {
-    console.log(orderData);
+    console.log('서버로 전송되는 데이터', orderData);
     const dataJson = JSON.stringify(orderData);
 
     const url = API_URL + `/api/order`;
@@ -255,7 +265,7 @@ function addEventListenerToOrderButton() {
         }
       }
 
-      window.location.replace('/orderEnd');
+      // window.location.replace('/orderEnd');
     } else {
       console.log(res.status);
       alert('주문 실패. 다시 시도해주세요.');
