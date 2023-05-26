@@ -265,7 +265,7 @@ function addEventListenerToOrderButton() {
         }
       }
 
-      // window.location.replace('/orderEnd');
+      // window.location.replace('/order/end');
     } else {
       console.log(res.status);
       alert('주문 실패. 다시 시도해주세요.');
