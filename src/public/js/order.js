@@ -34,17 +34,6 @@ function makePaymentInformation() {
     data.forEach((item, index) => {
       const { _id, name, quantity, price } = item;
 
-      console.log(
-        '_id',
-        _id,
-        'name',
-        name,
-        'quantity',
-        quantity,
-        'price',
-        price,
-      );
-
       productListHTML += `
         <li data-_id="${_id}" data-quantity="${quantity}">
             <div>${name} / ${quantity}개</div>
@@ -180,6 +169,7 @@ function addEventListenerToOrderButton() {
     if (!receiver || !phoneNumber || !postalCode || !address2) {
       throw '배송지 정보를 모두 입력해주세요';
     }
+
     return;
   }
 
@@ -187,7 +177,7 @@ function addEventListenerToOrderButton() {
     const deliveryData = makeDeliveryData();
     const orderProductData = makeOrderProductData();
 
-    deliveryData.orderProductData = orderProductData;
+    deliveryData.productData = orderProductData;
 
     const orderData = deliveryData;
 
@@ -195,7 +185,7 @@ function addEventListenerToOrderButton() {
   }
 
   function makeDeliveryData() {
-    const userId = JSON.parse(localStorage.getItem('userId'));
+    const userId = localStorage.getItem('userId');
     const receiver = receiverNameInput.value;
     const phoneNumber = receiverPhoneNumberInput.value;
     const postalCode = postalCodeInput.value;
@@ -237,7 +227,7 @@ function addEventListenerToOrderButton() {
     console.log('서버로 전송되는 데이터', orderData);
     const dataJson = JSON.stringify(orderData);
 
-    const url = API_URL + `/api/order`;
+    const url = API_URL + `/api/orders`;
 
     const res = await fetch(url, {
       method: 'POST',
