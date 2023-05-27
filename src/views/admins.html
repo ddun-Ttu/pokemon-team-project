@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹 서비스 관리</title>
+    <link rel="stylesheet" href="/css/common/reset.css" />
+    <link rel="stylesheet" href="/css/common/index.css" />
+    <link rel="stylesheet" href="/css/admins.css" />
+  </head>
+  <body>
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
+    </div>
+
+    <!-- 관리자 페이지 -->
+    <div class="container">
+      <div class="contents-management-page">
+        <h3>웹서비스 관리</h3>
+        <div class="flex-management-page">
+          <div class="item-management-page">
+            <a href="/admins/orders">
+              <div class="icon-management-page"></div>
+              <div class="div-management-page">
+                <h3>주문관리</h3>
+                <p>모든 주문 내역을 확인 및 관리할 수 있습니다.</p>
+              </div>
+            </a>
+          </div>
+          <div class="item-management-page">
+            <a href="/admins/categories">
+              <div class="icon-management-page"></div>
+              <div class="div-management-page">
+                <h3>카테고리 관리</h3>
+                <p>제품이 속할 수 있는 카테고리 정보를 추가할 수 있습니다.</p>
+              </div>
+            </a>
+          </div>
+          <div class="item-management-page">
+            <a href="/admins/products">
+              <div class="icon-management-page"></div>
+              <div class="div-management-page">
+                <h3>상품 관리</h3>
+                <p>제품 정보를 추가할 수 있습니다.</p>
+              </div>
+            </a>
+          </div>
+          <div class="item-management-page">
+            <a href="">
+              <div class="icon-management-page"></div>
+              <div class="div-management-page">
+                <h3>회원관리</h3>
+                <p>모든 회원 정보를 확인 및 관리할 수 있습니다.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS 파일 -->
+    <script src="/public/js/common/navBar.js"></script>
+  </body>
+</html>

@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>관리자 - 주문페이지</title>
-    <link rel="stylesheet" href="/public/css/index.css" />
-    <link rel="stylesheet" href="/public/css/index.css" />
-    <link rel="stylesheet" href="/public/css/adminsOrders.css" />
+    <link rel="stylesheet" href="/css/common/reset.css" />
+    <link rel="stylesheet" href="/css/common/index.css" />
+    <link rel="stylesheet" href="/css/adminsOrders.css" />
   </head>
   <body>
     <!-- 네비게이션 바 -->
@@ -24,25 +24,25 @@
           <div class="flex-mypage">
             <div class="item-mypage">
               <div class="div-mypage">
-                <p>총주문수</p>
+                <p>총 주문 수</p>
                 <h3 id="order-count">0</h3>
               </div>
             </div>
             <div class="item-mypage">
               <div class="div-mypage">
-                <p>상품준비중</p>
+                <p>상품 준비 중</p>
                 <h3 id="prepare-count">0</h3>
               </div>
             </div>
             <div class="item-mypage">
               <div class="div-mypage">
-                <p>상품배송중</p>
+                <p>상품 배송 중</p>
                 <h3 id="delivery-count">0</h3>
               </div>
             </div>
             <div class="item-mypage">
               <div class="div-mypage">
-                <p>배송완료</p>
+                <p>배송 완료</p>
                 <h3 id="complete-count">0</h3>
               </div>
             </div>
@@ -53,15 +53,15 @@
           <table>
             <thead>
               <tr>
-                <th>날짜</th>
+                <th>주문 일자</th>
                 <th>주문 정보</th>
-                <th>주문총액</th>
-                <th>상태관리</th>
-                <th>취소</th>
+                <th>주문 총액</th>
+                <th>상태 관리</th>
+                <th>주문 삭제</th>
               </tr>
             </thead>
 
-            <tbody id="list-orders">
+            <tbody id="orderList">
               <!-- 
                     주문 목록들 출력 *JS
                     상태관리 - [PUT] 주문 상태 갱신 API 요청
@@ -74,7 +74,8 @@
     </div>
 
     <!-- JS 파일 -->
+    <script src="/js/common/config.js"></script>
     <script src="/js/common/navBar.js"></script>
-    <script src="/public/js/adminsOrders.js"></script>
+    <script src="/js/adminsOrders.js"></script>
   </body>
 </html>

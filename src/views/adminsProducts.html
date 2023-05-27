@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 - 상품 관리</title>
+    <link rel="stylesheet" href="/css/common/reset.css" />
+    <link rel="stylesheet" href="/css/common/index.css" />
+    <link rel="stylesheet" href="/css/adminsProducts.css" />
+  </head>
+  <body>
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
+    </div>
+
+    <!-- 관리자 상품 관리  -->
+    <div class="container">
+      <div class="contents-mypage">
+        <h3>관리자 - 상품 관리</h3>
+        <div>
+          <!-- 상단 숫자 -->
+          <div class="flex-mypage">
+            <div class="item-mypage">
+              <div class="div-mypage">
+                <p>총 상품수</p>
+                <h3>0</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 테이블 표 -->
+        <div class="table-my-orders">
+          <a href="/admins/products/add">
+            <button class="add-product-but">상품 추가</button>
+          </a>
+          <table>
+            <thead>
+              <tr>
+                <th>등록일</th>
+                <th>수정일</th>
+                <th>상품명</th>
+                <th>카테고리</th>
+                <th>가격</th>
+                <th>재고</th>
+                <th>수정</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody id="list-orders">
+              <!--
+                상품 목록 출력
+              -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/config.js"></script>
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/adminsProducts.js"></script>
+  </body>
+</html>

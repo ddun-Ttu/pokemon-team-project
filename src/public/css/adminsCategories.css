@@ -2,7 +2,6 @@
 .table-my-orders {
   margin: 20px auto;
   width: 80%;
-  max-width: 1200px;
   padding: 0 100px 20px 100px;
 }
 
@@ -26,8 +25,8 @@ tbody tr:nth-child(even) {
 }
 
 /* tbody tr:hover {
-    background-color: #ddd;
-  } */
+  background-color: #ddd;
+} */
 
 .contents-mypage > h3 {
   position: relative;
@@ -39,7 +38,7 @@ tbody tr:nth-child(even) {
   color: #ffc737;
 }
 
-.delete-btn {
+.btn-my-orders {
   border: none;
   width: 100px;
   height: 46px;
@@ -48,7 +47,6 @@ tbody tr:nth-child(even) {
   background-color: #ffecbc;
 }
 
-/* 상단숫자 */
 .contents-mypage > h3 {
   position: relative;
   font-size: 26px;
@@ -58,30 +56,23 @@ tbody tr:nth-child(even) {
   font-weight: 700;
   color: #ffc737;
 }
-.flex-mypage {
-  padding: 100px 100px 50px 100px;
-  display: flex;
-}
-.item-mypage {
-  width: 100%;
-  margin: 5px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
 
+/* 버튼 */
 .div-mypage {
   padding: 10px;
 }
 
-.div-mypage > h3 {
-  font-size: 24px;
-  font-weight: 500;
-  padding: 14px;
+.flex-mypage {
+  margin: 80px auto 0px auto;
+  width: 80%;
+  padding: 0 100px 0px 100px;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: flex-end;
 }
-
-.div-mypage > p {
-  color: #747474;
+.button-admins-cotegories {
+  padding: 15px;
+  margin: auto;
 }
 
 .items-management-orders {

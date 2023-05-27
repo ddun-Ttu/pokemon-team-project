@@ -1,0 +1,50 @@
+main {
+  position: relative;
+  top: 100px;
+}
+
+h1 {
+  font-size: 26px;
+  padding: 50px;
+  text-align: center;
+  font-weight: 700;
+  color: #ffc737;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 20px;
+}
+
+th {
+  background-color: #ffe8ae;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fff3d6;
+}
+
+/* .table-my-orders {
+  margin: 20px auto;
+  width: 80%;
+  padding: 100px;
+} */
+
+/* tbody tr:hover {
+    background-color: #ddd;
+  } */
+
+/* .btn-my-orders {
+  border: none;
+  width: 100px;
+  height: 46px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ffecbc;
+} */

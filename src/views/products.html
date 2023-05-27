@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 리스트</title>
+    <link rel="stylesheet" href="/css/common/reset.css" />
+    <link rel="stylesheet" href="/css/common/index.css" />
+    <link rel="stylesheet" href="/css/products.css" />
+  </head>
+  <body>
+    <div class="gridContainer-whole">
+      <!-- 네비게이션 바 -->
+      <div class="main-container">
+        <nav class="main-nav-container"><!--common/navBar.js--></nav>
+      </div>
+
+      <div class="gridItem-whole-categoryBar">
+        <div class="container-categoryBar">
+          <div class="categoryBar">
+            <div class="container-cartegoryBar-categoryList">
+              <div class="cartegoryBar-categoryList">
+                <ul class="cartegoryBar-categoryList-ul">
+                  <!-- 카테고리 리스트 삽입 (js)-->
+                </ul>
+              </div>
+            </div>
+            <!-- <div class="container-cartegoryBar-categoryList2">
+              <div class="cartegoryBar-categoryList2">
+                <ul class="cartegoryBar-categoryList2-ul">
+                  서브 카테고리 리스트 삽입 (js)
+                </ul>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="gridItem-whole-productListByCategory">
+        <div class="container-productListByCategory">
+          <div class="productListByCategory">
+            <div class="container-productListByCategory-list">
+              <div class="productListByCategory-list">
+                <ul class="productListByCategory-list-ul">
+                  <!-- 카테고리별 상품 리스트 삽입(js) -->
+                </ul>
+                <div class="container-paginationButton"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gridItem-whole-footer">
+        <div class="container-footer">
+          <div class="container-footer">
+            <footer></footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/dummy.js"></script>
+    <script src="/js/common/config.js"></script>
+    <script src="/js/common/navBar.js"></script>
+    <script type="module" src="/js/products.js"></script>
+  </body>
+</html>

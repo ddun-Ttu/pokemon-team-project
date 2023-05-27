@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Daum 주소 API 사용하기 위한 파일 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <title>회원정보 관리</title>
+    <link rel="stylesheet" href="/css/common/reset.css" />
+    <link rel="stylesheet" href="/css/common/index.css" />
+    <link rel="stylesheet" href="/css/usersMyEdit.css" />
+  </head>
+
+  <body>
+    <!-- 네비게이션 바 -->
+    <div class="main-container">
+      <nav class="main-nav-container"><!--common/navBar.js--></nav>
+    </div>
+
+    <!-- 회원정보 관리 페이지 -->
+    <div class="container container-user-acc">
+      <div class="form-div border-user-acc">
+        <form id="sign-up-form">
+          <h3>회원정보 관리</h3>
+          <div>
+            <p>이름</p>
+            <div id="username"></div>
+          </div>
+          <div>
+            <p>닉네임</p>
+            <input
+              id="nickname"
+              class="form-input-user-acc nickname"
+              placeholder="닉네임을 입력하세요."
+              type="text"
+            />
+          </div>
+          <div>
+            <p>이메일</p>
+            <div id="email"></div>
+          </div>
+          <div>
+            <p>비밀번호</p>
+            <input
+              id="account-password"
+              class="form-input-user-acc password"
+              placeholder="8자리 이상 입력해주세요"
+              type="password"
+            />
+            <p class="error-M block" id="password">8자리 이상 입력해주세요</p>
+          </div>
+          <div>
+            <p>비밀번호 확인</p>
+            <input
+              id="account-confirmPassword"
+              class="form-input-user-acc confirmPassword"
+              type="password"
+            />
+            <p class="error-M block" id="confirmPassword">
+              비밀번호가 다릅니다
+            </p>
+          </div>
+
+          <!-- [PUT] 사용자 정보 갱신 API 요청 -->
+          <button id="saveButton" class="but-user-acc">저장하기</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- JS 파일 -->
+    <script src="/js/common/config.js"></script>
+    <script src="/js/common/navBar.js"></script>
+    <script src="/js/usersMyEdit.js"></script>
+  </body>
+</html>

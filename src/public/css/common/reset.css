@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 html,
 body,
 div,
@@ -116,7 +118,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 table {
@@ -132,8 +134,10 @@ a:visited {
   text-decoration: none;
 }
 
-div,
-input,
-textarea {
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+* {
   box-sizing: border-box;
 }

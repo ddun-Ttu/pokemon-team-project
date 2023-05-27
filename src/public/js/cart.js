@@ -1,55 +1,98 @@
+const API_URL = config.apiHost;
+
 const inCartAndpaymentInformationArea = document.querySelector(
-  ".inCartAndpaymentInformation"
+  '.inCartAndpaymentInformation',
 );
-const inCart = document.querySelector(".inCart-productList-ul");
-const paymentInformation = document.querySelector(".paymentInformation");
+const inCart = document.querySelector('.inCart-productList-ul');
+const paymentInformation = document.querySelector('.paymentInformation');
 
 printInCartAndPaymentInformation();
 
 // * 장바구니 상품 정보 & 결제 정보 출력.
 function printInCartAndPaymentInformation() {
-  // 로컬 스토리지에서 장바구니 상품 정보를 꺼내옴.
-  let localStorageData = JSON.parse(localStorage.getItem("cart"));
+  const cartData = getCartData();
 
-  // 장바구니가 비어 있을 때.
-  if (localStorageData == null) {
-    // 메세지 박스 출력.
-    inCartAndpaymentInformationArea.innerHTML = `<div class="container-emptyCart"><div class="emptyCart">장바구니가 비었습니다.</div></div>`;
+  if (!isCart(cartData)) {
+    printEmptyCartMessageBox();
+
     return;
-    // 장바구니에 상품이 있을 때.
-  } else {
-    // 장바구니 상품 리스트 출력.
-    makeInCart();
+  }
 
-    // 장바구니 상품에 대한 결제 정보 출력.
-    makePaymentInformation();
+  makeInCart();
 
-    // * 장바구니 상품 리스트 출력 함수.
-    function makeInCart() {
-      let resultInCartHTML = "";
+  makePaymentInformation();
 
-      localStorageData.forEach((item, index) => {
-        let { _id, pokemonImage, pokemonName, quantity, price, checked } = item;
+  addEventListenerToEachButton();
 
-        // 체크박스 상태 변경을 위한 값 할당.
-        if (checked == true) {
-          checked = "checked";
-        } else {
-          checked = "";
-        }
+  function getCartData() {
+    let cartData = JSON.parse(localStorage.getItem('cart'));
 
-        // 장바구니 상품 리스트 템플릿을 가공하여 변수에 쌓음.
-        resultInCartHTML += `
+    return cartData;
+  }
+
+  function isCart(cartData) {
+    const data = cartData;
+    if (data === null) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function printEmptyCartMessageBox() {
+    makeEmptyCartHTML();
+    insertEmptyCartHTML();
+  }
+
+  function makeEmptyCartHTML() {
+    return `<div class="container-emptyCart"><div class="emptyCart">장바구니가 비었습니다.</div></div>`;
+  }
+
+  function insertEmptyCartHTML() {
+    const emptyCartHTML = makeEmptyCartHTML();
+
+    inCartAndpaymentInformationArea.textContent = '';
+
+    inCartAndpaymentInformationArea.insertAdjacentHTML(
+      'beforeend',
+      emptyCartHTML,
+    );
+  }
+
+  function makeInCart() {
+    const inCartHTML = makeInCartHTML();
+
+    insertInCartHTML(inCartHTML);
+  }
+
+  function makeInCartHTML() {
+    let inCartHTML = '';
+
+    cartData.forEach(item => {
+      let { _id, img, name, quantity, price, checked } = item;
+      console.log(item);
+
+      // 체크박스 상태 변경을 위한 값 할당.
+      if (checked == true) {
+        checked = 'checked';
+      } else {
+        checked = '';
+      }
+
+      // 장바구니 상품 리스트 템플릿을 가공하여 변수에 쌓음.
+      inCartHTML += `
           <li class="inCart-productList-li">
             <div class="container-productList-checkbox">
               <input class="productList-checkbox" type="checkbox" ${checked}>
             </div>
             <div class="container-productList-productIamge">
-            <a href='/pokemons/${_id}' class="img"><img class="productList-productIamge" src=${pokemonImage} onerror="this.onerror=null; this.src='../img/피카츄.png';" alt=""></a>
+            <a href='/products/${_id}' class="img"><img class="productList-productIamge" src=${
+        API_URL + img
+      } onerror="this.onerror=null; this.src='/imgs/모래두지.png';" alt=""></a>
             </div>
             <div class="container-productList-productNameAndCountHandle">
               <div class="container-productList-productName">
-              <div class="productList-productName">${pokemonName}</div>
+              <div class="productList-productName">${name}</div>
               </div>
               <div class="container-productList-countHandle">
                 <div>
@@ -83,29 +126,39 @@ function printInCartAndPaymentInformation() {
             </div>
           </li>
           `;
-      });
+    });
 
-      inCart.innerHTML = resultInCartHTML;
-    }
+    return inCartHTML;
+  }
 
-    // 장바구니 상품에 대한 결제 정보 출력 함수.
-    function makePaymentInformation() {
-      let resultPaymentInformationHTML = "";
+  function insertInCartHTML(inCartHTML) {
+    inCart.textContent = '';
 
-      let totalProductCount = 0;
-      let totalProductPrice = 0;
-      let deliveryFee = 0;
+    inCart.insertAdjacentHTML('beforeend', inCartHTML);
+  }
 
-      localStorageData.forEach((item) => {
-        let { price, quantity, checked } = item;
+  function makePaymentInformation() {
+    const paymentInformationHTML = makePaymentInformationHTML();
+    insertPaymentInformationHTML(paymentInformationHTML);
+  }
 
-        if (checked == true) {
-          totalProductCount += quantity;
-          totalProductPrice += quantity * price;
-          deliveryFee += quantity * 5000;
-        }
+  function makePaymentInformationHTML() {
+    let paymentInformationHTML = '';
 
-        resultPaymentInformationHTML = `
+    let totalProductCount = 0;
+    let totalProductPrice = 0;
+    let deliveryFee = 0;
+
+    cartData.forEach(item => {
+      let { price, quantity, checked } = item;
+
+      if (checked == true) {
+        totalProductCount += quantity;
+        totalProductPrice += quantity * price;
+        deliveryFee += quantity * 5000;
+      }
+
+      paymentInformationHTML = `
           <div class="container-paymentInformation-subject">
             <div class="paymentInformation-subject">결제 정보</div>
           </div>
@@ -135,145 +188,168 @@ function printInCartAndPaymentInformation() {
             <button class="paymentInformation-paymentButton">구매하기</button>
           </div>
           `;
-      });
-      paymentInformation.innerHTML = resultPaymentInformationHTML;
-    }
+    });
+
+    return paymentInformationHTML;
   }
 
-  // * 수량 변경 버튼 제작.
-  const minusButton = document.querySelectorAll(".minusButton");
-  const plusButton = document.querySelectorAll(".plusButton");
+  function insertPaymentInformationHTML(paymentInformationHTML) {
+    paymentInformation.textContent = '';
+    paymentInformation.insertAdjacentHTML('beforeend', paymentInformationHTML);
+  }
 
-  // 마이너스 버튼.
-  localStorageData.forEach((item, index) => {
-    minusButton[index].addEventListener("click", () => {
-      if (item.quantity == 1) {
-        alert("수량 설정은 1 이상만 가능합니다.");
-      } else {
-        // 클릭 시 상품 데이터의 수량 -1.
-        item.quantity--;
-      }
-      localStorage.setItem("cart", JSON.stringify(localStorageData));
+  function addEventListenerToEachButton() {
+    addEventListenerToSetProductQuantityButton();
+    addEventListenerToCheckboxButton();
+    addEventListenerToDeleteProductButton();
+    addEventListenerToDeleteAllProductButton();
+    addEventListenerToGoOrderButton();
+  }
 
-      // 변경된 데이터 반영을 위한 화면 재출력.
-      printInCartAndPaymentInformation();
-    });
+  function addEventListenerToSetProductQuantityButton() {
+    // * 수량 변경 버튼 제작.
+    const minusButton = document.querySelectorAll('.minusButton');
+    const plusButton = document.querySelectorAll('.plusButton');
 
-    // 플러스 버튼.
-    plusButton[index].addEventListener("click", () => {
-      // 클릭 시 상품 데이터의 수량 +1.
-      item.quantity++;
-      localStorage.setItem("cart", JSON.stringify(localStorageData));
-
-      // 변경된 데이터 반영을 위한 화면 재출력.
-      printInCartAndPaymentInformation();
-    });
-  });
-
-  // * 체크박스 기능 제작.
-  const checkbox = document.querySelectorAll(".productList-checkbox");
-
-  const superCheckbox = document.querySelector(
-    ".head-selectAllAndcancleAllCheckbox"
-  );
-
-  let trueCheckboxCount = 0;
-
-  localStorageData.forEach((item, index) => {
-    const eachCheckbox = checkbox[index];
-
-    if (eachCheckbox.checked == true) {
-      trueCheckboxCount++;
-      if (trueCheckboxCount == localStorageData.length) {
-        superCheckbox.checked = true;
-      } else {
-        superCheckbox.checked = false;
-      }
-    }
-
-    // 체크박스 상태 조정에 따라 결제 정보 편입 상품 판별.
-    eachCheckbox.addEventListener("click", () => {
-      if (eachCheckbox.checked == false) {
-        item.checked = false;
-
-        // 해당 상품의 장바구니 데이터 재설정.
-        localStorage.setItem("cart", JSON.stringify(localStorageData));
+    // 마이너스 버튼.
+    cartData.forEach((item, index) => {
+      minusButton[index].addEventListener('click', () => {
+        if (item.quantity == 1) {
+          alert('수량 설정은 1 이상만 가능합니다.');
+        } else {
+          // 클릭 시 상품 데이터의 수량 -1.
+          item.quantity--;
+        }
+        localStorage.setItem('cart', JSON.stringify(cartData));
 
         // 변경된 데이터 반영을 위한 화면 재출력.
         printInCartAndPaymentInformation();
-      } else if (eachCheckbox.checked == true) {
-        item.checked = true;
+      });
 
-        localStorage.setItem("cart", JSON.stringify(localStorageData));
+      // 플러스 버튼.
+      plusButton[index].addEventListener('click', () => {
+        // 클릭 시 상품 데이터의 수량 +1.
+        item.quantity++;
+        localStorage.setItem('cart', JSON.stringify(cartData));
 
+        // 변경된 데이터 반영을 위한 화면 재출력.
         printInCartAndPaymentInformation();
-      }
+      });
     });
-  });
-
-  superCheckbox.addEventListener("click", superCheckboxHandler);
-
-  function superCheckboxHandler() {
-    if (superCheckbox.checked == false) {
-      superCheckbox.checked = false;
-
-      localStorageData.forEach((item, index) => {
-        item.checked = false;
-        checkbox[index].checked = false;
-      });
-    } else if (superCheckbox.checked == true) {
-      superCheckbox.checked = true;
-
-      localStorageData.forEach((item, index) => {
-        item.checked = true;
-        checkbox[index].checked = true;
-      });
-    }
-
-    // 변경된 데이터로 장바구니 데이터 재설정.
-    localStorage.setItem("cart", JSON.stringify(localStorageData));
-
-    // 변경된 데이터 반영을 위한 화면 재출력.
-    printInCartAndPaymentInformation();
   }
 
-  // * 삭제 버튼 기능 제작.
-  const deleteButton = document.querySelectorAll(".productList-deleteButton");
+  function addEventListenerToCheckboxButton() {
+    // * 체크박스 기능 제작.
+    const checkbox = document.querySelectorAll('.productList-checkbox');
 
-  localStorageData.forEach((item, index) => {
-    const eachDeleteButton = deleteButton[index];
+    const superCheckbox = document.querySelector(
+      '.head-selectAllAndcancleAllCheckbox',
+    );
 
-    eachDeleteButton.addEventListener("click", (e) => {
-      const target = e.target;
+    let trueCheckboxCount = 0;
 
-      // 마지막 데이터를 삭제할 땐 cart 데이터 저장소 자체를 제거.
-      // 빈 배열이라도 남아 있으면 메세지 박스가 출력되지 않을 테니까.
-      if (localStorageData.length == 1) {
-        localStorage.removeItem("cart");
-      } else {
-        localStorageData.splice(index, 1);
-        localStorage.setItem("cart", JSON.stringify(localStorageData));
+    cartData.forEach((item, index) => {
+      const eachCheckbox = checkbox[index];
+
+      if (eachCheckbox.checked == true) {
+        trueCheckboxCount++;
+        if (trueCheckboxCount == cartData.length) {
+          superCheckbox.checked = true;
+        } else {
+          superCheckbox.checked = false;
+        }
       }
+
+      // 체크박스 상태 조정에 따라 결제 정보 편입 상품 판별.
+      eachCheckbox.addEventListener('click', () => {
+        if (eachCheckbox.checked == false) {
+          item.checked = false;
+
+          // 해당 상품의 장바구니 데이터 재설정.
+          localStorage.setItem('cart', JSON.stringify(cartData));
+
+          // 변경된 데이터 반영을 위한 화면 재출력.
+          printInCartAndPaymentInformation();
+        } else if (eachCheckbox.checked == true) {
+          item.checked = true;
+
+          localStorage.setItem('cart', JSON.stringify(cartData));
+
+          printInCartAndPaymentInformation();
+        }
+      });
+    });
+
+    superCheckbox.addEventListener('click', superCheckboxHandler);
+
+    function superCheckboxHandler() {
+      if (superCheckbox.checked == false) {
+        superCheckbox.checked = false;
+
+        cartData.forEach((item, index) => {
+          item.checked = false;
+          checkbox[index].checked = false;
+        });
+      } else if (superCheckbox.checked == true) {
+        superCheckbox.checked = true;
+
+        cartData.forEach((item, index) => {
+          item.checked = true;
+          checkbox[index].checked = true;
+        });
+      }
+
+      // 변경된 데이터로 장바구니 데이터 재설정.
+      localStorage.setItem('cart', JSON.stringify(cartData));
+
+      // 변경된 데이터 반영을 위한 화면 재출력.
+      printInCartAndPaymentInformation();
+    }
+  }
+
+  function addEventListenerToDeleteProductButton() {
+    // * 삭제 버튼 기능 제작.
+    const deleteButton = document.querySelectorAll('.productList-deleteButton');
+
+    cartData.forEach((item, index) => {
+      const eachDeleteButton = deleteButton[index];
+
+      eachDeleteButton.addEventListener('click', e => {
+        const target = e.target;
+
+        // 마지막 데이터를 삭제할 땐 cart 데이터 저장소 자체를 제거.
+        // 빈 배열이라도 남아 있으면 메세지 박스가 출력되지 않을 테니까.
+        if (cartData.length == 1) {
+          localStorage.removeItem('cart');
+        } else {
+          cartData.splice(index, 1);
+          localStorage.setItem('cart', JSON.stringify(cartData));
+        }
+
+        printInCartAndPaymentInformation();
+      });
+    });
+  }
+
+  function addEventListenerToDeleteAllProductButton() {
+    const deleteAllButton = document.querySelector('.head-deleteAllButton');
+
+    deleteAllButton.addEventListener('click', () => {
+      localStorage.removeItem('cart');
 
       printInCartAndPaymentInformation();
     });
-  });
+  }
 
-  const deleteAllButton = document.querySelector(".head-deleteAllButton");
+  function addEventListenerToGoOrderButton() {
+    const goOrderButton = document.querySelector(
+      '.paymentInformation-paymentButton',
+    );
 
-  deleteAllButton.addEventListener("click", () => {
-    localStorage.removeItem("cart");
+    goOrderButton.addEventListener('click', goOrderButtonHandler);
 
-    printInCartAndPaymentInformation();
-  });
-
-  const goOrderButton = document.querySelector(
-    ".paymentInformation-paymentButton"
-  );
-
-  goOrderButton.addEventListener("click", goOrderButtonHandler);
-
-  async function goOrderButtonHandler() {
-    window.location.href = "/orders";
+    function goOrderButtonHandler() {
+      window.location.href = '/order';
+    }
   }
 }

@@ -1,5 +1,5 @@
-import "dotenv/config"; // 환경변수 사용
-import app from "./app";
+import 'dotenv/config'; // 환경변수 사용
+import app from './app';
 
 const PORT = process.env.PORT || 3000;
 

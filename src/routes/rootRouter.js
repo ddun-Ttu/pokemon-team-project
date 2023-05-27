@@ -1,47 +1,33 @@
-import express from "express";
+import express from 'express';
 
-const PATH_NAME = __dirname.split("/").slice(0, -1).join("/");
+const PATH_NAME = __dirname.split('/').slice(0, -1).join('/');
 
 const rootRouter = express.Router();
 
-// 메인 페이지
-rootRouter.get("/", (req, res) => {
-  const PAGE_NAME = "mainHome";
-
-  res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
-});
-
-// 상폼 목록 페이지
-rootRouter.get("/pokemons", (req, res) => {
-  const PAGE_NAME = "productListByCategory";
-
-  res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
-});
-
-// 상품 상세 페이지
-rootRouter.get("/pokemons/:pokemonId", (req, res) => {
-  const PAGE_NAME = "productDetail";
+// 홈 페이지
+rootRouter.get('/', (req, res) => {
+  const PAGE_NAME = 'home';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 장바구니 페이지
-rootRouter.get("/carts", (req, res) => {
-  const PAGE_NAME = "cart";
+rootRouter.get('/cart', (req, res) => {
+  const PAGE_NAME = 'cart';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 주문결제 페이지
-rootRouter.get("/orders", (req, res) => {
-  const PAGE_NAME = "orderAndPayment";
+rootRouter.get('/order', (req, res) => {
+  const PAGE_NAME = 'order';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
 
 // 주문완료 페이지
-rootRouter.get("/orders/end", (req, res) => {
-  const PAGE_NAME = "orderComplete";
+rootRouter.get('/order/end', (req, res) => {
+  const PAGE_NAME = 'orderEnd';
 
   res.sendFile(`${PATH_NAME}/views/${PAGE_NAME}.html`);
 });
