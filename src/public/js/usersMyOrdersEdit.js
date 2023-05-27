@@ -5,6 +5,7 @@ const address1InputElm = document.querySelector('#address1');
 const address2InputElm = document.querySelector('#address2');
 
 const token = localStorage.getItem('token');
+const API_URL = config.apiHost;
 
 let urlArr = window.location.href.split('/');
 urlArr.pop();

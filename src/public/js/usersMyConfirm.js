@@ -2,6 +2,8 @@ const passwordInput = document.querySelector('#account-password');
 const password = document.querySelector('#password');
 const confirmBtn = document.querySelector('#confirmButton');
 
+const API_URL = config.apiHost;
+
 // 패스워드가 8글자인지 확인
 passwordInput.addEventListener('input', function () {
   console.log(passwordInput.value.length);
