@@ -3,6 +3,8 @@ const confirmPasswordInput = document.querySelector('#account-confirmPassword');
 const password = document.querySelector('#password');
 const confirmPassword = document.querySelector('#confirmPassword');
 
+const API_URL = config.apiHost;
+
 let signUpName = document.querySelector('.name').value;
 let signUpNickname = document.querySelector('.nickname').value;
 let signUpEmail = document.querySelector('.email').value;

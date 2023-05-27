@@ -1,6 +1,8 @@
 const passwordInput = document.querySelector('#login-password');
 const loginInput = document.querySelector('#login-email');
 
+const API_URL = config.apiHost;
+
 //에러 메세지
 const errorMessage = document.createElement('p');
 errorMessage.style.color = 'red';

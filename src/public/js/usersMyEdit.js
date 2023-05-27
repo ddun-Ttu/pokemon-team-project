@@ -9,6 +9,8 @@ const confirmPassword = document.querySelector('#confirmPassword');
 const userId = localStorage.getItem('userId');
 const token = localStorage.getItem('token');
 
+const API_URL = config.apiHost;
+
 // 페이지 로드 시 기존 회원정보 불러오기
 window.onload = async function getUserInfo() {
   await fetch(API_URL + `/api/users/${userId}`, {

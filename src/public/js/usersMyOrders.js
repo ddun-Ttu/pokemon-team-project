@@ -1,6 +1,8 @@
 const userId = localStorage.getItem('userId');
 const token = localStorage.getItem('token');
 
+const API_URL = config.apiHost;
+
 //페이지 로드 시 사용자 주문 내역 불러오기
 window.onload = async function (e) {
   e.preventDefault();

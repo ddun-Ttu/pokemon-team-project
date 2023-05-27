@@ -1,5 +1,7 @@
 const TOKEN = localStorage.getItem('token');
 
+const API_URL = config.apiHost;
+
 window.onload = async function (e) {
   e.preventDefault();
 
